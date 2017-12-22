@@ -31,125 +31,125 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 1.0.0
  * @version 1.0.0
  */
-@ConfigurationProperties("kukulkan")
+@ConfigurationProperties(prefix = "kukulkan", ignoreUnknownFields = false)
 public class KukulkanConfigurationProperties {
-	private final Data data = new Data();
-	private final Config config = new Config();
+    private final Data data = new Data();
+    private final Config config = new Config();
 
-	public Data getData() {
-		return data;
-	}
+    public Data getData() {
+        return data;
+    }
 
-	public Config getConfig() {
-		return config;
-	}
+    public Config getConfig() {
+        return config;
+    }
 
-	public static class Data {
+    public static class Data {
 
-		private final Mysql mysql = new Mysql();
+        private final Mysql mysql = new Mysql();
 
-		public static class Mysql {
-			private String uri;
-			private String user;
-			private String password;
+        public static class Mysql {
+            private String uri;
+            private String user;
+            private String password;
 
-			public String getUri() {
-				return uri;
-			}
+            public String getUri() {
+                return uri;
+            }
 
-			public void setUri(String uri) {
-				this.uri = uri;
-			}
+            public void setUri(String uri) {
+                this.uri = uri;
+            }
 
-			public String getUser() {
-				return user;
-			}
+            public String getUser() {
+                return user;
+            }
 
-			public void setUser(String user) {
-				this.user = user;
-			}
+            public void setUser(String user) {
+                this.user = user;
+            }
 
-			public String getPassword() {
-				return password;
-			}
+            public String getPassword() {
+                return password;
+            }
 
-			public void setPassword(String password) {
-				this.password = password;
-			}
-		}
+            public void setPassword(String password) {
+                this.password = password;
+            }
+        }
 
-		public Mysql getMysql() {
-			return mysql;
-		}
-	}
+        public Mysql getMysql() {
+            return mysql;
+        }
+    }
 
-	public static class Config {
+    public static class Config {
 
-		private String inputdir;
-		private String outputdir;
-		private String documenturl;
-		private ExternalApps externalApps;
+        private String inputdir;
+        private String outputdir;
+        private String documenturl;
+        private ExternalApps externalApps;
 
-		public static class ExternalApps {
-			private String modeler;
-			private String presentation;
-			private String slides;
+        public static class ExternalApps {
+            private String modeler;
+            private String presentation;
+            private String slides;
 
-			public String getModeler() {
-				return modeler;
-			}
+            public String getModeler() {
+                return modeler;
+            }
 
-			public void setModeler(String modeler) {
-				this.modeler = modeler;
-			}
+            public void setModeler(String modeler) {
+                this.modeler = modeler;
+            }
 
-			public String getPresentation() {
-				return presentation;
-			}
+            public String getPresentation() {
+                return presentation;
+            }
 
-			public void setPresentation(String presentation) {
-				this.presentation = presentation;
-			}
+            public void setPresentation(String presentation) {
+                this.presentation = presentation;
+            }
 
-			public String getSlides() {
-				return slides;
-			}
+            public String getSlides() {
+                return slides;
+            }
 
-			public void setSlides(String slides) {
-				this.slides = slides;
-			}
-		}
+            public void setSlides(String slides) {
+                this.slides = slides;
+            }
+        }
 
-		public String getInputdir() {
-			return inputdir;
-		}
+        public String getInputdir() {
+            return inputdir;
+        }
 
-		public void setInputdir(String inputdir) {
-			this.inputdir = inputdir;
-		}
+        public void setInputdir(String inputdir) {
+            this.inputdir = inputdir;
+        }
 
-		public String getOutputdir() {
-			return outputdir;
-		}
+        public String getOutputdir() {
+            return outputdir;
+        }
 
-		public void setOutputdir(String outputdir) {
-			this.outputdir = outputdir;
-		}
+        public void setOutputdir(String outputdir) {
+            this.outputdir = outputdir;
+        }
 
-		public String getDocumenturl() {
-			return documenturl;
-		}
+        public String getDocumenturl() {
+            return documenturl;
+        }
 
-		public void setDocumenturl(String documenturl) {
-			this.documenturl = documenturl;
-		}
+        public void setDocumenturl(String documenturl) {
+            this.documenturl = documenturl;
+        }
 
-		public ExternalApps getExternalApps() {
-			return externalApps;
-		}
+        public ExternalApps getExternalApps() {
+            return externalApps;
+        }
 
-		public void setExternalApps(ExternalApps externalApps) {
-			this.externalApps = externalApps;
-		}
-	}
+        public void setExternalApps(ExternalApps externalApps) {
+            this.externalApps = externalApps;
+        }
+    }
 }
