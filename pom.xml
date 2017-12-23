@@ -7,6 +7,7 @@
 		<version>1.5.9.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+	<groupId>mx.infotec.dads.kukulkan</groupId>
 	<artifactId>kukulkan-metamodel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>kukulkan-metamodel</name>
