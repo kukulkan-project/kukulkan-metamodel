@@ -10,13 +10,8 @@ import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelElement;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelGroup;
 import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratorContext;
 import mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration;
+import mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer;
 
-/**
- * Abstract Navigable Layer
- * 
- * @author Daniel Cortes Pichardo
- *
- */
 public abstract class AbstractNavigableLayer implements NavigableLayer {
 
     @Override
@@ -56,4 +51,5 @@ public abstract class AbstractNavigableLayer implements NavigableLayer {
     public void doBeforeProcessDataModelGroup(GeneratorContext context, final Map<String, Object> propertiesMap) {
 
     }
+
 }

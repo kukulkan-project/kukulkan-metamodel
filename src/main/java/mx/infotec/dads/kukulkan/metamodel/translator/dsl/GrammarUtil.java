@@ -1,6 +1,6 @@
 package mx.infotec.dads.kukulkan.metamodel.translator.dsl;
 
-import static mx.infotec.dads.kukulkan.metamodel.util.EntitiesFactory.createDefaultPrimaryKey;
+import static mx.infotec.dads.kukulkan.metamodel.util.DataBaseMapping.createDefaultPrimaryKey;
 
 import java.io.IOException;
 import java.io.InputStream;
