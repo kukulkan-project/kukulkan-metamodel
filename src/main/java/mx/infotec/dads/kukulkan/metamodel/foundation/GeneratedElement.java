@@ -2,7 +2,6 @@ package mx.infotec.dads.kukulkan.metamodel.foundation;
 
 import java.io.Serializable;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import mx.infotec.dads.kukulkan.metamodel.editor.Editor;
 
