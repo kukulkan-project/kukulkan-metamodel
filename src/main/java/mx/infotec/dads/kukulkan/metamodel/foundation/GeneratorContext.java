@@ -41,27 +41,31 @@ package mx.infotec.dads.kukulkan.metamodel.foundation;
 
 public class GeneratorContext {
 
-    private ProjectConfiguration projectConfiguration;
-    /**
-     * The DataModelContext of the MetaModel
-     */
-    private DomainModel domainModel;
+	private ProjectConfiguration projectConfiguration;
+	/**
+	 * The DataModelContext of the MetaModel
+	 */
+	private DomainModel domainModel;
 
-    public GeneratorContext(DomainModel domainModel, ProjectConfiguration projectConfiguration) {
-        this.domainModel = domainModel;
-        this.setProjectConfiguration(projectConfiguration);
-    }
+	public GeneratorContext(DomainModel domainModel, ProjectConfiguration projectConfiguration) {
+		this.domainModel = domainModel;
+		this.setProjectConfiguration(projectConfiguration);
+	}
 
-    public DomainModel getDomainModel() {
-        return domainModel;
-    }
+	public GeneratorContext(ProjectConfiguration projectConfiguration) {
+		this.setProjectConfiguration(projectConfiguration);
+	}
 
-    public ProjectConfiguration getProjectConfiguration() {
-        return projectConfiguration;
-    }
+	public DomainModel getDomainModel() {
+		return domainModel;
+	}
 
-    public void setProjectConfiguration(ProjectConfiguration projectConfiguration) {
-        this.projectConfiguration = projectConfiguration;
-    }
+	public ProjectConfiguration getProjectConfiguration() {
+		return projectConfiguration;
+	}
+
+	public void setProjectConfiguration(ProjectConfiguration projectConfiguration) {
+		this.projectConfiguration = projectConfiguration;
+	}
 
 }
