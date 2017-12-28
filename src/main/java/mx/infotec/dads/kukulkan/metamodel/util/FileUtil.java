@@ -111,23 +111,14 @@ public class FileUtil {
 	}
 
 	public static boolean saveToFile(GeneratedElement ge) {
-		createDirectories(ge.getPath());
-		LOGGER.info("saveFile {}", ge.getPath().toString());
-		try (final BufferedWriter out = Files.newBufferedWriter(ge.getPath(), StandardCharsets.UTF_8,
-				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
-			out.write(ge.getContent());
-			return true;
-		} catch (IOException ioe) {
-			LOGGER.error("FileUtil.createFileIfNotExist: ", ioe);
-			return false;
-		}
+		return saveToFile(ge.getPath(), ge.getContent());
 	}
 
-	public static boolean saveToFile(Path path, String content) {
-		createDirectories(path);
-		LOGGER.info("saveFile to: {}", path.toString());
-		try (final BufferedWriter out = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE,
-				StandardOpenOption.TRUNCATE_EXISTING)) {
+	public static boolean saveToFile(Path pathToSave, String content) {
+		createDirectories(pathToSave);
+		LOGGER.info("saveFile to: {}", pathToSave.toString());
+		try (final BufferedWriter out = Files.newBufferedWriter(pathToSave, StandardCharsets.UTF_8,
+				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
 			out.write(content);
 			return true;
 		} catch (IOException ioe) {
