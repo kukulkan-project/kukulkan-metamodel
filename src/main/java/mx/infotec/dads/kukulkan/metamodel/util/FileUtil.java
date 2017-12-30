@@ -23,6 +23,8 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.util;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 import java.io.BufferedWriter;
 import java.io.Closeable;
 import java.io.File;
@@ -182,5 +184,10 @@ public class FileUtil {
         String content = new String(Files.readAllBytes(path), charset);
         content = content.replaceAll(targetText, newText);
         Files.write(path, content.getBytes(charset));
+    }
+    
+    public static void copy(Path from, Path to) throws IOException {
+        createDirectories(to);
+        Files.copy(from, to, REPLACE_EXISTING);
     }
 }
