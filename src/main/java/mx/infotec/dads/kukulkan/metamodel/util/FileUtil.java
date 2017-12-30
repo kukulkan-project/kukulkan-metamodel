@@ -31,11 +31,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -185,9 +188,22 @@ public class FileUtil {
         content = content.replaceAll(targetText, newText);
         Files.write(path, content.getBytes(charset));
     }
-    
+
     public static void copy(Path from, Path to) throws IOException {
         createDirectories(to);
         Files.copy(from, to, REPLACE_EXISTING);
+    }
+
+    public static boolean copyFromJar(String templatePath, Path to) {
+        LOGGER.info("Opening resource: {}", templatePath);
+        URL loadedResource = FileUtil.class.getClassLoader().getResource(templatePath);
+        try (InputStream inputStream = loadedResource.openStream()) {
+            Files.createDirectories(to.getParent());
+            Files.copy(inputStream, to, StandardCopyOption.REPLACE_EXISTING);
+            return true;
+        } catch (IOException e) {
+            LOGGER.error("Copy Resource Error", e);
+            return false;
+        }
     }
 }
