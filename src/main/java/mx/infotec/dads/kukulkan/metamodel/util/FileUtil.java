@@ -121,7 +121,7 @@ public class FileUtil {
 
     public static boolean saveToFile(Path pathToSave, String content) {
         createDirectories(pathToSave);
-        LOGGER.info("saveFile to: {}", pathToSave.toString());
+        LOGGER.info("saveFile to: {}", pathToSave);
         try (final BufferedWriter out = Files.newBufferedWriter(pathToSave, StandardCharsets.UTF_8,
                 StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             out.write(content);
@@ -195,7 +195,7 @@ public class FileUtil {
     }
 
     public static boolean copyFromJar(String templatePath, Path to) {
-        LOGGER.info("Opening resource: {}", templatePath);
+        LOGGER.info("saveFile to: {}", to);
         URL loadedResource = FileUtil.class.getClassLoader().getResource(templatePath);
         try (InputStream inputStream = loadedResource.openStream()) {
             Files.createDirectories(to.getParent());
