@@ -24,6 +24,7 @@
 package mx.infotec.dads.kukulkan.metamodel.foundation;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 
 import mx.infotec.dads.kukulkan.metamodel.util.PKGenerationStrategy;
 
@@ -50,6 +51,7 @@ public class ProjectConfiguration implements Serializable {
     private String dtoLayerName;
     private String exceptionLayerName;
     private String conacytDaoLayerName;
+    private transient Path outputDir;
 
     private boolean mongoDb;
 
@@ -182,6 +184,14 @@ public class ProjectConfiguration implements Serializable {
 
     public void setMongoDb(boolean mongoDb) {
         this.mongoDb = mongoDb;
+    }
+
+    public Path getOutputDir() {
+        return outputDir;
+    }
+
+    public void setOutputDir(Path outputDir) {
+        this.outputDir = outputDir;
     }
 
 }
