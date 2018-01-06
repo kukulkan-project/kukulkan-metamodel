@@ -3,20 +3,45 @@ package mx.infotec.dads.kukulkan.metamodel.editor;
 import java.io.Serializable;
 
 /**
- * Language Represent a programming languages
+ * Editor Interface, It represent an Abstract Editor used for Write code
  * 
  * @author Daniel Cortes Pichardo
  *
  */
 public interface Editor extends Serializable {
 
-	String getTheme();
+    /**
+     * Return the seleted theme
+     * 
+     * @return the selected theme
+     */
+    String getTheme();
 
-	String getLanguage();
+    /**
+     * Return the selected language used in the editor
+     * 
+     * @return the selected language
+     */
+    String getLanguage();
 
-	boolean isReadOnly();
+    /**
+     * It return true if the current editor is just read only, otherwise false
+     * 
+     * @return
+     */
+    boolean isReadOnly();
 
-	boolean isShowGutter();
+    /**
+     * It return true if the current editor is shoGutter, otherwise false
+     * 
+     * @return
+     */
+    boolean isShowGutter();
 
-	int getFirstLineNumber();
+    /**
+     * It return the number of line where the editor must begin
+     * 
+     * @return the first line number
+     */
+    int getFirstLineNumber();
 }
