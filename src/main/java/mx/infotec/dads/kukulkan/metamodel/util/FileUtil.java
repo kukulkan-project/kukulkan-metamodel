@@ -86,7 +86,7 @@ public class FileUtil {
     }
 
     public static Path buildPath(String proyectoId, BasePathEnum path, String filePath, String outPutDir) {
-        return Paths.get(outPutDir + proyectoId + "/" + path.getPath() + "/" + filePath);
+        return Paths.get(outPutDir, proyectoId, path.getPath(), filePath);
     }
 
     public static boolean createParentsFileIfNotExist(Path path) {
