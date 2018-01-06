@@ -38,18 +38,38 @@ import java.util.regex.Pattern;
  */
 public class InflectorProcessor {
 
+    /** The Constant INSTANCE. */
     protected static final InflectorProcessor INSTANCE = new InflectorProcessor();
 
+    /**
+     * Gets the single instance of InflectorProcessor.
+     *
+     * @return single instance of InflectorProcessor
+     */
     public static final InflectorProcessor getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * The Class Rule.
+     */
     protected class Rule {
 
+        /** The expression. */
         protected final String expression;
+        
+        /** The expression pattern. */
         protected final Pattern expressionPattern;
+        
+        /** The replacement. */
         protected final String replacement;
 
+        /**
+         * Instantiates a new rule.
+         *
+         * @param expression the expression
+         * @param replacement the replacement
+         */
         protected Rule(String expression, String replacement) {
             this.expression = expression;
             this.replacement = replacement != null ? replacement : "";
@@ -59,10 +79,9 @@ public class InflectorProcessor {
         /**
          * Apply the rule against the input string, returning the modified
          * string or null if the rule didn't apply (and no modifications were
-         * made)
-         * 
-         * @param input
-         *            the input string
+         * made).
+         *
+         * @param input            the input string
          * @return the modified string if this rule applied, or null if the
          *         input was not modified by this rule
          */
@@ -73,11 +92,17 @@ public class InflectorProcessor {
             return matcher.replaceAll(this.replacement);
         }
 
+        /* (non-Javadoc)
+         * @see java.lang.Object#hashCode()
+         */
         @Override
         public int hashCode() {
             return expression.hashCode();
         }
 
+        /* (non-Javadoc)
+         * @see java.lang.Object#equals(java.lang.Object)
+         */
         @Override
         public boolean equals(Object obj) {
             if (obj == this)
@@ -90,13 +115,19 @@ public class InflectorProcessor {
             return false;
         }
 
+        /* (non-Javadoc)
+         * @see java.lang.Object#toString()
+         */
         @Override
         public String toString() {
             return expression + ", " + replacement;
         }
     }
 
+    /** The plurals. */
     private LinkedList<Rule> plurals = new LinkedList<>();
+    
+    /** The singulars. */
     private LinkedList<Rule> singulars = new LinkedList<>();
     /**
      * The lowercase words that are to be excluded and not processed. This map
@@ -104,10 +135,18 @@ public class InflectorProcessor {
      */
     private final Set<String> uncountables = new HashSet<>();
 
+    /**
+     * Instantiates a new inflector processor.
+     */
     public InflectorProcessor() {
         initialize();
     }
 
+    /**
+     * Instantiates a new inflector processor.
+     *
+     * @param original the original
+     */
     protected InflectorProcessor(InflectorProcessor original) {
         this.plurals.addAll(original.plurals);
         this.singulars.addAll(original.singulars);
@@ -160,6 +199,13 @@ public class InflectorProcessor {
         return wordStr;
     }
 
+    /**
+     * Pluralize.
+     *
+     * @param word the word
+     * @param count the count
+     * @return the string
+     */
     public String pluralize(Object word, int count) {
         if (word == null)
             return null;
@@ -514,16 +560,34 @@ public class InflectorProcessor {
         return uncountables;
     }
 
+    /**
+     * Adds the pluralize.
+     *
+     * @param rule the rule
+     * @param replacement the replacement
+     */
     public void addPluralize(String rule, String replacement) {
         final Rule pluralizeRule = new Rule(rule, replacement);
         this.plurals.addFirst(pluralizeRule);
     }
 
+    /**
+     * Adds the singularize.
+     *
+     * @param rule the rule
+     * @param replacement the replacement
+     */
     public void addSingularize(String rule, String replacement) {
         final Rule singularizeRule = new Rule(rule, replacement);
         this.singulars.addFirst(singularizeRule);
     }
 
+    /**
+     * Adds the bidirectional plural.
+     *
+     * @param singular the singular
+     * @param plural the plural
+     */
     public void addBidirectionalPlural(String singular, String plural) {
         final Rule singularizeRule = new Rule(plural, singular);
         final Rule pluralarizeRule = new Rule(singular, plural);
@@ -531,6 +595,12 @@ public class InflectorProcessor {
         this.plurals.addFirst(pluralarizeRule);
     }
 
+    /**
+     * Adds the irregular.
+     *
+     * @param singular the singular
+     * @param plural the plural
+     */
     public void addIrregular(String singular, String plural) {
         String singularRemainder = singular.length() > 1 ? singular.substring(1) : "";
         String pluralRemainder = plural.length() > 1 ? plural.substring(1) : "";
@@ -538,6 +608,11 @@ public class InflectorProcessor {
         addSingularize("(" + plural.charAt(0) + ")" + pluralRemainder + "$", "$1" + singularRemainder);
     }
 
+    /**
+     * Adds the uncountable.
+     *
+     * @param words the words
+     */
     public void addUncountable(String... words) {
         if (words == null || words.length == 0)
             return;
@@ -560,10 +635,10 @@ public class InflectorProcessor {
      * backreference, and <code>&#92;u3</code> would uppercase the 3rd
      * backreference.
      * </p>
-     * 
-     * @param input
-     * @param regex
-     * @param groupNumberToUppercase
+     *
+     * @param input the input
+     * @param regex the regex
+     * @param groupNumberToUppercase the group number to uppercase
      * @return the input string with the appropriate characters converted to
      *         upper-case
      */
@@ -588,6 +663,9 @@ public class InflectorProcessor {
         this.singulars.clear();
     }
 
+    /**
+     * Initialize.
+     */
     protected void initialize() {
         InflectorProcessor inflect = this;
         inflect.addPluralize("$", "s");

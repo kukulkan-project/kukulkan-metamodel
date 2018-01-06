@@ -25,20 +25,23 @@ package mx.infotec.dads.kukulkan.metamodel.util;
 
 /**
  * Name Conventions Formatter, it is a utility class used for convert different
- * kind of strings into a target format
- * 
+ * kind of strings into a target format.
+ *
  * @author Daniel Cortes Pichardo
  */
 public class NameConventionFormatter {
 
+    /**
+     * Instantiates a new name convention formatter.
+     */
     private NameConventionFormatter() {
     }
 
     /**
      * Convert to angular file Naming Convention is used in the front-end data
      * generator. Convert in camel case into Hyphens format
-     * 
-     * @param from
+     *
+     * @param from the from
      * @return String
      */
     public static String camelCaseToHyphens(String from) {
@@ -48,14 +51,21 @@ public class NameConventionFormatter {
     /**
      * Convert to angular file Naming Convention is used in the front-end data
      * generator. Convert in camel case into underScore format
-     * 
-     * @param from
+     *
+     * @param from the from
      * @return String
      */
     public static String camelCaseToUnderScore(String from) {
         return camelCaseTo(from, '_');
     }
     
+    /**
+     * Camel case to.
+     *
+     * @param from the from
+     * @param character the character
+     * @return the string
+     */
     private static String camelCaseTo(String from, char character) {
         char[] wordArray = from.toCharArray();
         StringBuilder sb = new StringBuilder();

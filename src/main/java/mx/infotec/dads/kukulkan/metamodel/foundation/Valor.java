@@ -26,32 +26,73 @@ package mx.infotec.dads.kukulkan.metamodel.foundation;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Class Valor.
+ */
 public class Valor {
 
+    /** The clave. */
     String clave;
+
+    /** The nombre. */
     String nombre;
 
+    /**
+     * Instantiates a new valor.
+     *
+     * @param clave
+     *            the clave
+     * @param nombre
+     *            the nombre
+     */
     public Valor(String clave, String nombre) {
         this.clave = clave;
         this.nombre = nombre;
     }
 
+    /**
+     * Gets the clave.
+     *
+     * @return the clave
+     */
     public String getClave() {
         return clave;
     }
 
+    /**
+     * Sets the clave.
+     *
+     * @param clave
+     *            the new clave
+     */
     public void setClave(String clave) {
         this.clave = clave;
     }
 
+    /**
+     * Gets the nombre.
+     *
+     * @return the nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Sets the nombre.
+     *
+     * @param nombre
+     *            the new nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Gets the default.
+     *
+     * @return the default
+     */
     public static List<Valor> getDefault() {
         List<Valor> valores = new ArrayList<>();
         valores.add(new Valor("pd", "Prudencia"));

@@ -27,41 +27,73 @@ import java.io.Serializable;
 
 import mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration;
 
+// TODO: Auto-generated Javadoc
 /**
- * ProrjectConfiguration Class
- * 
- * @author Daniel Cortes Pichardo
+ * ProrjectConfiguration Class.
  *
+ * @author Daniel Cortes Pichardo
  */
 public class KukulkanContext implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The pc. */
     private ProjectConfiguration pc;
 
+    /** The data store. */
     private String dataStore;
 
+    /**
+     * Instantiates a new kukulkan context.
+     */
     public KukulkanContext() {
         // Default Constructor
     }
 
+    /**
+     * Instantiates a new kukulkan context.
+     *
+     * @param pc the pc
+     * @param dataStore the data store
+     */
     public KukulkanContext(ProjectConfiguration pc, String dataStore) {
         this.pc = pc;
         this.dataStore = dataStore;
     }
 
+    /**
+     * Gets the pc.
+     *
+     * @return the pc
+     */
     public ProjectConfiguration getPc() {
         return pc;
     }
 
+    /**
+     * Sets the pc.
+     *
+     * @param pc the new pc
+     */
     public void setPc(ProjectConfiguration pc) {
         this.pc = pc;
     }
 
+    /**
+     * Gets the data store.
+     *
+     * @return the data store
+     */
     public String getDataStore() {
         return dataStore;
     }
 
+    /**
+     * Sets the data store.
+     *
+     * @param dataStore the new data store
+     */
     public void setDataStore(String dataStore) {
         this.dataStore = dataStore;
     }

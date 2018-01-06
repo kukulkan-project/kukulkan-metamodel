@@ -23,6 +23,7 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.foundation;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Generator Context Class is used for create a set of elements generated
  * for a specific tecnology (Java, C#, Python, and so on). For instance, there
@@ -33,37 +34,67 @@ package mx.infotec.dads.kukulkan.metamodel.foundation;
  * encapsulate a set o families of generated elements that could be generated in
  * each tecnology (Java and its frameworks, C# and its frameworks, python and
  * its framework, and so on).
- * 
+ *
  * @author Daniel Cortes Pichardo
- * @since 1.0.0
  * @version 1.0.0
+ * @since 1.0.0
  */
 
 public class GeneratorContext {
 
+    /** The project configuration. */
     private ProjectConfiguration projectConfiguration;
-    /**
-     * The DataModelContext of the MetaModel
-     */
+
+    /** The DataModelContext of the MetaModel. */
     private DomainModel domainModel;
 
+    /**
+     * Instantiates a new generator context.
+     *
+     * @param domainModel
+     *            the domain model
+     * @param projectConfiguration
+     *            the project configuration
+     */
     public GeneratorContext(DomainModel domainModel, ProjectConfiguration projectConfiguration) {
         this.domainModel = domainModel;
         this.setProjectConfiguration(projectConfiguration);
     }
 
+    /**
+     * Instantiates a new generator context.
+     *
+     * @param projectConfiguration
+     *            the project configuration
+     */
     public GeneratorContext(ProjectConfiguration projectConfiguration) {
         this.setProjectConfiguration(projectConfiguration);
     }
 
+    /**
+     * Gets the domain model.
+     *
+     * @return the domain model
+     */
     public DomainModel getDomainModel() {
         return domainModel;
     }
 
+    /**
+     * Gets the project configuration.
+     *
+     * @return the project configuration
+     */
     public ProjectConfiguration getProjectConfiguration() {
         return projectConfiguration;
     }
 
+    /**
+     * Sets the project configuration.
+     *
+     * @param projectConfiguration
+     *            the new project configuration
+     */
     public void setProjectConfiguration(ProjectConfiguration projectConfiguration) {
         this.projectConfiguration = projectConfiguration;
     }

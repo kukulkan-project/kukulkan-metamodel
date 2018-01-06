@@ -50,30 +50,32 @@ import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratedElement;
 import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratorContext;
 
 /**
- * The FileUtil Class is used for common File operations
- * 
- * @author Daniel Cortes Pichardo
+ * The FileUtil Class is used for common File operations.
  *
+ * @author Daniel Cortes Pichardo
  */
 public class FileUtil {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(FileUtil.class);
 
+    /**
+     * Instantiates a new file util.
+     */
     private FileUtil() {
     }
 
     /**
      * Closes this stream and releases any system resources associated with it.
      * If the stream is already closed then invoking this method has no effect.
-     *
+     * 
      * <p>
      * As noted in {@link AutoCloseable#close()}, cases where the close may fail
      * require careful attention. It is strongly advised to relinquish the
      * underlying resources and to internally <em>mark</em> the
      * {@code Closeable} as closed, prior to throwing the {@code IOException}.
      *
-     * @throws IOException
-     *             if an I/O error occurs
+     * @param resource the resource
      */
     public static void close(Closeable resource) {
         if (resource != null) {
@@ -85,10 +87,25 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Builds the path.
+     *
+     * @param proyectoId the proyecto id
+     * @param path the path
+     * @param filePath the file path
+     * @param outPutDir the out put dir
+     * @return the path
+     */
     public static Path buildPath(String proyectoId, BasePathEnum path, String filePath, String outPutDir) {
         return Paths.get(outPutDir, proyectoId, path.getPath(), filePath);
     }
 
+    /**
+     * Creates the parents file if not exist.
+     *
+     * @param path the path
+     * @return true, if successful
+     */
     public static boolean createParentsFileIfNotExist(Path path) {
         if (!path.toFile().exists()) {
             return createDirectories(path.getParent());
@@ -97,6 +114,12 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Creates the file if not exist.
+     *
+     * @param file the file
+     * @return true, if successful
+     */
     public static boolean createFileIfNotExist(File file) {
         try {
             return file.createNewFile();
@@ -106,6 +129,12 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Creates the directories.
+     *
+     * @param path the path
+     * @return true, if successful
+     */
     public static boolean createDirectories(Path path) {
         try {
             Files.createDirectories(path.getParent());
@@ -115,10 +144,23 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Save to file.
+     *
+     * @param ge the ge
+     * @return true, if successful
+     */
     public static boolean saveToFile(GeneratedElement ge) {
         return saveToFile(ge.getPath(), ge.getContent());
     }
 
+    /**
+     * Save to file.
+     *
+     * @param pathToSave the path to save
+     * @param content the content
+     * @return true, if successful
+     */
     public static boolean saveToFile(Path pathToSave, String content) {
         createDirectories(pathToSave);
         LOGGER.info("saveFile to: {}", pathToSave);
@@ -132,21 +174,44 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Save to file.
+     *
+     * @param genCtx the gen ctx
+     * @return true, if successful
+     */
     public static boolean saveToFile(GeneratorContext genCtx) {
         saveDataModelElements(genCtx);
         saveReadmeToFile(genCtx);
         return true;
     }
 
+    /**
+     * Save readme to file.
+     *
+     * @param genCtx the gen ctx
+     */
     public static void saveReadmeToFile(GeneratorContext genCtx) {
         genCtx.getDomainModel().getGeneratedElements().forEach(FileUtil::saveToFile);
     }
 
+    /**
+     * Save data model elements.
+     *
+     * @param genCtx the gen ctx
+     */
     public static void saveDataModelElements(GeneratorContext genCtx) {
         genCtx.getDomainModel().getDomainModelGroup().forEach(dmg -> dmg.getDomainModelElements()
                 .forEach(dme -> dme.getGeneratedElements().forEach(FileUtil::saveToFile)));
     }
 
+    /**
+     * Creates the zip.
+     *
+     * @param path the path
+     * @param compressedName the compressed name
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void createZip(Path path, String compressedName) throws IOException {
         FileOutputStream fos = new FileOutputStream(new File(path.getParent().toFile(), compressedName + ".zip"));
         ZipOutputStream zipOut = new ZipOutputStream(fos);
@@ -156,6 +221,13 @@ public class FileUtil {
         fos.close();
     }
 
+    /**
+     * Zip file.
+     *
+     * @param fileToZip the file to zip
+     * @param fileName the file name
+     * @param zipOut the zip out
+     */
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) {
         if (fileToZip.isHidden()) {
             return;
@@ -182,6 +254,14 @@ public class FileUtil {
 
     }
 
+    /**
+     * Replace in file.
+     *
+     * @param path the path
+     * @param targetText the target text
+     * @param newText the new text
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void replaceInFile(Path path, String targetText, String newText) throws IOException {
         Charset charset = StandardCharsets.UTF_8;
         String content = new String(Files.readAllBytes(path), charset);
@@ -189,11 +269,25 @@ public class FileUtil {
         Files.write(path, content.getBytes(charset));
     }
 
+    /**
+     * Copy.
+     *
+     * @param from the from
+     * @param to the to
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void copy(Path from, Path to) throws IOException {
         createDirectories(to);
         Files.copy(from, to, REPLACE_EXISTING);
     }
 
+    /**
+     * Copy from jar.
+     *
+     * @param templatePath the template path
+     * @param to the to
+     * @return true, if successful
+     */
     public static boolean copyFromJar(String templatePath, Path to) {
         LOGGER.info("saveFile to: {}", to);
         URL loadedResource = FileUtil.class.getClassLoader().getResource(templatePath);

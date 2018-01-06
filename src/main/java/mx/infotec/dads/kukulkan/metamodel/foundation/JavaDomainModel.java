@@ -26,12 +26,13 @@ package mx.infotec.dads.kukulkan.metamodel.foundation;
 import java.io.Serializable;
 
 /**
- * JavaDataModelContext
- * 
- * @author Daniel Cortes Pichardo
+ * JavaDataModelContext.
  *
+ * @author Daniel Cortes Pichardo
  */
 public class JavaDomainModel extends DomainModel implements Serializable {
+
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
 }

@@ -28,30 +28,51 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The SchemaPropertiesParser is used for parse common properties of the de E-R
- * model and convert it to java properties
- * 
- * @author Daniel Cortes Pichardo
+ * model and convert it to java properties.
  *
+ * @author Daniel Cortes Pichardo
  */
 public class SchemaPropertiesParser {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(SchemaPropertiesParser.class);
 
+    /**
+     * Instantiates a new schema properties parser.
+     */
     private SchemaPropertiesParser() {
 
     }
 
+    /**
+     * Parses the to property name.
+     *
+     * @param columnName the column name
+     * @return the string
+     */
     public static String parseToPropertyName(String columnName) {
         LOGGER.debug("Parsing the column {}", columnName);
         String propertyName = columnName.toLowerCase();
         return trimUnderscore(propertyName);
     }
 
+    /**
+     * Parses the to class name.
+     *
+     * @param columnName the column name
+     * @return the string
+     */
     public static String parseToClassName(String columnName) {
         LOGGER.debug("Parsing the column {}", columnName);
         return parseToUpperCaseFirstChar(parseToPropertyName(columnName));
     }
 
+    /**
+     * Parses the to upper case first char.
+     *
+     * @param element the element
+     * @return the string
+     */
     public static String parseToUpperCaseFirstChar(String element) {
         LOGGER.debug("Parsing element {}", element);
         return element.replaceFirst(Character.toString(element.charAt(0)),
@@ -60,10 +81,10 @@ public class SchemaPropertiesParser {
 
     /**
      * The trimUnderscore method trim an expression like *_[A-Za-z] and it
-     * converted to *_[A-Z] expression
-     * 
-     * @param columnName
-     * @return
+     * converted to *_[A-Z] expression.
+     *
+     * @param columnName the column name
+     * @return the string
      */
     public static String trimUnderscore(String columnName) {
         LOGGER.debug("Trim the value {}", columnName);

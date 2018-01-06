@@ -31,15 +31,33 @@ package mx.infotec.dads.kukulkan.metamodel.util;
  */
 public class NameConventions {
 
+    /** The Constant REST_CONTROLLER. */
     public static final String REST_CONTROLLER = "Resource";
+    
+    /** The Constant SERVICE. */
     public static final String SERVICE = "Service";
+    
+    /** The Constant SERVICE_IMPLEMENTS. */
     public static final String SERVICE_IMPLEMENTS = "ServiceImpl";
+    
+    /** The Constant DAO. */
     public static final String DAO = "Repository";
+    
+    /** The Constant DTO. */
     public static final String DTO = "DTO";
+    
+    /** The Constant EXCEPTION. */
     public static final String EXCEPTION = "Exception";
+    
+    /** The Constant CONACYT_DAO. */
     public static final String CONACYT_DAO = "HbDAO";
+    
+    /** The Constant CONACYT_DAO_IMPLEMENTS. */
     public static final String CONACYT_DAO_IMPLEMENTS = "HbDAOImpl";
 
+    /**
+     * Instantiates a new name conventions.
+     */
     private NameConventions() {
     }
 }

@@ -25,21 +25,23 @@ package mx.infotec.dads.kukulkan.metamodel.util;
 
 /**
  * The JavaFileNameParser Class is used for parsing the filename of a Java class
- * and formatted to the most
- * 
- * @author Daniel Cortes Pichardo
+ * and formatted to the most.
  *
+ * @author Daniel Cortes Pichardo
  */
 public class JavaFileNameParser {
 
+    /**
+     * Instantiates a new java file name parser.
+     */
     private JavaFileNameParser() {
 
     }
 
     /**
      * Covierte un string con formato JavaFile.java a javaFile
-     * 
-     * @param javaFileName
+     *
+     * @param javaFileName the java file name
      * @return String javaFileName con formato camelcase
      */
     public static String parseToPropertyName(String javaFileName) {
@@ -49,8 +51,8 @@ public class JavaFileNameParser {
 
     /**
      * Convierte javaFileName.java a JavaFileName
-     * 
-     * @param javaFileName
+     *
+     * @param javaFileName the java file name
      * @return String
      */
     public static String parseToPropertyType(String javaFileName) {
@@ -58,10 +60,10 @@ public class JavaFileNameParser {
     }
 
     /**
-     * Create a package statement based on a String[] Arrays of words
-     * 
-     * @param words
-     * @return
+     * Create a package statement based on a String[] Arrays of words.
+     *
+     * @param words the words
+     * @return the string
      */
     public static String formatToImportStatement(String... words) {
         return formatHeaderElementStatement("import", false, words);
@@ -71,8 +73,9 @@ public class JavaFileNameParser {
      * Create a package statement based on a String[] Arrays of words. If simple
      * name is true, then the function return a package statement like "package
      * mx.dads.infotec.app;" else it returns just "mx.dads.infote.app"
-     * 
-     * @param words
+     *
+     * @param isSimpleName the is simple name
+     * @param words the words
      * @return a formated word
      */
     public static String formatToPackageStatement(boolean isSimpleName, String... words) {
@@ -83,8 +86,8 @@ public class JavaFileNameParser {
      * Create a package statement based on a String[] Arrays of words. If simple
      * name is true, then the function return a package statement like "package
      * mx.dads.infotec.app;" else it returns just "mx.dads.infote.app"
-     * 
-     * @param words
+     *
+     * @param words the words
      * @return a formated word
      */
     public static String formatToPackageStatement(String... words) {
@@ -92,8 +95,9 @@ public class JavaFileNameParser {
     }
 
     /**
-     * 
-     * @param words
+     * Format to package name.
+     *
+     * @param words the words
      * @return String formatter
      */
     public static String formatToPackageName(String... words) {
@@ -111,10 +115,12 @@ public class JavaFileNameParser {
     }
 
     /**
-     * Create a package statement based on a String[] Arrays of words
-     * 
-     * @param words
-     * @return
+     * Create a package statement based on a String[] Arrays of words.
+     *
+     * @param name the name
+     * @param isSimpleName the is simple name
+     * @param words the words
+     * @return the string
      */
     public static String formatHeaderElementStatement(String name, boolean isSimpleName, String... words) {
         if (words == null || words.length == 0) {
@@ -139,9 +145,9 @@ public class JavaFileNameParser {
 
     /**
      * Replace a "." by "/" web/rest to web.rest
-     * 
-     * @param layerName
-     * @return
+     *
+     * @param layerName the layer name
+     * @return the string
      */
     public static String replaceDotBySlash(String layerName) {
         return layerName.replace('.', '/');
@@ -149,9 +155,9 @@ public class JavaFileNameParser {
 
     /**
      * Replace a "/" by "." web.rest to web/rest
-     * 
-     * @param layerName
-     * @return
+     *
+     * @param layerName the layer name
+     * @return the string
      */
     public static String replaceSlashByDot(String layerName) {
         return layerName.replace('/', '.');

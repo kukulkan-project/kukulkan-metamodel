@@ -23,12 +23,23 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.util;
 
+/**
+ * The Class DataStoreConstants.
+ */
 public class DataStoreConstants {
 
+    /** The Constant DATA_STORE_TYPE_JDBC. */
     public static final String DATA_STORE_TYPE_JDBC = "jdbc";
+    
+    /** The Constant DATA_STORE_TYPE_CSV. */
     public static final String DATA_STORE_TYPE_CSV="csv";
+    
+    /** The Constant DATA_STORE_TYPE_GRAMMAR. */
     public static final String DATA_STORE_TYPE_GRAMMAR="kukulkan-grammar";
 
+    /**
+     * Instantiates a new data store constants.
+     */
     private DataStoreConstants() {
 
     }

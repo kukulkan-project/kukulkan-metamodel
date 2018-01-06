@@ -17,12 +17,18 @@
 
 package mx.infotec.dads.kukulkan.metamodel.util;
 
+/**
+ * The Class Constants.
+ */
 public final class Constants {
 
+    /** The Constant BACKSLASH. */
     public static final char BACKSLASH = '\\';
 
+    /** The Constant BACKSPACE. */
     public static final char BACKSPACE = '\b';
 
+    /** The Constant COMMA. */
     public static final char COMMA = ',';
 
     /**
@@ -30,20 +36,25 @@ public final class Constants {
      */
     public static final char COMMENT = '#';
 
+    /** The Constant CR. */
     public static final char CR = '\r';
 
-    /** RFC 4180 defines line breaks as CRLF */
+    /**  RFC 4180 defines line breaks as CRLF. */
     public static final String CRLF = "\r\n";
 
+    /** The Constant EMPTY. */
     public static final String EMPTY = "";
 
-    /** The end of stream symbol */
+    /**  The end of stream symbol. */
     public static final int END_OF_STREAM = -1;
 
+    /** The Constant FF. */
     public static final char FF = '\f';
 
+    /** The Constant LF. */
     public static final char LF = '\n';
 
+    /** The Constant DOUBLE_QUOTE_CHAR. */
     public static final Character DOUBLE_QUOTE_CHAR = Character.valueOf('"');
 
     /**
@@ -51,6 +62,7 @@ public final class Constants {
      */
     public static final String LINE_SEPARATOR = "\u2028";
 
+    /** The Constant SEMICOLON. */
     public static final String SEMICOLON = ":";
     /**
      * Unicode next line.
@@ -62,21 +74,27 @@ public final class Constants {
      */
     public static final String PARAGRAPH_SEPARATOR = "\u2029";
 
+    /** The Constant PIPE. */
     public static final char PIPE = '|';
 
-    /** ASCII record separator */
+    /**  ASCII record separator. */
     public static final char RS = 30;
 
+    /** The Constant SP. */
     public static final char SP = ' ';
 
+    /** The Constant TAB. */
     public static final char TAB = '\t';
 
-    /** Undefined state for the lookahead char */
+    /**  Undefined state for the lookahead char. */
     public static final int UNDEFINED = -2;
 
-    /** ASCII unit separator */
+    /**  ASCII unit separator. */
     public static final char US = 31;
 
+    /**
+     * Instantiates a new constants.
+     */
     private Constants() {
 
     }

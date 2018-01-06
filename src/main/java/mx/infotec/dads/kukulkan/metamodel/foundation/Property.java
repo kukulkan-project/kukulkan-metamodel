@@ -27,169 +27,175 @@ import java.io.Serializable;
 import java.util.Collection;
 
 /**
- * 
  * PropertyHolder Class that is used for hold the properties of a table and
  * properties representations in the Object domain.
- * 
+ *
  * @author Daniel Cortes Pichardo
  * @param <T>
- *
+ *            the generic type
  */
 public interface Property<T> extends Comparable<T>, Serializable {
 
     /**
-     * Return the name of the property
-     * 
+     * Return the name of the property.
+     *
      * @return propertyName
      */
     String getName();
 
     /**
-     * Return the type of the property
-     * 
+     * Return the type of the property.
+     *
      * @return propertyType
      */
     String getType();
 
     /**
-     * Return the name of the property
-     * 
+     * Return the name of the property.
+     *
      * @return propertyName
      */
     String getColumnName();
 
     /**
-     * Return the columnType of the table
-     * 
+     * Return the columnType of the table.
+     *
      * @return columnType
      */
     String getColumnType();
 
     /**
      * Return the qualified name of the type of the Property, in order to create
-     * a import statement in the generation fase;
-     * 
+     * a import statement in the generation fase;.
+     *
      * @return qualifiedName
      */
     String getQualifiedName();
 
     /**
-     * Return true if it blob o clob element
-     * 
+     * Return true if it blob o clob element.
+     *
      * @return boolean
      */
     boolean isBlob();
 
     /**
-     * Return true if it is Time element
-     * 
+     * Return true if it is Time element.
+     *
      * @return boolean
      */
     boolean isTime();
 
     /**
-     * Return true if it is Clob element
-     * 
+     * Return true if it is Clob element.
+     *
      * @return boolean
      */
     boolean isClob();
 
     /**
-     * Return true if it is Clob element
-     * 
+     * Return true if it is Clob element.
+     *
      * @return boolean
      */
     boolean isBigDecimal();
 
     /**
-     * Return true if it is Long element
-     * 
+     * Return true if it is Long element.
+     *
      * @return boolean
      */
     boolean isLong();
 
     /**
-     * Return true if it is Integer element
-     * 
+     * Return true if it is Integer element.
+     *
      * @return boolean
      */
     boolean isInteger();
 
     /**
-     * Return true if it is Double element
-     * 
+     * Return true if it is Double element.
+     *
      * @return boolean
      */
     boolean isDouble();
 
     /**
-     * Return true if it is Float element
-     * 
+     * Return true if it is Float element.
+     *
      * @return boolean
      */
     boolean isFloat();
 
     /**
-     * Return true if it is Clob element
-     * 
+     * Return true if it is Clob element.
+     *
      * @return boolean
      */
     boolean isNumber();
 
     /**
-     * Return true if it is Clob element
-     * 
+     * Return true if it is Clob element.
+     *
      * @return boolean
      */
     boolean isLocalDate();
 
     /**
-     * Return true if it is Clob element
-     * 
+     * Return true if it is Clob element.
+     *
      * @return boolean
      */
     boolean isInstant();
 
     /**
-     * Return true if it is zoneDataTime element
-     * 
+     * Return true if it is zoneDataTime element.
+     *
      * @return boolean
      */
     boolean isZoneDateTime();
 
     /**
-     * Return true if it is literal element
-     * 
+     * Return true if it is literal element.
+     *
      * @return boolean
      */
     boolean isLiteral();
-    
+
     /**
-     * Return true if has constraints
-     * 
+     * Return true if has constraints.
+     *
      * @return boolean
      */
     boolean isHasConstraints();
 
     /**
-     * Return associations if it exists
-     * 
+     * Return associations if it exists.
+     *
      * @return associations
      */
     @SuppressWarnings("rawtypes")
     Collection<Property> getAssociations();
 
     /**
-     * Return the constraint applied
+     * Return the constraint applied.
+     *
+     * @return the constraint
      */
     Constraint getConstraint();
 
     /**
-     * Return true if Large Object is present
-     * 
+     * Return true if Large Object is present.
+     *
      * @return true if Large Object
      */
     boolean isLargeObject();
 
+    /**
+     * Checks if is size validation.
+     *
+     * @return true, if is size validation
+     */
     boolean isSizeValidation();
 }

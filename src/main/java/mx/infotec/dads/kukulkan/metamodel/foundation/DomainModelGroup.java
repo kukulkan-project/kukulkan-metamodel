@@ -33,44 +33,95 @@ import java.util.Collection;
  * @author Daniel Cortes Pichardo
  *
  */
-public class DomainModelGroup implements Serializable{
+public class DomainModelGroup implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The name. */
     protected String name;
+
+    /** The brief description. */
     protected String briefDescription;
+
+    /** The description. */
     protected String description;
 
+    /** The domain model elements. */
     private Collection<DomainModelElement> domainModelElements;
 
+    /**
+     * Gets the name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the name.
+     *
+     * @param name
+     *            the new name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets the brief description.
+     *
+     * @return the brief description
+     */
     public String getBriefDescription() {
         return briefDescription;
     }
 
+    /**
+     * Sets the brief description.
+     *
+     * @param briefDescription
+     *            the new brief description
+     */
     public void setBriefDescription(String briefDescription) {
         this.briefDescription = briefDescription;
     }
 
+    /**
+     * Gets the description.
+     *
+     * @return the description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Sets the description.
+     *
+     * @param description
+     *            the new description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Gets the domain model elements.
+     *
+     * @return the domain model elements
+     */
     public Collection<DomainModelElement> getDomainModelElements() {
         return domainModelElements;
     }
 
+    /**
+     * Sets the domain model elements.
+     *
+     * @param dataModelElements
+     *            the new domain model elements
+     */
     public void setDomainModelElements(Collection<DomainModelElement> dataModelElements) {
         this.domainModelElements = dataModelElements;
     }

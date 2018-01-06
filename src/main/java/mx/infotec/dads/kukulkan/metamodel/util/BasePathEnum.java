@@ -24,26 +24,50 @@
 package mx.infotec.dads.kukulkan.metamodel.util;
 
 /**
- * BasePathEnum used for initial path
- * 
- * @author Daniel Cortes Pichardo
+ * BasePathEnum used for initial path.
  *
+ * @author Daniel Cortes Pichardo
  */
 public enum BasePathEnum {
+    
+    /** The src main java. */
     SRC_MAIN_JAVA("src/main/java"), 
+    
+    /** The src test java. */
     SRC_TEST_JAVA("src/test/java"), 
+    
+    /** The web app entities. */
     WEB_APP_ENTITIES("src/main/webapp/app/entities"),
+    
+    /** The web app i18n. */
     WEB_APP_I18N("src/main/webapp/i18n"),
+    
+    /** The web app nav bar. */
     WEB_APP_NAV_BAR("src/main/webapp/app/layouts/navbar"),
+    
+    /** The web index. */
     WEB_INDEX("src/main/webapp"),
+    
+    /** The info. */
     INFO("info");
 
+    /** The path. */
     private String path;
 
+    /**
+     * Instantiates a new base path enum.
+     *
+     * @param path the path
+     */
     BasePathEnum(String path) {
         this.path = path;
     }
 
+    /**
+     * Gets the path.
+     *
+     * @return the path
+     */
     public String getPath() {
         return path;
     }

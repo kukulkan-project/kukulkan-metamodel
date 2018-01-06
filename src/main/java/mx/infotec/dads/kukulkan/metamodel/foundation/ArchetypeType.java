@@ -24,11 +24,20 @@
 package mx.infotec.dads.kukulkan.metamodel.foundation;
 
 /**
- * ArchetypeType
- * 
- * @author Daniel Cortes Pichardo
+ * ArchetypeType.
  *
+ * @author Daniel Cortes Pichardo
  */
 public enum ArchetypeType {
-    REST_SPRING_JPA, PRIMEFACES_SPRING_MYBATIS, CONACYT, ANGULAR_SPRING, NULL
+
+    /** The rest spring jpa. */
+    REST_SPRING_JPA,
+    /** The primefaces spring mybatis. */
+    PRIMEFACES_SPRING_MYBATIS,
+    /** The conacyt. */
+    CONACYT,
+    /** The angular spring. */
+    ANGULAR_SPRING,
+    /** The null. */
+    NULL
 }

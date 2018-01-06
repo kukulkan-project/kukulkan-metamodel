@@ -25,10 +25,9 @@ package mx.infotec.dads.kukulkan.metamodel.util;
 
 /**
  * Defines the types of primary key generation strategies for multiple
- * technologies
- * 
+ * technologies.
+ *
  * @author Daniel Cortes Pichardo
- * 
  */
 public enum PKGenerationStrategy {
     /**
