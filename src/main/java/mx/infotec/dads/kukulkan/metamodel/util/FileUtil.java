@@ -75,7 +75,8 @@ public class FileUtil {
      * underlying resources and to internally <em>mark</em> the
      * {@code Closeable} as closed, prior to throwing the {@code IOException}.
      *
-     * @param resource the resource
+     * @param resource
+     *            the resource
      */
     public static void close(Closeable resource) {
         if (resource != null) {
@@ -88,22 +89,28 @@ public class FileUtil {
     }
 
     /**
-     * Builds the path.
+     * Builds the real File Path
      *
-     * @param proyectoId the proyecto id
-     * @param path the path
-     * @param filePath the file path
-     * @param outPutDir the out put dir
+     * @param proyectoId
+     *            the proyecto id
+     * @param resourcePath
+     *            the path
+     * @param relativeFilePath
+     *            the file path
+     * @param outPutDir
+     *            the out put dir
      * @return the path
      */
-    public static Path buildPath(String proyectoId, BasePathEnum path, String filePath, String outPutDir) {
-        return Paths.get(outPutDir, proyectoId, path.getPath(), filePath);
+    public static Path buildRealFilePath(String outPutDir, String proyectoId, BasePathEnum resourcePath,
+            String relativeFilePath) {
+        return Paths.get(outPutDir, proyectoId, resourcePath.getPath(), relativeFilePath);
     }
 
     /**
      * Creates the parents file if not exist.
      *
-     * @param path the path
+     * @param path
+     *            the path
      * @return true, if successful
      */
     public static boolean createParentsFileIfNotExist(Path path) {
@@ -117,7 +124,8 @@ public class FileUtil {
     /**
      * Creates the file if not exist.
      *
-     * @param file the file
+     * @param file
+     *            the file
      * @return true, if successful
      */
     public static boolean createFileIfNotExist(File file) {
@@ -132,7 +140,8 @@ public class FileUtil {
     /**
      * Creates the directories.
      *
-     * @param path the path
+     * @param path
+     *            the path
      * @return true, if successful
      */
     public static boolean createDirectories(Path path) {
@@ -147,18 +156,21 @@ public class FileUtil {
     /**
      * Save to file.
      *
-     * @param ge the ge
+     * @param ge
+     *            the ge
      * @return true, if successful
      */
     public static boolean saveToFile(GeneratedElement ge) {
-        return saveToFile(ge.getPath(), ge.getContent());
+        return saveToFile(ge.getRealPath(), ge.getContent());
     }
 
     /**
      * Save to file.
      *
-     * @param pathToSave the path to save
-     * @param content the content
+     * @param pathToSave
+     *            the path to save
+     * @param content
+     *            the content
      * @return true, if successful
      */
     public static boolean saveToFile(Path pathToSave, String content) {
@@ -177,7 +189,8 @@ public class FileUtil {
     /**
      * Save to file.
      *
-     * @param genCtx the gen ctx
+     * @param genCtx
+     *            the gen ctx
      * @return true, if successful
      */
     public static boolean saveToFile(GeneratorContext genCtx) {
@@ -189,7 +202,8 @@ public class FileUtil {
     /**
      * Save readme to file.
      *
-     * @param genCtx the gen ctx
+     * @param genCtx
+     *            the gen ctx
      */
     public static void saveReadmeToFile(GeneratorContext genCtx) {
         genCtx.getDomainModel().getGeneratedElements().forEach(FileUtil::saveToFile);
@@ -198,7 +212,8 @@ public class FileUtil {
     /**
      * Save data model elements.
      *
-     * @param genCtx the gen ctx
+     * @param genCtx
+     *            the gen ctx
      */
     public static void saveDataModelElements(GeneratorContext genCtx) {
         genCtx.getDomainModel().getDomainModelGroup().forEach(dmg -> dmg.getDomainModelElements()
@@ -208,9 +223,12 @@ public class FileUtil {
     /**
      * Creates the zip.
      *
-     * @param path the path
-     * @param compressedName the compressed name
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @param path
+     *            the path
+     * @param compressedName
+     *            the compressed name
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public static void createZip(Path path, String compressedName) throws IOException {
         FileOutputStream fos = new FileOutputStream(new File(path.getParent().toFile(), compressedName + ".zip"));
@@ -224,9 +242,12 @@ public class FileUtil {
     /**
      * Zip file.
      *
-     * @param fileToZip the file to zip
-     * @param fileName the file name
-     * @param zipOut the zip out
+     * @param fileToZip
+     *            the file to zip
+     * @param fileName
+     *            the file name
+     * @param zipOut
+     *            the zip out
      */
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) {
         if (fileToZip.isHidden()) {
@@ -257,10 +278,14 @@ public class FileUtil {
     /**
      * Replace in file.
      *
-     * @param path the path
-     * @param targetText the target text
-     * @param newText the new text
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @param path
+     *            the path
+     * @param targetText
+     *            the target text
+     * @param newText
+     *            the new text
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public static void replaceInFile(Path path, String targetText, String newText) throws IOException {
         Charset charset = StandardCharsets.UTF_8;
@@ -272,9 +297,12 @@ public class FileUtil {
     /**
      * Copy.
      *
-     * @param from the from
-     * @param to the to
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @param from
+     *            the from
+     * @param to
+     *            the to
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public static void copy(Path from, Path to) throws IOException {
         createDirectories(to);
@@ -284,8 +312,10 @@ public class FileUtil {
     /**
      * Copy from jar.
      *
-     * @param templatePath the template path
-     * @param to the to
+     * @param templatePath
+     *            the template path
+     * @param to
+     *            the to
      * @return true, if successful
      */
     public static boolean copyFromJar(String templatePath, Path to) {

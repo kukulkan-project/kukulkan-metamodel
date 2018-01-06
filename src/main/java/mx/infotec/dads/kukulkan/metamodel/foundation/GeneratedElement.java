@@ -39,10 +39,10 @@ public class GeneratedElement implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** The Path where the content must be generated. */
-    private Path path;
+    private Path realPath;
 
     /** The simple path. */
-    private String simplePath;
+    private Path relativePath;
 
     /**
      * The content of the generated Element, it is filled from the freemarker
@@ -71,9 +71,9 @@ public class GeneratedElement implements Serializable {
      * @param editor
      *            the editor
      */
-    public GeneratedElement(Path path, String simplePath, String content, Editor editor) {
-        this.path = path;
-        this.setSimplePath(simplePath);
+    public GeneratedElement(Path realPath, Path relativePath, String content, Editor editor) {
+        this.realPath = realPath;
+        this.relativePath = relativePath;
         this.content = content;
         this.editor = editor;
     }
@@ -98,25 +98,6 @@ public class GeneratedElement implements Serializable {
     }
 
     /**
-     * Gets the path.
-     *
-     * @return the path
-     */
-    public Path getPath() {
-        return path;
-    }
-
-    /**
-     * Sets the path.
-     *
-     * @param path
-     *            the new path
-     */
-    public void setPath(Path path) {
-        this.path = path;
-    }
-
-    /**
      * Gets the editor.
      *
      * @return the editor
@@ -135,22 +116,26 @@ public class GeneratedElement implements Serializable {
         this.editor = editor;
     }
 
-    /**
-     * Gets the simple path.
-     *
-     * @return the simple path
-     */
-    public String getSimplePath() {
-        return simplePath;
+    public Path getRealPath() {
+        return realPath;
     }
 
     /**
-     * Sets the simple path.
+     * Sets the real path.
      *
-     * @param simplePath
-     *            the new simple path
+     * @param realPath
+     *            the new real path
      */
-    public void setSimplePath(String simplePath) {
-        this.simplePath = simplePath;
+    public void setRealPath(Path realPath) {
+        this.realPath = realPath;
     }
+
+    public Path getRelativePath() {
+        return relativePath;
+    }
+
+    public void setRelativePath(Path relativePath) {
+        this.relativePath = relativePath;
+    }
+
 }
