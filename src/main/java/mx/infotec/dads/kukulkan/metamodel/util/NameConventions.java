@@ -33,40 +33,43 @@ public class NameConventions {
 
     /** The Constant REST_CONTROLLER. */
     public static final String REST_CONTROLLER = "Resource";
-    
+
     /** The Constant REST_CONTROLLER. */
     public static final String REST_LAYER_NAME = "web.rest";
-    
+
     /** The Constant SERVICE. */
     public static final String SERVICE = "Service";
-    
+
     /** The Constant SERVICE. */
     public static final String SERVICE_LAYER_NAME = "service";
-    
+
+    /** The Constant SERVICE. */
+    public static final String SERVICE_IMPLEMENTS_LAYER_NAME = "impl";
+
     /** The Constant SERVICE_IMPLEMENTS. */
     public static final String SERVICE_IMPLEMENTS = "ServiceImpl";
-    
+
     /** The Constant DAO. */
     public static final String DAO = "Repository";
-    
+
     /** The Constant DAO. */
     public static final String DAO_LAYER_NAME = "repository";
-    
+
     /** The Constant DAO. */
     public static final String DOMAIN_LAYER_NAME = "domain";
-    
+
     /** The Constant DTO. */
     public static final String DTO = "DTO";
-    
+
     /** The Constant EXCEPTION. */
     public static final String EXCEPTION = "Exception";
-    
+
     /** The Constant CONACYT_DAO. */
     public static final String CONACYT_DAO = "HbDAO";
-    
+
     /** The Constant CONACYT_DAO_IMPLEMENTS. */
     public static final String CONACYT_DAO_IMPLEMENTS = "HbDAOImpl";
-    
+
     /** The Constant CONACYT_DAO_IMPLEMENTS. */
     public static final String JAVA_EXTENSION = ".java";
 
