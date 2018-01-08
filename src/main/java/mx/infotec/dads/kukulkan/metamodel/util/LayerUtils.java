@@ -198,10 +198,10 @@ public class LayerUtils {
         map.put(PACKAGE_PROPERTY, null);// must be provided in individual files
         map.put(IMPORTS_PROPERTY, dme.getImports());
         map.put(IMPORT_SERVICE_PROPERTY,
-                formatToImportStatement(bPackage, conf.getServiceLayerName(), dme.getName() + NameConventions.SERVICE));
+                formatToImportStatement(bPackage, NameConventions.SERVICE_LAYER_NAME, dme.getName() + NameConventions.SERVICE));
         map.put(IMPORT_REPOSITORY_PROPERTY,
-                formatToImportStatement(bPackage, conf.getDaoLayerName(), dme.getName() + NameConventions.DAO));
-        map.put(IMPORT_MODEL_PROPERTY, formatToImportStatement(bPackage, conf.getDomainLayerName(), dme.getName()));
+                formatToImportStatement(bPackage, NameConventions.DAO_LAYER_NAME, dme.getName() + NameConventions.DAO));
+        map.put(IMPORT_MODEL_PROPERTY, formatToImportStatement(bPackage, NameConventions.DOMAIN_LAYER_NAME, dme.getName()));
         importPrimaryKeyIfComposed(conf, map, bPackage, dme);
         map.put(ENTITY_CAMEL_CASE_PROPERTY, dme.getCamelCaseFormat());
         map.put(ENTITY_PROPERTY, dme.getName());

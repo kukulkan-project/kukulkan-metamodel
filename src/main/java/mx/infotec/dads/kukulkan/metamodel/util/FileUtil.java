@@ -101,9 +101,32 @@ public class FileUtil {
      *            the out put dir
      * @return the path
      */
-    public static Path buildRealFilePath(String outPutDir, String proyectoId, BasePathEnum resourcePath,
-            String relativeFilePath) {
-        return Paths.get(outPutDir, proyectoId, resourcePath.getPath(), relativeFilePath);
+    public static Path buildRealFilePath(Path outPutDir, String proyectoId, BasePathEnum resourcePath, String packaging,
+            String name, String fileName) {
+        return Paths.get(outPutDir.toString(), proyectoId, resourcePath.getPath(), convertPackageToPath(packaging),
+                name, fileName);
+    }
+
+    public static String convertPackageToPath(String basePackage) {
+        return basePackage.replace('.', '/');
+    }
+
+    /**
+     * Builds the real File Path
+     *
+     * @param proyectoId
+     *            the proyecto id
+     * @param resourcePath
+     *            the path
+     * @param relativeFilePath
+     *            the file path
+     * @param outPutDir
+     *            the out put dir
+     * @return the path
+     */
+    public static Path buildRealFilePath(Path outPutDir, String proyectoId, BasePathEnum resourcePath,
+            String fileName) {
+        return Paths.get(outPutDir.toString(), proyectoId, resourcePath.getPath(), fileName);
     }
 
     /**
