@@ -102,9 +102,9 @@ public class FileUtil {
      * @return the path
      */
     public static Path buildRealFilePath(Path outPutDir, String proyectoId, BasePathEnum resourcePath, String packaging,
-            String name, String fileName) {
+            String layerName, String fileName) {
         return Paths.get(outPutDir.toString(), proyectoId, resourcePath.getPath(), convertPackageToPath(packaging),
-                name, fileName);
+                layerName, fileName);
     }
 
     public static String convertPackageToPath(String basePackage) {
