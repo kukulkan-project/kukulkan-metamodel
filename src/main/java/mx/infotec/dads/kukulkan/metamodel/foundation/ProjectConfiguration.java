@@ -57,30 +57,6 @@ public class ProjectConfiguration implements Serializable {
     /** The year. */
     private String year;
 
-    /** The app name. */
-    private String appName;
-
-    /** The web layer name. */
-    private String webLayerName;
-
-    /** The service layer name. */
-    private String serviceLayerName;
-
-    /** The dao layer name. */
-    private String daoLayerName;
-
-    /** The domain layer name. */
-    private String domainLayerName;
-
-    /** The dto layer name. */
-    private String dtoLayerName;
-
-    /** The exception layer name. */
-    private String exceptionLayerName;
-
-    /** The conacyt dao layer name. */
-    private String conacytDaoLayerName;
-
     /** The output dir. */
     private transient Path outputDir;
 
@@ -206,82 +182,6 @@ public class ProjectConfiguration implements Serializable {
     }
 
     /**
-     * Gets the web layer name.
-     *
-     * @return the web layer name
-     */
-    public String getWebLayerName() {
-        return webLayerName;
-    }
-
-    /**
-     * Sets the web layer name.
-     *
-     * @param webLayerName
-     *            the new web layer name
-     */
-    public void setWebLayerName(String webLayerName) {
-        this.webLayerName = webLayerName;
-    }
-
-    /**
-     * Gets the service layer name.
-     *
-     * @return the service layer name
-     */
-    public String getServiceLayerName() {
-        return serviceLayerName;
-    }
-
-    /**
-     * Sets the service layer name.
-     *
-     * @param serviceLayerName
-     *            the new service layer name
-     */
-    public void setServiceLayerName(String serviceLayerName) {
-        this.serviceLayerName = serviceLayerName;
-    }
-
-    /**
-     * Gets the dao layer name.
-     *
-     * @return the dao layer name
-     */
-    public String getDaoLayerName() {
-        return daoLayerName;
-    }
-
-    /**
-     * Sets the dao layer name.
-     *
-     * @param daoLayerName
-     *            the new dao layer name
-     */
-    public void setDaoLayerName(String daoLayerName) {
-        this.daoLayerName = daoLayerName;
-    }
-
-    /**
-     * Gets the domain layer name.
-     *
-     * @return the domain layer name
-     */
-    public String getDomainLayerName() {
-        return domainLayerName;
-    }
-
-    /**
-     * Sets the domain layer name.
-     *
-     * @param domainLayerName
-     *            the new domain layer name
-     */
-    public void setDomainLayerName(String domainLayerName) {
-        this.domainLayerName = domainLayerName;
-    }
-
-    /**
      * Gets the global generation type.
      *
      * @return the global generation type
@@ -298,82 +198,6 @@ public class ProjectConfiguration implements Serializable {
      */
     public void setGlobalGenerationType(PKGenerationStrategy globalGenerationType) {
         this.globalGenerationType = globalGenerationType;
-    }
-
-    /**
-     * Gets the dto layer name.
-     *
-     * @return the dto layer name
-     */
-    public String getDtoLayerName() {
-        return dtoLayerName;
-    }
-
-    /**
-     * Sets the dto layer name.
-     *
-     * @param dtoLayerName
-     *            the new dto layer name
-     */
-    public void setDtoLayerName(String dtoLayerName) {
-        this.dtoLayerName = dtoLayerName;
-    }
-
-    /**
-     * Gets the app name.
-     *
-     * @return the app name
-     */
-    public String getAppName() {
-        return appName;
-    }
-
-    /**
-     * Sets the app name.
-     *
-     * @param appName
-     *            the new app name
-     */
-    public void setAppName(String appName) {
-        this.appName = appName;
-    }
-
-    /**
-     * Gets the exception layer name.
-     *
-     * @return the exception layer name
-     */
-    public String getExceptionLayerName() {
-        return exceptionLayerName;
-    }
-
-    /**
-     * Sets the exception layer name.
-     *
-     * @param exceptionLayerName
-     *            the new exception layer name
-     */
-    public void setExceptionLayerName(String exceptionLayerName) {
-        this.exceptionLayerName = exceptionLayerName;
-    }
-
-    /**
-     * Gets the conacyt dao layer name.
-     *
-     * @return the conacyt dao layer name
-     */
-    public String getConacytDaoLayerName() {
-        return conacytDaoLayerName;
-    }
-
-    /**
-     * Sets the conacyt dao layer name.
-     *
-     * @param conacytDaoLayerName
-     *            the new conacyt dao layer name
-     */
-    public void setConacytDaoLayerName(String conacytDaoLayerName) {
-        this.conacytDaoLayerName = conacytDaoLayerName;
     }
 
     /**

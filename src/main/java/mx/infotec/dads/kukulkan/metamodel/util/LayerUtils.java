@@ -226,7 +226,7 @@ public class LayerUtils {
             DomainModelElement dme) {
         if (dme.getPrimaryKey().isComposed()) {
             model.put(IMPORT_PRIMARY_KEY_PROPERTY,
-                    formatToImportStatement(bPackage, conf.getDomainLayerName(), dme.getPrimaryKey().getType()));
+                    formatToImportStatement(bPackage, NameConventions.DAO_LAYER_NAME, dme.getPrimaryKey().getType()));
         }
     }
 }
