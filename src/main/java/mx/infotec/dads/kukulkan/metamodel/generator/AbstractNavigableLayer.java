@@ -25,10 +25,12 @@ package mx.infotec.dads.kukulkan.metamodel.generator;
 
 import static mx.infotec.dads.kukulkan.metamodel.util.LayerUtils.addAuthoringData;
 import static mx.infotec.dads.kukulkan.metamodel.util.LayerUtils.addCommonDataModelElements;
+import static mx.infotec.dads.kukulkan.metamodel.util.Validator.requiredNotEmpty;
 
 import java.util.Collection;
 import java.util.Map;
 
+import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModel;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelElement;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelGroup;
 import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratorContext;
@@ -44,19 +46,28 @@ import mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer;
  */
 public abstract class AbstractNavigableLayer implements NavigableLayer {
 
-    /* (non-Javadoc)
-     * @see mx.infotec.dads.kukulkan.metamodel.generator.Layer#process(mx.infotec.dads.kukulkan.metamodel.foundation.GeneratorContext)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * mx.infotec.dads.kukulkan.metamodel.generator.Layer#process(mx.infotec.
+     * dads.kukulkan.metamodel.foundation.GeneratorContext)
      */
     @Override
     public void process(GeneratorContext context) {
+        ProjectConfiguration pConf = requiredNotEmpty(context.get(ProjectConfiguration.class));
+        DomainModel domaiModel = requiredNotEmpty(context.get(DomainModel.class));
         Map<String, Object> propertiesMap = addAuthoringData(context);
         doBeforeProcessDataModelGroup(context, propertiesMap);
-        doForEachDataModelGroupTemplate(context.getProjectConfiguration(),
-                context.getDomainModel().getDomainModelGroup(), propertiesMap);
+        doForEachDataModelGroupTemplate(pConf, domaiModel.getDomainModelGroup(), propertiesMap);
     }
 
-    /* (non-Javadoc)
-     * @see mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer#doForEachDataModelGroupTemplate(mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration, java.util.Collection, java.util.Map)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer#
+     * doForEachDataModelGroupTemplate(mx.infotec.dads.kukulkan.metamodel.
+     * foundation.ProjectConfiguration, java.util.Collection, java.util.Map)
      */
     @Override
     public void doForEachDataModelGroupTemplate(ProjectConfiguration pConf, Collection<DomainModelGroup> dmGroup,
@@ -67,8 +78,13 @@ public abstract class AbstractNavigableLayer implements NavigableLayer {
         }
     }
 
-    /* (non-Javadoc)
-     * @see mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer#doForEachDataModelElement(mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration, java.util.Collection, java.util.Map, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer#
+     * doForEachDataModelElement(mx.infotec.dads.kukulkan.metamodel.foundation.
+     * ProjectConfiguration, java.util.Collection, java.util.Map,
+     * java.lang.String)
      */
     @Override
     public void doForEachDataModelElement(ProjectConfiguration pConf,
@@ -81,8 +97,12 @@ public abstract class AbstractNavigableLayer implements NavigableLayer {
         }
     }
 
-    /* (non-Javadoc)
-     * @see mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer#doBeforeProcessDataModelGroup(mx.infotec.dads.kukulkan.metamodel.foundation.GeneratorContext, java.util.Map)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer#
+     * doBeforeProcessDataModelGroup(mx.infotec.dads.kukulkan.metamodel.
+     * foundation.GeneratorContext, java.util.Map)
      */
     @Override
     public void doBeforeProcessDataModelGroup(GeneratorContext context, final Map<String, Object> propertiesMap) {

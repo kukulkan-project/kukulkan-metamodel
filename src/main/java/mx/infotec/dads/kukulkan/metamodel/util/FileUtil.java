@@ -24,6 +24,7 @@
 package mx.infotec.dads.kukulkan.metamodel.util;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import static mx.infotec.dads.kukulkan.metamodel.util.Validator.requiredNotEmpty;
 
 import java.io.BufferedWriter;
 import java.io.Closeable;
@@ -46,6 +47,7 @@ import java.util.zip.ZipOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModel;
 import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratedElement;
 import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratorContext;
 
@@ -229,7 +231,7 @@ public class FileUtil {
      *            the gen ctx
      */
     public static void saveReadmeToFile(GeneratorContext genCtx) {
-        genCtx.getDomainModel().getGeneratedElements().forEach(FileUtil::saveToFile);
+        requiredNotEmpty(genCtx.get(DomainModel.class)).getGeneratedElements().forEach(FileUtil::saveToFile);
     }
 
     /**
@@ -239,8 +241,8 @@ public class FileUtil {
      *            the gen ctx
      */
     public static void saveDataModelElements(GeneratorContext genCtx) {
-        genCtx.getDomainModel().getDomainModelGroup().forEach(dmg -> dmg.getDomainModelElements()
-                .forEach(dme -> dme.getGeneratedElements().forEach(FileUtil::saveToFile)));
+        requiredNotEmpty(genCtx.get(DomainModel.class)).getDomainModelGroup().forEach(dmg -> dmg
+                .getDomainModelElements().forEach(dme -> dme.getGeneratedElements().forEach(FileUtil::saveToFile)));
     }
 
     /**

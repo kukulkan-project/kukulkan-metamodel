@@ -1,7 +1,7 @@
 /*
  *  
  * The MIT License (MIT)
- * Copyright (c) 2018 Daniel Cortes Pichardo
+ * Copyright (c) 2016 Daniel Cortes Pichardo
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ import org.apache.metamodel.MetaModelException;
  * @since 1.0.0
  */
 
-public class GeneratorContext extends HashMap<Class<?>, Object> {
+public class Context extends HashMap<Class<?>, Object> {
 
     private static final long serialVersionUID = 1L;
 
@@ -65,7 +65,7 @@ public class GeneratorContext extends HashMap<Class<?>, Object> {
         if (key.isInstance(value)) {
             return super.put(key, value);
         }
-        throw new MetaModelException("The :" + value.getClass().getName() + " cannot be cast to " + key.getName());
+        throw new MetaModelException("the :" + value.getClass().getName() + " cannot be cast to " + key.getName());
     }
 
     /**
