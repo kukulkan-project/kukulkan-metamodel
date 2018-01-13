@@ -23,7 +23,6 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.editor;
 
-// TODO: Auto-generated Javadoc
 /**
  * LanguageType for the language supported.
  *

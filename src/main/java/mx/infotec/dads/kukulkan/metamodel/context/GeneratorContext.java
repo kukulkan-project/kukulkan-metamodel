@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package mx.infotec.dads.kukulkan.metamodel.foundation;
+package mx.infotec.dads.kukulkan.metamodel.context;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -46,6 +46,14 @@ import org.apache.metamodel.MetaModelException;
 public class GeneratorContext extends HashMap<Class<?>, Object> {
 
     private static final long serialVersionUID = 1L;
+    
+    public GeneratorContext() {
+     
+    }
+    
+    public GeneratorContext(Class<?> key, Object value) {
+        this.put(key, value);   
+    }
 
     /**
      * Associates the specified value with the specified key in this map. If the

@@ -26,9 +26,9 @@ package mx.infotec.dads.kukulkan.metamodel.generator;
 import java.util.Collection;
 import java.util.Map;
 
+import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelElement;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelGroup;
-import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratorContext;
 import mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration;
 
 /**

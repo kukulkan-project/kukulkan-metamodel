@@ -25,7 +25,6 @@ package mx.infotec.dads.kukulkan.metamodel.editor;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
  * Editor Interface, It represent an Abstract Editor used for Write code.
  *

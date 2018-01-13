@@ -23,7 +23,7 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.generator;
 
-import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratorContext;
+import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
 
 /**
  * Layer interface is an abstraction of a physical layer used for describe

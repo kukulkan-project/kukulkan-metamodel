@@ -23,16 +23,15 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.editor;
 
-// TODO: Auto-generated Javadoc
 /**
  * EditorEnum.
  *
  * @author Daniel Cortes Pichardo
  */
 public enum EditorEnum {
-    
+
     /** The ace. */
-    ACE, 
- /** The codemirror. */
- CODEMIRROR
+    ACE,
+    /** The codemirror. */
+    CODEMIRROR
 }
