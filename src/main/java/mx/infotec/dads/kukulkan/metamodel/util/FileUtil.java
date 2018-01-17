@@ -41,6 +41,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -344,6 +345,8 @@ public class FileUtil {
      * @return true, if successful
      */
     public static boolean copyFromJar(String templatePath, Path to) {
+        Objects.requireNonNull(templatePath, "templatePath is required");
+        Objects.requireNonNull(to, "to is required");
         LOGGER.info("saveFile to: {}", to);
         URL loadedResource = FileUtil.class.getClassLoader().getResource(templatePath);
         try (InputStream inputStream = loadedResource.openStream()) {
