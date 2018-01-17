@@ -60,6 +60,15 @@ public class ProjectConfiguration implements Serializable {
     /** The output dir. */
     private transient Path outputDir;
 
+    /** The database type. */
+    private String databaseType;
+
+    /** The frontEndTechnology. */
+    private String frontEndTechnology;
+    
+    /** The backEndTechnology */
+    private String backEndTechnology;
+
     /** The mongo db. */
     private boolean mongoDb;
 
@@ -236,6 +245,30 @@ public class ProjectConfiguration implements Serializable {
      */
     public void setOutputDir(Path outputDir) {
         this.outputDir = outputDir;
+    }
+
+    public String getDatabaseType() {
+        return databaseType;
+    }
+
+    public void setDatabaseType(String databaseType) {
+        this.databaseType = databaseType;
+    }
+
+    public String getFrontEndTechnology() {
+        return frontEndTechnology;
+    }
+
+    public void setFrontEndTechnology(String frontEndTechnology) {
+        this.frontEndTechnology = frontEndTechnology;
+    }
+
+    public String getBackEndTechnology() {
+        return backEndTechnology;
+    }
+
+    public void setBackEndTechnology(String backEndTechnology) {
+        this.backEndTechnology = backEndTechnology;
     }
 
 }
