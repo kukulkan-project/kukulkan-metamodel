@@ -26,9 +26,6 @@ package mx.infotec.dads.kukulkan.metamodel.foundation;
 import java.io.Serializable;
 import java.nio.file.Path;
 
-import mx.infotec.dads.kukulkan.metamodel.util.PKGenerationStrategy;
-
-// TODO: Auto-generated Javadoc
 /**
  * ProrjectConfiguration Class.
  *
@@ -41,9 +38,6 @@ public class ProjectConfiguration implements Serializable {
 
     /** The id. */
     private String id;
-
-    /** The group id. */
-    private String groupId;
 
     /** The version. */
     private String version;
@@ -61,20 +55,13 @@ public class ProjectConfiguration implements Serializable {
     private transient Path outputDir;
 
     /** The database type. */
-    private String databaseType;
+    private Database database;
 
     /** The frontEndTechnology. */
     private String frontEndTechnology;
-    
+
     /** The backEndTechnology */
     private String backEndTechnology;
-
-    /** The mongo db. */
-    private boolean mongoDb;
-
-    /** The global generation type. */
-    // Global Generation Types Strategy
-    private PKGenerationStrategy globalGenerationType;
 
     /**
      * Gets the id.
@@ -93,25 +80,6 @@ public class ProjectConfiguration implements Serializable {
      */
     public void setId(String id) {
         this.id = id;
-    }
-
-    /**
-     * Gets the group id.
-     *
-     * @return the group id
-     */
-    public String getGroupId() {
-        return groupId;
-    }
-
-    /**
-     * Sets the group id.
-     *
-     * @param groupId
-     *            the new group id
-     */
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
     }
 
     /**
@@ -191,44 +159,6 @@ public class ProjectConfiguration implements Serializable {
     }
 
     /**
-     * Gets the global generation type.
-     *
-     * @return the global generation type
-     */
-    public PKGenerationStrategy getGlobalGenerationType() {
-        return globalGenerationType;
-    }
-
-    /**
-     * Sets the global generation type.
-     *
-     * @param globalGenerationType
-     *            the new global generation type
-     */
-    public void setGlobalGenerationType(PKGenerationStrategy globalGenerationType) {
-        this.globalGenerationType = globalGenerationType;
-    }
-
-    /**
-     * Checks if is mongo db.
-     *
-     * @return true, if is mongo db
-     */
-    public boolean isMongoDb() {
-        return mongoDb;
-    }
-
-    /**
-     * Sets the mongo db.
-     *
-     * @param mongoDb
-     *            the new mongo db
-     */
-    public void setMongoDb(boolean mongoDb) {
-        this.mongoDb = mongoDb;
-    }
-
-    /**
      * Gets the output dir.
      *
      * @return the output dir
@@ -247,14 +177,6 @@ public class ProjectConfiguration implements Serializable {
         this.outputDir = outputDir;
     }
 
-    public String getDatabaseType() {
-        return databaseType;
-    }
-
-    public void setDatabaseType(String databaseType) {
-        this.databaseType = databaseType;
-    }
-
     public String getFrontEndTechnology() {
         return frontEndTechnology;
     }
@@ -269,6 +191,14 @@ public class ProjectConfiguration implements Serializable {
 
     public void setBackEndTechnology(String backEndTechnology) {
         this.backEndTechnology = backEndTechnology;
+    }
+
+    public Database getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(Database database) {
+        this.database = database;
     }
 
 }
