@@ -18,6 +18,10 @@ public class Database implements Serializable {
 
     private PKGenerationStrategy globalGenerationType;
 
+    public Database(){
+        
+    }
+    
     public Database(DatabaseType databaseType, PKGenerationStrategy globalGenerationType) {
         this.databaseType = databaseType;
         this.globalGenerationType = globalGenerationType;
