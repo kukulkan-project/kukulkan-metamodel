@@ -25,6 +25,8 @@ package mx.infotec.dads.kukulkan.metamodel.generator;
 
 import java.util.Collection;
 
+import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
+
 /**
  * Generator interface, it is the abstraction of a generation component used for
  * creating custom generators into the platform.
@@ -67,5 +69,15 @@ public interface Generator {
      * 
      * @return List<Layer>
      */
+    @Deprecated
     Collection<? extends Layer> getLayers();
+
+    /**
+     * Process the GeneratorContext in order to generate the target elements.
+     *
+     * @param context
+     *            the context
+     */
+    void process(GeneratorContext context);
+
 }

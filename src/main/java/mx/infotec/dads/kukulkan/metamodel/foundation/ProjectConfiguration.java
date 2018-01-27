@@ -52,7 +52,7 @@ public class ProjectConfiguration implements Serializable {
     private String year;
 
     /** The output dir. */
-    private transient Path outputDir;
+    private Path outputDir;
 
     /** The database type. */
     private Database database;

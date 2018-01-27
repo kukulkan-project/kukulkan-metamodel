@@ -79,6 +79,37 @@ public class GeneratedElement implements Serializable {
     }
 
     /**
+     * Instantiates a new generated element.
+     *
+     * @param path
+     *            the path
+     * @param simplePath
+     *            the simple path
+     * @param content
+     *            the content
+     */
+    public GeneratedElement(Path realPath, Path relativePath, String content) {
+        this.realPath = realPath;
+        this.relativePath = relativePath;
+        this.content = content;
+    }
+
+    /**
+     * Instantiates a new generated element.
+     *
+     * @param path
+     *            the path
+     * @param simplePath
+     *            the simple path
+     * @param content
+     *            the content
+     */
+    public GeneratedElement(Path realPath, String content) {
+        this.realPath = realPath;
+        this.content = content;
+    }
+
+    /**
      * Gets the content.
      *
      * @return the content
