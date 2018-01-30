@@ -58,13 +58,6 @@ public interface Generator {
     String getDescription();
 
     /**
-     * Main key words for searching and classifying.
-     *
-     * @return the keywords
-     */
-    String getKeywords();
-
-    /**
      * Get the Layer used by the generator.
      * 
      * @return List<Layer>

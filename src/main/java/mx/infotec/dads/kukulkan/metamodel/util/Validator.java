@@ -18,7 +18,7 @@ public class Validator {
     }
 
     public static <T> T requiredNotEmpty(Optional<T> optional, String message) {
-        if (optional != null && optional.isPresent()) {
+        if (optional.isPresent()) {
             return optional.get();
         } else {
             throw new MetaModelException(message);
