@@ -23,27 +23,20 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.foundation;
 
-import java.io.Serializable;
-import java.nio.file.Path;
+import mx.infotec.dads.kukulkan.metamodel.context.BaseContext;
 
 /**
  * ProrjectConfiguration Class.
  *
  * @author Daniel Cortes Pichardo
  */
-public class ProjectConfiguration implements Serializable {
+public class ProjectConfiguration extends BaseContext {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
-    /** The id. */
-    private String id;
-
     /** The version. */
     private String version;
-
-    /** The packaging. */
-    private String packaging;
 
     /** The author. */
     private String author;
@@ -51,36 +44,14 @@ public class ProjectConfiguration implements Serializable {
     /** The year. */
     private String year;
 
-    /** The output dir. */
-    private Path outputDir;
-
     /** The database type. */
     private Database database;
 
     /** The frontEndTechnology. */
     private String frontEndTechnology;
 
-    /** The backEndTechnology */
+    /**  The backEndTechnology. */
     private String backEndTechnology;
-
-    /**
-     * Gets the id.
-     *
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Sets the id.
-     *
-     * @param id
-     *            the new id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
 
     /**
      * Gets the version.
@@ -99,25 +70,6 @@ public class ProjectConfiguration implements Serializable {
      */
     public void setVersion(String version) {
         this.version = version;
-    }
-
-    /**
-     * Gets the packaging.
-     *
-     * @return the packaging
-     */
-    public String getPackaging() {
-        return packaging;
-    }
-
-    /**
-     * Sets the packaging.
-     *
-     * @param packaging
-     *            the new packaging
-     */
-    public void setPackaging(String packaging) {
-        this.packaging = packaging;
     }
 
     /**
@@ -159,44 +111,55 @@ public class ProjectConfiguration implements Serializable {
     }
 
     /**
-     * Gets the output dir.
+     * Gets the front end technology.
      *
-     * @return the output dir
+     * @return the front end technology
      */
-    public Path getOutputDir() {
-        return outputDir;
-    }
-
-    /**
-     * Sets the output dir.
-     *
-     * @param outputDir
-     *            the new output dir
-     */
-    public void setOutputDir(Path outputDir) {
-        this.outputDir = outputDir;
-    }
-
     public String getFrontEndTechnology() {
         return frontEndTechnology;
     }
 
+    /**
+     * Sets the front end technology.
+     *
+     * @param frontEndTechnology the new front end technology
+     */
     public void setFrontEndTechnology(String frontEndTechnology) {
         this.frontEndTechnology = frontEndTechnology;
     }
 
+    /**
+     * Gets the back end technology.
+     *
+     * @return the back end technology
+     */
     public String getBackEndTechnology() {
         return backEndTechnology;
     }
 
+    /**
+     * Sets the back end technology.
+     *
+     * @param backEndTechnology the new back end technology
+     */
     public void setBackEndTechnology(String backEndTechnology) {
         this.backEndTechnology = backEndTechnology;
     }
 
+    /**
+     * Gets the database.
+     *
+     * @return the database
+     */
     public Database getDatabase() {
         return database;
     }
 
+    /**
+     * Sets the database.
+     *
+     * @param database the new database
+     */
     public void setDatabase(Database database) {
         this.database = database;
     }

@@ -23,8 +23,6 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.generator;
 
-import java.util.Collection;
-
 import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
 
 /**
@@ -42,28 +40,6 @@ public interface Generator {
      * @return the name
      */
     String getName();
-
-    /**
-     * The version of the Generator.
-     *
-     * @return the version
-     */
-    String getVersion();
-
-    /**
-     * A brieft description of the functionalities of the generator.
-     *
-     * @return the description
-     */
-    String getDescription();
-
-    /**
-     * Get the Layer used by the generator.
-     * 
-     * @return List<Layer>
-     */
-    @Deprecated
-    Collection<? extends Layer> getLayers();
 
     /**
      * Process the GeneratorContext in order to generate the target elements.

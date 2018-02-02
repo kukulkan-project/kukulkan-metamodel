@@ -24,6 +24,7 @@
 package mx.infotec.dads.kukulkan.metamodel.context;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 
 /**
  * The Generator Context Class is used for create a set of elements generated
@@ -41,12 +42,45 @@ import java.io.Serializable;
  * @since 1.0.0
  */
 
-public abstract class BaseContext implements Serializable{
+public abstract class BaseContext implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /** The id. */
+    private String id;
+
+    /** The packaging. */
+    private String packaging;
+
+    /** The output dir. */
+    private Path outputDir;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPackaging() {
+        return packaging;
+    }
+
+    public Path getOutputDir() {
+        return outputDir;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPackaging(String packaging) {
+        this.packaging = packaging;
+    }
+
+    public void setOutputDir(Path outputDir) {
+        this.outputDir = outputDir;
+    }
 
     public BaseContext() {
 
     }
-    
+
 }

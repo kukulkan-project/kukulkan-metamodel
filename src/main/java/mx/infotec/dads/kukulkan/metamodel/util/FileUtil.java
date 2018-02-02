@@ -48,9 +48,11 @@ import java.util.zip.ZipOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import mx.infotec.dads.kukulkan.metamodel.context.BaseContext;
 import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModel;
 import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratedElement;
+import mx.infotec.dads.kukulkan.metamodel.template.TemplateInfo;
 
 /**
  * The FileUtil Class is used for common File operations.
@@ -356,6 +358,26 @@ public class FileUtil {
         } catch (IOException e) {
             LOGGER.error("Copy Resource Error", e);
             return false;
+        }
+    }
+
+    /**
+     * 
+     * @param projectid
+     * @param targetPath
+     * @return
+     */
+    public static Path createOutputPath(String projectid, Path targetPath) {
+        Objects.requireNonNull(projectid, "project id cannot be null");
+        Objects.requireNonNull(targetPath, "targetPath cannot be null");
+        if (targetPath.getFileName().toString().contains("MyGrammar.g4")) {
+            String output = projectid.substring(0, 1).toUpperCase() + projectid.substring(1);
+            return Paths.get(targetPath.getParent().toString(), output + ".g4");
+        } else if (targetPath.getFileName().toString().contains("MyGrammarCustomVisitor")) {
+            String output = projectid.substring(0, 1).toUpperCase() + projectid.substring(1);
+            return Paths.get(targetPath.getParent().toString(), output + "CustomVisitor.java");
+        } else {
+            return targetPath;
         }
     }
 }

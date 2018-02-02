@@ -43,16 +43,16 @@ import org.apache.metamodel.MetaModelException;
  * @since 1.0.0
  */
 
-public class GeneratorContext extends HashMap<Class<?>, Object> {
+public class GeneratorContext extends HashMap<Object, Object> {
 
     private static final long serialVersionUID = 1L;
-    
+
     public GeneratorContext() {
-     
+
     }
-    
-    public GeneratorContext(Class<?> key, Object value) {
-        this.put(key, value);   
+
+    public GeneratorContext(Object key, Object value) {
+        this.put(key, value);
     }
 
     /**
@@ -76,6 +76,10 @@ public class GeneratorContext extends HashMap<Class<?>, Object> {
         throw new MetaModelException("The :" + value.getClass().getName() + " cannot be cast to " + key.getName());
     }
 
+    public Object put(Object key, Object value) {
+        return super.put(key, value);
+    }
+
     /**
      * Returns the value to which the specified key is mapped, or
      * {@code Optional.empty} if this map contains no mapping for the key.
@@ -85,6 +89,15 @@ public class GeneratorContext extends HashMap<Class<?>, Object> {
         Object object = super.get(key);
         if (object != null) {
             return Optional.of(key.cast(object));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<Object> get(Object key) {
+        Object object = super.get(key);
+        if (object != null) {
+            return Optional.of(object);
         } else {
             return Optional.empty();
         }
