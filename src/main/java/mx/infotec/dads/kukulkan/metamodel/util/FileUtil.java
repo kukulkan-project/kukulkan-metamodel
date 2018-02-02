@@ -48,11 +48,9 @@ import java.util.zip.ZipOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import mx.infotec.dads.kukulkan.metamodel.context.BaseContext;
 import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModel;
 import mx.infotec.dads.kukulkan.metamodel.foundation.GeneratedElement;
-import mx.infotec.dads.kukulkan.metamodel.template.TemplateInfo;
 
 /**
  * The FileUtil Class is used for common File operations.
