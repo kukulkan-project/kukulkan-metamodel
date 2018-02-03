@@ -360,6 +360,19 @@ public class FileUtil {
     }
 
     /**
+     * Copy from jar.
+     *
+     * @param templatePath
+     *            the template path
+     * @param to
+     *            the to
+     * @return true, if successful
+     */
+    public static boolean copyTemplateFromJar(String templatePath, Path to) {
+        return copyFromJar("templates/" + templatePath, to);
+    }
+
+    /**
      * 
      * @param projectid
      * @param targetPath
