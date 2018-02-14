@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ed2c64c575ed43dc97d47e4888e8d8b6)](https://www.codacy.com/app/erik-valdivieso/kukulkan-metamodel?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kukulkan-project/kukulkan-metamodel&amp;utm_campaign=Badge_Grade)
+
 # Kukulkán Meta-Model
  
 ## Template key-params
