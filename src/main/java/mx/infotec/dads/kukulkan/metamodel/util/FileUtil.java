@@ -349,14 +349,20 @@ public class FileUtil {
         Objects.requireNonNull(to, "to is required");
         LOGGER.info("saveFile to: {}", to);
         URL loadedResource = FileUtil.class.getClassLoader().getResource(templatePath);
-        try (InputStream inputStream = loadedResource.openStream()) {
-            Files.createDirectories(to.getParent());
-            Files.copy(inputStream, to, StandardCopyOption.REPLACE_EXISTING);
-            return true;
-        } catch (IOException e) {
-            LOGGER.error("Copy Resource Error", e);
-            return false;
+        
+        if (loadedResource != null) {
+            try (InputStream inputStream = loadedResource.openStream()) {
+                Files.createDirectories(to.getParent());
+                Files.copy(inputStream, to, StandardCopyOption.REPLACE_EXISTING);
+                return true;
+            } catch (IOException e) {
+                LOGGER.error("Copy Resource Error", e);
+            }            
+        } else {
+            LOGGER.error("Resource '{}' not found", templatePath);
         }
+        
+        return false;
     }
 
     /**
