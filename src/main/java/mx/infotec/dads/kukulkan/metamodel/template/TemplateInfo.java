@@ -9,8 +9,8 @@ package mx.infotec.dads.kukulkan.metamodel.template;
  */
 public class TemplateInfo {
 
-    /** The name. */
-    private String name;
+    /** The stringPath. */
+    private String stringPath;
 
     /** The type. */
     private TemplateType type;
@@ -20,12 +20,12 @@ public class TemplateInfo {
      *
      * @param type
      *            the type
-     * @param name
-     *            the name
+     * @param stringPath
+     *            the stringPath
      */
-    public TemplateInfo(TemplateType type, String name) {
+    public TemplateInfo(TemplateType type, String stringPath) {
         this.type = type;
-        this.name = name;
+        this.setStringPath(stringPath);
     }
 
     /**
@@ -47,22 +47,12 @@ public class TemplateInfo {
         this.type = type;
     }
 
-    /**
-     * Gets the name.
-     *
-     * @return the name
-     */
-    public String getName() {
-        return name;
+    public String getStringPath() {
+        return stringPath;
     }
 
-    /**
-     * Sets the name.
-     *
-     * @param name
-     *            the new name
-     */
-    public void setName(String name) {
-        this.name = name;
+    public void setStringPath(String stringPath) {
+        this.stringPath = stringPath;
     }
+
 }
