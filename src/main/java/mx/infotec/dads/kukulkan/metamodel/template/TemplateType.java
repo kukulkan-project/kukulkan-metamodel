@@ -1,8 +1,5 @@
 package mx.infotec.dads.kukulkan.metamodel.template;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 /**
  * TemplateType
  * 
@@ -16,17 +13,13 @@ public enum TemplateType {
     JAVA_SPRING_MONGO("archetypes/angularjs-spring-mongo"),
     ANTLR4("archetypes/antlr4");
 
-    private Path templatePath;
+    private String templatePath;
 
     private TemplateType(String path) {
-        this.templatePath=Paths.get(path);
+        this.templatePath=path;
     }
 
     public String getTemplatePath(){
         return templatePath.toString();
-    }
-
-    public String getFolderName(){
-        return templatePath.getFileName().toString();
     }
 }
