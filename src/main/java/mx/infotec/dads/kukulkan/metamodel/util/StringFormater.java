@@ -23,63 +23,60 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.util;
 
+import static java.util.regex.Matcher.quoteReplacement;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.util.Objects;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
- * Name Conventions Formatter, it is a utility class used for convert different
- * kind of strings into a target format.
+ * The String Formater Class is used for common String operations.
  *
  * @author Daniel Cortes Pichardo
  */
-public class NameConventionFormatter {
+public class StringFormater {
+
+    public static final String DOT_REGEXP = "\\.";
+
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(StringFormater.class);
 
     /**
-     * Instantiates a new name convention formatter.
+     * Instantiates a new file util.
      */
-    private NameConventionFormatter() {
+    private StringFormater() {
     }
 
     /**
-     * Convert to angular file Naming Convention is used in the front-end data
-     * generator. Convert in camel case into Hyphens format
-     *
-     * @param from
-     *            the from
-     * @return String
+     * 
+     * @param stringWithDots
+     * @return
      */
-    public static String camelCaseToHyphens(String from) {
-        return camelCaseTo(from, '-');
+    public static String replaceDotByFileSeparator(String stringWithDots) {
+        Objects.requireNonNull(stringWithDots);
+        return stringWithDots.replaceAll(DOT_REGEXP, quoteReplacement(File.separator));
     }
 
     /**
-     * Convert to angular file Naming Convention is used in the front-end data
-     * generator. Convert in camel case into underScore format
-     *
-     * @param from
-     *            the from
-     * @return String
+     * pathToRegExp convert a Path class to a String RegExp. For example, the
+     * path "/home/user/" turns into "[\/]home[\/]user[\/]"
+     * 
+     * @param path
+     * @return
      */
-    public static String camelCaseToUnderScore(String from) {
-        return camelCaseTo(from, '_');
-    }
-
-    /**
-     * camelCaseTo, format a camelCase String to specific character format
-     *
-     * @param from
-     *            the from
-     * @param character
-     *            the character
-     * @return the string
-     */
-    private static String camelCaseTo(String from, char character) {
-        char[] wordArray = from.toCharArray();
+    public static String pathToRegExp(Path path) {
+        char[] wordArray = path.toString().toCharArray();
         StringBuilder sb = new StringBuilder();
         for (char letter : wordArray) {
-            if (Character.isUpperCase(letter)) {
-                sb.append(character).append(Character.toLowerCase(letter));
+            if (letter == '/' || letter == '\\') {
+                sb.append("[\\/]");
             } else {
                 sb.append(letter);
             }
         }
         return sb.toString();
-    }
+    }   
 }
