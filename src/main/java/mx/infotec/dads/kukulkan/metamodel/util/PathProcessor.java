@@ -51,6 +51,10 @@ public class PathProcessor {
         return new PathProcessor(currentPath);
     }
 
+    public static PathProcessor forPath(String currentPath) {
+        return forPath(Paths.get(currentPath));
+    }
+
     public PathProcessor replaceRegExp(String regex, String replacement) {
         Path replacedPath = Paths.get(currentPath.toString().replaceAll(regex, replacement));
         currentPath = relativizePath(replacedPath);
@@ -81,8 +85,12 @@ public class PathProcessor {
         return this;
     }
 
-    public Path get() {
-        return currentPath;
+    public Path getAbsolutePath() {
+        return Paths.get("/").resolve(currentPath);
+    }
+
+    public Path getRelativePath() {
+        return relativizePath(currentPath);
     }
 
     private static Path relativizePath(Path replacedPath) {
@@ -93,7 +101,8 @@ public class PathProcessor {
     public static void main(String[] args) {
         Path path = Paths.get("template/archetype/src/main/java/package/controller/JavaApp.java.ftl");
         Path home = Paths.get(System.getProperty("user.home"));
-        Path path3 = PathProcessor.forPath(path).replaceRegExp("template[\\/]archetype", "").joinBefore(home).get();
+        Path path3 = PathProcessor.forPath(path).replaceRegExp("template[\\/]archetype", "").joinBefore("asterix")
+                .joinBefore(home).getAbsolutePath();
         System.out.println(path3);
     }
 
