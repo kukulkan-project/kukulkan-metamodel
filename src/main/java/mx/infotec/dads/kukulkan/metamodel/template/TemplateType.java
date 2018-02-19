@@ -20,6 +20,6 @@ public enum TemplateType {
     }
 
     public String getTemplatePath(){
-        return templatePath.toString();
+        return templatePath;
     }
 }

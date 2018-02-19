@@ -23,6 +23,7 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.util;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -33,14 +34,13 @@ import java.nio.file.Paths;
  */
 public class PathProcessor {
 
+    public static final char LINUX_FILE_SEPARATOR = '/';
+    public static final char WINDOWS_FILE_SEPARATOR = '\\';
+
     private Path currentPath;
 
     private PathProcessor() {
 
-    }
-
-    private PathProcessor(String currentString) {
-        this.currentPath = Paths.get(currentString);
     }
 
     private PathProcessor(Path currentString) {
@@ -56,14 +56,15 @@ public class PathProcessor {
     }
 
     public PathProcessor replaceRegExp(String regex, String replacement) {
-        Path replacedPath = Paths.get(currentPath.toString().replaceAll(regex, replacement));
-        currentPath = relativizePath(replacedPath);
+        Path replacementPath = Paths.get(currentPath.toString().replaceAll(regex, replacement));
+        currentPath = relativize(replacementPath);
         return this;
     }
 
     public PathProcessor replaceLiteral(String literal, String replacement) {
-        Path replacedPath = Paths.get(currentPath.toString().replace(literal, replacement));
-        currentPath = relativizePath(replacedPath);
+        String replacementFormated = literal.replace("/", File.separator);
+        Path replacementPath = Paths.get(currentPath.toString().replace(replacementFormated, replacement));
+        currentPath = relativize(replacementPath);
         return this;
     }
 
@@ -85,25 +86,23 @@ public class PathProcessor {
         return this;
     }
 
-    public Path getAbsolutePath() {
-        return Paths.get("/").resolve(currentPath);
+    public Path get() {
+        return currentPath;
     }
 
-    public Path getRelativePath() {
-        return relativizePath(currentPath);
+    public Path getAbsolutePath(String absolutePath) {
+        return Paths.get(absolutePath).resolve(currentPath);
     }
 
-    private static Path relativizePath(Path replacedPath) {
-        Path resolvePath = Paths.get("/").resolve(replacedPath);
-        return Paths.get("/").relativize(resolvePath);
+    public Path getAbsolutePath(Path absolutePath) {
+        return absolutePath.resolve(currentPath);
     }
 
-    public static void main(String[] args) {
-        Path path = Paths.get("template/archetype/src/main/java/package/controller/JavaApp.java.ftl");
-        Path home = Paths.get(System.getProperty("user.home"));
-        Path path3 = PathProcessor.forPath(path).replaceRegExp("template[\\/]archetype", "").joinBefore("asterix")
-                .joinBefore(home).getAbsolutePath();
-        System.out.println(path3);
+    private Path relativize(Path from) {
+        if (from.toString().charAt(0) == LINUX_FILE_SEPARATOR || from.toString().charAt(0) == WINDOWS_FILE_SEPARATOR) {
+            return Paths.get(from.toString().substring(1, from.toString().length()));
+        } else {
+            return from;
+        }
     }
-
 }
