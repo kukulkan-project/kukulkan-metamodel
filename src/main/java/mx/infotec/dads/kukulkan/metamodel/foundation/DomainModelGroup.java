@@ -50,6 +50,9 @@ public class DomainModelGroup implements Serializable {
     /** The domain model elements. */
     private Collection<Entity> entities;
 
+    /** The domain groups */
+    private Collection<DomainModelGroup> domainModelGroup;
+
     /**
      * Gets the name.
      *
@@ -124,6 +127,14 @@ public class DomainModelGroup implements Serializable {
      */
     public void setEntities(Collection<Entity> entities) {
         this.entities = entities;
+    }
+
+    public Collection<DomainModelGroup> getDomainModelGroup() {
+        return domainModelGroup;
+    }
+
+    public void setDomainModelGroup(Collection<DomainModelGroup> domainModelGroup) {
+        this.domainModelGroup = domainModelGroup;
     }
 
 }
