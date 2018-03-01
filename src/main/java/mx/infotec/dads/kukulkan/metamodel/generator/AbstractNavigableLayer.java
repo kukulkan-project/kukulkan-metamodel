@@ -32,7 +32,7 @@ import java.util.Map;
 
 import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModel;
-import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelElement;
+import mx.infotec.dads.kukulkan.metamodel.foundation.Entity;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelGroup;
 import mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration;
 import mx.infotec.dads.kukulkan.metamodel.generator.NavigableLayer;
@@ -73,7 +73,7 @@ public abstract class AbstractNavigableLayer implements NavigableLayer {
     public void doForEachDataModelGroupTemplate(ProjectConfiguration pConf, Collection<DomainModelGroup> dmGroup,
             final Map<String, Object> propertiesMap) {
         for (DomainModelGroup dataModelGroup : dmGroup) {
-            doForEachDataModelElement(pConf, dataModelGroup.getDomainModelElements(), propertiesMap,
+            doForEachDataModelElement(pConf, dataModelGroup.getEntities(), propertiesMap,
                     dataModelGroup.getName());
         }
     }
@@ -88,10 +88,10 @@ public abstract class AbstractNavigableLayer implements NavigableLayer {
      */
     @Override
     public void doForEachDataModelElement(ProjectConfiguration pConf,
-            Collection<DomainModelElement> dmElementCollection, final Map<String, Object> propertiesMap,
+            Collection<Entity> dmElementCollection, final Map<String, Object> propertiesMap,
             String dmgName) {
         String basePackage = pConf.getPackaging() + dmgName;
-        for (DomainModelElement dmElement : dmElementCollection) {
+        for (Entity dmElement : dmElementCollection) {
             addCommonDataModelElements(pConf, propertiesMap, basePackage, dmElement);
             visitDomainModelElement(pConf, dmElementCollection, propertiesMap, dmgName, dmElement, basePackage);
         }

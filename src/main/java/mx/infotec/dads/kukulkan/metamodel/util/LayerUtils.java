@@ -33,7 +33,7 @@ import java.util.Map;
 import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DatabaseType;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModel;
-import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelElement;
+import mx.infotec.dads.kukulkan.metamodel.foundation.Entity;
 import mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration;
 import mx.infotec.dads.kukulkan.metamodel.util.NameConventions;
 
@@ -195,7 +195,7 @@ public class LayerUtils {
      *            the dme
      */
     public static void addCommonDataModelElements(ProjectConfiguration conf, Map<String, Object> map, String bPackage,
-            DomainModelElement dme) {
+            Entity dme) {
         map.put(HAS_TIME_PROPERTIES_PROPERTY, dme.isHasTimeProperties());
         map.put(HAS_LOCAL_DATE_PROPERTY, dme.isHasLocalDate());
         map.put(HAS_BLOB_PROPERTIES_PROPERTY, dme.isHasBlobProperties());
@@ -239,7 +239,7 @@ public class LayerUtils {
      *            the dme
      */
     public static void importPrimaryKeyIfComposed(ProjectConfiguration conf, Map<String, Object> model, String bPackage,
-            DomainModelElement dme) {
+            Entity dme) {
         if (dme.getPrimaryKey().isComposed()) {
             model.put(IMPORT_PRIMARY_KEY_PROPERTY,
                     formatToImportStatement(bPackage, NameConventions.DAO_LAYER_NAME, dme.getPrimaryKey().getType()));

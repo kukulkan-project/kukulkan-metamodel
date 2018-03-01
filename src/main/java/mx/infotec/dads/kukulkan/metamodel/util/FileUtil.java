@@ -243,7 +243,7 @@ public class FileUtil {
      */
     public static void saveDataModelElements(GeneratorContext genCtx) {
         requiredNotEmpty(genCtx.get(DomainModel.class)).getDomainModelGroup().forEach(dmg -> dmg
-                .getDomainModelElements().forEach(dme -> dme.getGeneratedElements().forEach(FileUtil::saveToFile)));
+                .getEntities().forEach(dme -> dme.getGeneratedElements().forEach(FileUtil::saveToFile)));
     }
 
     /**

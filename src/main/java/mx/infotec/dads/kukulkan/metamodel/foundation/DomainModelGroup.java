@@ -48,7 +48,7 @@ public class DomainModelGroup implements Serializable {
     protected String description;
 
     /** The domain model elements. */
-    private Collection<DomainModelElement> domainModelElements;
+    private Collection<Entity> entities;
 
     /**
      * Gets the name.
@@ -112,18 +112,18 @@ public class DomainModelGroup implements Serializable {
      *
      * @return the domain model elements
      */
-    public Collection<DomainModelElement> getDomainModelElements() {
-        return domainModelElements;
+    public Collection<Entity> getEntities() {
+        return entities;
     }
 
     /**
      * Sets the domain model elements.
      *
-     * @param dataModelElements
+     * @param entities
      *            the new domain model elements
      */
-    public void setDomainModelElements(Collection<DomainModelElement> dataModelElements) {
-        this.domainModelElements = dataModelElements;
+    public void setEntities(Collection<Entity> entities) {
+        this.entities = entities;
     }
 
 }

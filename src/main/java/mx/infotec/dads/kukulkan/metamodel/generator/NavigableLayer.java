@@ -27,7 +27,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import mx.infotec.dads.kukulkan.metamodel.context.GeneratorContext;
-import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelElement;
+import mx.infotec.dads.kukulkan.metamodel.foundation.Entity;
 import mx.infotec.dads.kukulkan.metamodel.foundation.DomainModelGroup;
 import mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration;
 
@@ -54,7 +54,7 @@ public interface NavigableLayer extends Layer {
      * @param propertiesMap the properties map
      * @param dmgName the dmg name
      */
-    void doForEachDataModelElement(ProjectConfiguration pConf, Collection<DomainModelElement> dmElementCollection,
+    void doForEachDataModelElement(ProjectConfiguration pConf, Collection<Entity> dmElementCollection,
             final Map<String, Object> propertiesMap, String dmgName);
 
     /**
@@ -67,8 +67,8 @@ public interface NavigableLayer extends Layer {
      * @param dmElement the dm element
      * @param basePackage the base package
      */
-    void visitDomainModelElement(ProjectConfiguration pConf, Collection<DomainModelElement> dmElementCollection,
-            Map<String, Object> propertiesMap, String dmgName, DomainModelElement dmElement, String basePackage);
+    void visitDomainModelElement(ProjectConfiguration pConf, Collection<Entity> dmElementCollection,
+            Map<String, Object> propertiesMap, String dmgName, Entity dmElement, String basePackage);
 
     /**
      * doBeforeProcessDataModelGroup, It is used for add new functionality

@@ -34,7 +34,7 @@ import java.util.TreeSet;
  *
  * @author Daniel Cortes Pichardo
  */
-public class DomainModelElement implements Serializable {
+public class Entity implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
@@ -202,7 +202,7 @@ public class DomainModelElement implements Serializable {
     /**
      * Instantiates a new domain model element.
      */
-    private DomainModelElement() {
+    private Entity() {
 
     }
 
@@ -356,8 +356,8 @@ public class DomainModelElement implements Serializable {
      *
      * @return the domain model element
      */
-    public static DomainModelElement createOrderedDataModel() {
-        DomainModelElement dme = new DomainModelElement();
+    public static Entity createOrderedDataModel() {
+        Entity dme = new Entity();
         dme.setImports(new TreeSet<>());
         dme.setProperties(new TreeSet<>());
         return dme;
@@ -368,8 +368,8 @@ public class DomainModelElement implements Serializable {
      *
      * @return the domain model element
      */
-    public static DomainModelElement createDomainModelElement() {
-        DomainModelElement dme = new DomainModelElement();
+    public static Entity createDomainModelElement() {
+        Entity dme = new Entity();
         dme.setImports(new TreeSet<>());
         dme.setProperties(new ArrayList<>());
         return dme;
