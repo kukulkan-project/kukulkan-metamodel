@@ -74,6 +74,8 @@ public class Entity implements Serializable {
     @SuppressWarnings("rawtypes")
     private Collection<Property> properties;
 
+    private List<EntityAssociation> associations;
+
     /** The generated elements. */
     private List<GeneratedElement> generatedElements = new ArrayList<>();
 
@@ -516,5 +518,13 @@ public class Entity implements Serializable {
      */
     public void addGeneratedElement(GeneratedElement element) {
         this.generatedElements.add(element);
+    }
+
+    public List<EntityAssociation> getAssociations() {
+        return associations;
+    }
+
+    public void setAssociations(List<EntityAssociation> associations) {
+        this.associations = associations;
     }
 }
