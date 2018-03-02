@@ -70,22 +70,10 @@ public class Constraint implements Serializable {
     private boolean indexed;
 
     /** Min value of the property. */
-    private String minLength;
+    private String min;
 
     /** Max value of the property. */
-    private String maxLength;
-
-    /** Min value of the property. */
-    private String minNumber;
-
-    /** Max value of the property. */
-    private String maxNumber;
-
-    /** Min value of the property. */
-    private String minByte;
-
-    /** Max value of the property. */
-    private String maxByte;
+    private String max;
 
     /** Pattern. */
     private String pattern;
@@ -304,8 +292,8 @@ public class Constraint implements Serializable {
      *
      * @return the min length
      */
-    public String getMinLength() {
-        return minLength;
+    public String getMin() {
+        return min;
     }
 
     /**
@@ -314,8 +302,8 @@ public class Constraint implements Serializable {
      * @param minLength
      *            the new min length
      */
-    public void setMinLength(String minLength) {
-        this.minLength = minLength;
+    public void setMin(String minLength) {
+        this.min = minLength;
     }
 
     /**
@@ -323,8 +311,8 @@ public class Constraint implements Serializable {
      *
      * @return the max length
      */
-    public String getMaxLength() {
-        return maxLength;
+    public String getMax() {
+        return max;
     }
 
     /**
@@ -333,85 +321,10 @@ public class Constraint implements Serializable {
      * @param maxLength
      *            the new max length
      */
-    public void setMaxLength(String maxLength) {
-        this.maxLength = maxLength;
+    public void setMax(String maxLength) {
+        this.max = maxLength;
     }
 
-    /**
-     * Gets the min byte.
-     *
-     * @return the min byte
-     */
-    public String getMinByte() {
-        return minByte;
-    }
-
-    /**
-     * Sets the min byte.
-     *
-     * @param minByte
-     *            the new min byte
-     */
-    public void setMinByte(String minByte) {
-        this.minByte = minByte;
-    }
-
-    /**
-     * Gets the max byte.
-     *
-     * @return the max byte
-     */
-    public String getMaxByte() {
-        return maxByte;
-    }
-
-    /**
-     * Sets the max byte.
-     *
-     * @param maxByte
-     *            the new max byte
-     */
-    public void setMaxByte(String maxByte) {
-        this.maxByte = maxByte;
-    }
-
-    /**
-     * Gets the min number.
-     *
-     * @return the min number
-     */
-    public String getMinNumber() {
-        return minNumber;
-    }
-
-    /**
-     * Sets the min number.
-     *
-     * @param minNumber
-     *            the new min number
-     */
-    public void setMinNumber(String minNumber) {
-        this.minNumber = minNumber;
-    }
-
-    /**
-     * Gets the max number.
-     *
-     * @return the max number
-     */
-    public String getMaxNumber() {
-        return maxNumber;
-    }
-
-    /**
-     * Sets the max number.
-     *
-     * @param maxNumber
-     *            the new max number
-     */
-    public void setMaxNumber(String maxNumber) {
-        this.maxNumber = maxNumber;
-    }
 
     /**
      * Gets the pattern.
