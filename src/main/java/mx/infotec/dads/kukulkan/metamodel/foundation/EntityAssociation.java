@@ -13,7 +13,9 @@ public class EntityAssociation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private boolean ownerSide;
-
+    
+    private String fieldName;
+    
     private Entity to;
 
     private AssociationType type;
@@ -40,5 +42,13 @@ public class EntityAssociation implements Serializable {
 
     public void setType(AssociationType type) {
         this.type = type;
+    }
+
+    public String getFieldName() {
+        return fieldName;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
 }
