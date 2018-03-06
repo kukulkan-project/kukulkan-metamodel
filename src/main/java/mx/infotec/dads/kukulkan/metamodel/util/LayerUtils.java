@@ -94,6 +94,9 @@ public class LayerUtils {
 
     /** The Constant TABLE_NAME_PROPERTY. */
     public static final String TABLE_NAME_PROPERTY = "tableName";
+    
+    /** The Constant TABLE_NAME_PROPERTY. */
+    public static final String TABLE_NAME_PROPERTY_LOWER_CASE = "tableNameLowerCase";
 
     /** The Constant PACKAGE_PROPERTY. */
     public static final String PACKAGE_PROPERTY = "package";
@@ -206,6 +209,7 @@ public class LayerUtils {
         map.put(HAS_NOT_NULL, dme.isHasNotNullElements());
         map.put(URL_NAME_PROPERTY, dme.getCamelCaseFormat());
         map.put(TABLE_NAME_PROPERTY, dme.getTableName());
+        map.put(TABLE_NAME_PROPERTY_LOWER_CASE, dme.getTableName().toLowerCase());
         map.put(PACKAGE_PROPERTY, null);// must be provided in individual files
         map.put(IMPORTS_PROPERTY, dme.getImports());
         map.put(IMPORT_SERVICE_PROPERTY, formatToImportStatement(bPackage, NameConventions.SERVICE_LAYER_NAME,
