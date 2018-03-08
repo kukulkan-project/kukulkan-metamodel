@@ -198,4 +198,8 @@ public interface Property<T> extends Comparable<T>, Serializable {
      * @return true, if is size validation
      */
     boolean isSizeValidation();
+
+    boolean isAnyBlob();
+
+    boolean isImageBlob();
 }
