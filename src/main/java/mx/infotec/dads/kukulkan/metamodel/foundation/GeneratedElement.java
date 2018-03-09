@@ -45,6 +45,16 @@ public class GeneratedElement implements Serializable {
     private Path relativePath;
 
     /**
+     * The file name of the element
+     */
+    private String fileName;
+
+    /**
+     * It is used for filtering and search propose
+     */
+    private String[] keywords;
+
+    /**
      * The content of the generated Element, it is filled from the freemarker
      * Template.
      */
@@ -169,4 +179,19 @@ public class GeneratedElement implements Serializable {
         this.relativePath = relativePath;
     }
 
+    public String[] getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String[] keywords) {
+        this.keywords = keywords;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 }

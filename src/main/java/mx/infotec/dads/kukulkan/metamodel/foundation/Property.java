@@ -148,6 +148,13 @@ public interface Property<T> extends Comparable<T>, Serializable {
      * @return boolean
      */
     boolean isInstant();
+    
+    /**
+     * Return true if it is Boolean element.
+     *
+     * @return boolean
+     */
+    boolean isBoolean();
 
     /**
      * Return true if it is zoneDataTime element.

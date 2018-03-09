@@ -41,6 +41,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -242,8 +245,8 @@ public class FileUtil {
      *            the gen ctx
      */
     public static void saveDataModelElements(GeneratorContext genCtx) {
-        requiredNotEmpty(genCtx.get(DomainModel.class)).getDomainModelGroup().forEach(dmg -> dmg
-                .getEntities().forEach(dme -> dme.getGeneratedElements().forEach(FileUtil::saveToFile)));
+        requiredNotEmpty(genCtx.get(DomainModel.class)).getDomainModelGroup().forEach(
+                dmg -> dmg.getEntities().forEach(dme -> dme.getGeneratedElements().forEach(FileUtil::saveToFile)));
     }
 
     /**
@@ -349,7 +352,7 @@ public class FileUtil {
         Objects.requireNonNull(to, "to is required");
         LOGGER.info("saveFile to: {}", to);
         URL loadedResource = FileUtil.class.getClassLoader().getResource(templatePath);
-        
+
         if (loadedResource != null) {
             try (InputStream inputStream = loadedResource.openStream()) {
                 Files.createDirectories(to.getParent());
@@ -357,11 +360,11 @@ public class FileUtil {
                 return true;
             } catch (IOException e) {
                 LOGGER.error("Copy Resource Error", e);
-            }            
+            }
         } else {
             LOGGER.error("Resource '{}' not found", templatePath);
         }
-        
+
         return false;
     }
 
@@ -396,5 +399,27 @@ public class FileUtil {
         } else {
             return targetPath;
         }
+    }
+
+    /**
+     * It generate a string to be used for audit propose; like change journa
+     * 
+     * @return String in the format YYYYMMDDhhmmss
+     */
+    public static String generateDateTimeJournal() {
+        LocalDateTime ldt = LocalDateTime.now();
+        return String.format("%04d%02d%02d%02d%02d%02d", ldt.getYear(), ldt.getMonth().getValue(), ldt.getDayOfMonth(),
+                ldt.getHour(), ldt.getMinute(), ldt.getSecond());
+    }
+
+    /**
+     * It generate a string to be used for audit propose; like change journa
+     * 
+     * @return String in the format YYYYMMDDhhmmss
+     */
+    public static String formatToDateTimeJournal(LocalDateTime ldt) {
+        Objects.requireNonNull(ldt);
+        return String.format("%04d%02d%02d%02d%02d%02d", ldt.getYear(), ldt.getMonth().getValue(), ldt.getDayOfMonth(),
+                ldt.getHour(), ldt.getMinute(), ldt.getSecond());
     }
 }

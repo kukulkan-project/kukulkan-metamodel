@@ -23,7 +23,10 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.context;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import org.apache.metamodel.MetaModelException;
 
@@ -46,6 +49,8 @@ import org.apache.metamodel.MetaModelException;
 public class GeneratorContext extends HashMap<Object, Object> {
 
     private static final long serialVersionUID = 1L;
+
+    private transient LocalDateTime changeLogTime = LocalDateTime.now();
 
     public GeneratorContext() {
 
@@ -76,6 +81,7 @@ public class GeneratorContext extends HashMap<Object, Object> {
         throw new MetaModelException("The :" + value.getClass().getName() + " cannot be cast to " + key.getName());
     }
 
+    @Override
     public Object put(Object key, Object value) {
         return super.put(key, value);
     }
@@ -94,6 +100,7 @@ public class GeneratorContext extends HashMap<Object, Object> {
         }
     }
 
+    @Override
     public Optional<Object> get(Object key) {
         Object object = super.get(key);
         if (object != null) {
@@ -101,5 +108,13 @@ public class GeneratorContext extends HashMap<Object, Object> {
         } else {
             return Optional.empty();
         }
+    }
+
+    public LocalDateTime getChangeLogTime() {
+        return changeLogTime;
+    }
+
+    public void setChangelogTime(LocalDateTime changeLogTime) {
+        this.changeLogTime = changeLogTime;
     }
 }
