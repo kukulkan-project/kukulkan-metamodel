@@ -48,6 +48,9 @@ public enum BasePathEnum {
     /** The web index. */
     WEB_INDEX("src/main/webapp"),
     
+    /** The web index. */
+    LIQUIBASE_INDEX("src/main/resources/config/liquibase"),
+    
     /** The info. */
     INFO("info");
 
