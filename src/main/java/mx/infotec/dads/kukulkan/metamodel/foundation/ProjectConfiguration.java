@@ -23,6 +23,7 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.foundation;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,9 @@ public class ProjectConfiguration extends BaseContext {
     private Database database;
 
     private List<String> layers = new ArrayList<>();
+    
+    private LocalDateTime timestamp = LocalDateTime.now();
+
 
     /**
      * Gets the version.
@@ -144,5 +148,13 @@ public class ProjectConfiguration extends BaseContext {
         for (String layerName : layerNames) {
             layers.add(layerName);
         }
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 }

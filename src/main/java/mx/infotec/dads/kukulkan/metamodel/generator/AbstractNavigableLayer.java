@@ -73,7 +73,7 @@ public abstract class AbstractNavigableLayer implements NavigableLayer {
     public void doForEachDataModelGroupTemplate(ProjectConfiguration pConf, Collection<DomainModelGroup> dmGroup,
             final Map<String, Object> propertiesMap) {
         for (DomainModelGroup dataModelGroup : dmGroup) {
-            doForEachDataModelElement(pConf, dataModelGroup.getEntities(), propertiesMap,
+            doForEachEntity(pConf, dataModelGroup.getEntities(), propertiesMap,
                     dataModelGroup.getName());
         }
     }
@@ -87,13 +87,13 @@ public abstract class AbstractNavigableLayer implements NavigableLayer {
      * java.lang.String)
      */
     @Override
-    public void doForEachDataModelElement(ProjectConfiguration pConf,
+    public void doForEachEntity(ProjectConfiguration pConf,
             Collection<Entity> dmElementCollection, final Map<String, Object> propertiesMap,
             String dmgName) {
         String basePackage = pConf.getPackaging() + dmgName;
         for (Entity dmElement : dmElementCollection) {
             addCommonDataModelElements(pConf, propertiesMap, basePackage, dmElement);
-            visitDomainModelElement(pConf, dmElementCollection, propertiesMap, dmgName, dmElement, basePackage);
+            visitEntity(pConf, dmElementCollection, propertiesMap, dmgName, dmElement, basePackage);
         }
     }
 

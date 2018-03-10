@@ -50,9 +50,7 @@ import org.apache.metamodel.MetaModelException;
 public class GeneratorContext extends HashMap<Object, Object> {
 
     private static final long serialVersionUID = 1L;
-
-    private transient LocalDateTime timeStamp = LocalDateTime.now();
-
+    
     public GeneratorContext() {
 
     }
@@ -111,11 +109,4 @@ public class GeneratorContext extends HashMap<Object, Object> {
         }
     }
 
-    public LocalDateTime getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(LocalDateTime changeLogTime) {
-        this.timeStamp = changeLogTime;
-    }
 }

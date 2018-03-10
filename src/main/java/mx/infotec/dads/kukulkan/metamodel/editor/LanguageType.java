@@ -30,52 +30,56 @@ package mx.infotec.dads.kukulkan.metamodel.editor;
  */
 public enum LanguageType {
 
+    /** The xml. */
+    XML("xml"),
+
     /** The sql. */
-    SQL("sql"), 
-    
+    SQL("sql"),
+
     /** The css. */
-    CSS("css"), 
-    
+    CSS("css"),
+
     /** The json. */
-    JSON("json"), 
-    
+    JSON("json"),
+
     /** The java. */
-    JAVA("java"), 
-    
+    JAVA("java"),
+
     /** The yaml. */
-    YAML("yaml"), 
-    
+    YAML("yaml"),
+
     /** The html. */
     HTML("html"),
-    
+
     /** The mysql. */
-    MYSQL("mysql"), 
-    
+    MYSQL("mysql"),
+
     /** The csharp. */
-    CSHARP("csharp"), 
-    
+    CSHARP("csharp"),
+
     /** The markdown. */
-    MARKDOWN("markdown"), 
-    
+    MARKDOWN("markdown"),
+
     /** The javascript. */
-    JAVASCRIPT("javascript"), 
-    
+    JAVASCRIPT("javascript"),
+
     /** The typescript. */
-    TYPESCRIPT("typescript"), 
-    
+    TYPESCRIPT("typescript"),
+
     /** The freemarker. */
     FREEMARKER("ftl"),
-    
+
     /** The dockerfile. */
-    DOCKERFILE("dockerfile"); 
-    
+    DOCKERFILE("dockerfile");
+
     /** The language. */
     private String language;
 
     /**
      * Instantiates a new language type.
      *
-     * @param language the language
+     * @param language
+     *            the language
      */
     LanguageType(String language) {
         this.language = language;

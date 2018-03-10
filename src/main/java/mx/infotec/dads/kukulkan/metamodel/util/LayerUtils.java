@@ -94,7 +94,7 @@ public class LayerUtils {
 
     /** The Constant TABLE_NAME_PROPERTY. */
     public static final String TABLE_NAME_PROPERTY = "tableName";
-    
+
     /** The Constant TABLE_NAME_PROPERTY. */
     public static final String TABLE_NAME_PROPERTY_LOWER_CASE = "tableNameLowerCase";
 
@@ -143,6 +143,8 @@ public class LayerUtils {
     /** The Constant PROJECT_CONFIGURATION_PROPERTY. */
     public static final String PROJECT_CONFIGURATION_PROPERTY = "project";
 
+    public static final String TIME_STAMP = "timestamp";
+
     /**
      * Instantiates a new layer utils.
      */
@@ -167,6 +169,7 @@ public class LayerUtils {
         model.put(IS_MONGO_PROPERTY, pConf.getDatabase().getDatabaseType().equals(DatabaseType.NO_SQL_MONGODB));
         model.put(PROJECT_NAME_PROPERTY, pConf.getId());
         model.put(DATA_MODEL_GROUP_PROPERTY, domainModel.getDomainModelGroup());
+        model.put(TIME_STAMP, FileUtil.formatToDateTimeJournal(pConf.getTimestamp()));
         return model;
     }
 

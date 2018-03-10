@@ -33,15 +33,32 @@ import mx.infotec.dads.kukulkan.metamodel.foundation.ProjectConfiguration;
 
 /**
  * The Interface NavigableLayer.
+ * 
+ * @author Daniel Cortes Pichardo
  */
 public interface NavigableLayer extends Layer {
 
     /**
+     * doBeforeProcessDataModelGroup, It is used for add new functionality
+     * before process each DataModelGroup. General information could be added
+     * here
+     *
+     * @param context
+     *            the context
+     * @param propertiesMap
+     *            the properties map
+     */
+    public void doBeforeProcessDataModelGroup(GeneratorContext context, final Map<String, Object> propertiesMap);
+
+    /**
      * Do for each Data Model Group.
      *
-     * @param pConf the conf
-     * @param dmGroup the dm group
-     * @param propertiesMap the properties map
+     * @param pConf
+     *            the conf
+     * @param dmGroup
+     *            the dm group
+     * @param propertiesMap
+     *            the properties map
      */
     void doForEachDataModelGroupTemplate(ProjectConfiguration pConf, Collection<DomainModelGroup> dmGroup,
             final Map<String, Object> propertiesMap);
@@ -49,35 +66,35 @@ public interface NavigableLayer extends Layer {
     /**
      * Do for each data model element.
      *
-     * @param pConf the conf
-     * @param dmElementCollection the dm element collection
-     * @param propertiesMap the properties map
-     * @param dmgName the dmg name
+     * @param pConf
+     *            the conf
+     * @param dmElementCollection
+     *            the dm element collection
+     * @param propertiesMap
+     *            the properties map
+     * @param dmgName
+     *            the dmg name
      */
-    void doForEachDataModelElement(ProjectConfiguration pConf, Collection<Entity> dmElementCollection,
+    void doForEachEntity(ProjectConfiguration pConf, Collection<Entity> dmElementCollection,
             final Map<String, Object> propertiesMap, String dmgName);
 
     /**
      * Visit domain model element.
      *
-     * @param pConf the conf
-     * @param dmElementCollection the dm element collection
-     * @param propertiesMap the properties map
-     * @param dmgName the dmg name
-     * @param dmElement the dm element
-     * @param basePackage the base package
+     * @param pConf
+     *            the conf
+     * @param dmElementCollection
+     *            the dm element collection
+     * @param propertiesMap
+     *            the properties map
+     * @param dmgName
+     *            the dmg name
+     * @param dmElement
+     *            the dm element
+     * @param basePackage
+     *            the base package
      */
-    void visitDomainModelElement(ProjectConfiguration pConf, Collection<Entity> dmElementCollection,
+    void visitEntity(ProjectConfiguration pConf, Collection<Entity> dmElementCollection,
             Map<String, Object> propertiesMap, String dmgName, Entity dmElement, String basePackage);
-
-    /**
-     * doBeforeProcessDataModelGroup, It is used for add new functionality
-     * before process each DataModelGroup. General information could be added
-     * here
-     *
-     * @param context the context
-     * @param propertiesMap the properties map
-     */
-    public void doBeforeProcessDataModelGroup(GeneratorContext context, final Map<String, Object> propertiesMap);
 
 }
