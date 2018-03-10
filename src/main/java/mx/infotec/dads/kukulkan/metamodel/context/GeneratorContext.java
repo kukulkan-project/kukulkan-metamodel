@@ -27,12 +27,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
-import org.apache.metamodel.MetaModelException;
 
-import mx.infotec.dads.kukulkan.metamodel.generator.Layer;
+import org.apache.metamodel.MetaModelException;
 
 /**
  * The Generator Context Class is used for create a set of elements generated
@@ -54,9 +51,7 @@ public class GeneratorContext extends HashMap<Object, Object> {
 
     private static final long serialVersionUID = 1L;
 
-    private transient LocalDateTime changeLogTime = LocalDateTime.now();
-
-    private List<String> layersToProcess = new ArrayList<>();
+    private transient LocalDateTime timeStamp = LocalDateTime.now();
 
     public GeneratorContext() {
 
@@ -64,16 +59,6 @@ public class GeneratorContext extends HashMap<Object, Object> {
 
     public GeneratorContext(Object key, Object value) {
         this.put(key, value);
-    }
-
-    public boolean containsLayer(String layerName) {
-        return layersToProcess.contains(layerName);
-    }
-
-    public void addLayers(String... layerNames) {
-        for (String layerName : layerNames) {
-            layersToProcess.add(layerName);
-        }
     }
 
     /**
@@ -126,19 +111,11 @@ public class GeneratorContext extends HashMap<Object, Object> {
         }
     }
 
-    public LocalDateTime getChangeLogTime() {
-        return changeLogTime;
+    public LocalDateTime getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setChangelogTime(LocalDateTime changeLogTime) {
-        this.changeLogTime = changeLogTime;
-    }
-
-    public List<String> getLayersToProcess() {
-        return layersToProcess;
-    }
-
-    public void setLayersToProcess(List<String> layersToProcess) {
-        this.layersToProcess = layersToProcess;
+    public void setTimeStamp(LocalDateTime changeLogTime) {
+        this.timeStamp = changeLogTime;
     }
 }
