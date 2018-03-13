@@ -23,6 +23,8 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.util;
 
+import mx.infotec.dads.kukulkan.metamodel.foundation.DatabaseType;
+
 /**
  * Name Conventions Formatter, it is a utility class used for convert different
  * kind of strings into a target format.
@@ -61,6 +63,14 @@ public class NameConventionFormatter {
         return camelCaseTo(from, '_');
     }
 
+    public static String toDataBaseNameConvention(DatabaseType dbType, String from) {
+        if (dbType.equals(DatabaseType.SQL_MYSQL)) {
+            return camelCaseToUnderScore(from);
+        } else {
+            return from;
+        }
+    }
+
     /**
      * camelCaseTo, format a camelCase String to specific character format
      *
@@ -70,7 +80,7 @@ public class NameConventionFormatter {
      *            the character
      * @return the string
      */
-    private static String camelCaseTo(String from, char character) {
+    public static String camelCaseTo(String from, char character) {
         char[] wordArray = from.toCharArray();
         StringBuilder sb = new StringBuilder();
         for (char letter : wordArray) {
