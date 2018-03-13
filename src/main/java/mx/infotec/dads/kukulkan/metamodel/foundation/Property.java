@@ -148,7 +148,7 @@ public interface Property<T> extends Comparable<T>, Serializable {
      * @return boolean
      */
     boolean isInstant();
-    
+
     /**
      * Return true if it is Boolean element.
      *
@@ -209,4 +209,8 @@ public interface Property<T> extends Comparable<T>, Serializable {
     boolean isAnyBlob();
 
     boolean isImageBlob();
+
+    boolean isString();
+
+    boolean isTextBlob();
 }
