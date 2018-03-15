@@ -10,10 +10,9 @@ package mx.infotec.dads.kukulkan.metamodel.template;
 public class TemplateInfo {
 
     /** The stringPath. */
-    private String stringPath;
+    private String baseFolder;
 
-    /** The type. */
-    private TemplateType type;
+    private String filePath;
 
     /**
      * Instantiates a new template info.
@@ -23,36 +22,28 @@ public class TemplateInfo {
      * @param stringPath
      *            the stringPath
      */
-    public TemplateInfo(TemplateType type, String stringPath) {
-        this.type = type;
-        this.setStringPath(stringPath);
+    public TemplateInfo(String baseFolderPath, String filePath) {
+        this.baseFolder = baseFolderPath;
+        this.setFilePath(filePath);
     }
 
-    /**
-     * Gets the type.
-     *
-     * @return the type
-     */
-    public TemplateType getType() {
-        return type;
+    public String getBaseFolder() {
+        return baseFolder;
     }
 
-    /**
-     * Sets the type.
-     *
-     * @param type
-     *            the new type
-     */
-    public void setType(TemplateType type) {
-        this.type = type;
+    public void setBaseFolder(String baseFolder) {
+        this.baseFolder = baseFolder;
     }
 
-    public String getStringPath() {
-        return stringPath;
+    public String getFilePath() {
+        return filePath;
     }
 
-    public void setStringPath(String stringPath) {
-        this.stringPath = stringPath;
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
+    public String getTemplatePath() {
+        return baseFolder + "/" + filePath;
+    }
 }

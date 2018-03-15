@@ -52,9 +52,8 @@ public class ProjectConfiguration extends BaseContext {
     private Database database;
 
     private List<String> layers = new ArrayList<>();
-    
-    private LocalDateTime timestamp = LocalDateTime.now();
 
+    private LocalDateTime timestamp = LocalDateTime.now();
 
     /**
      * Gets the version.
