@@ -23,10 +23,8 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.context;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 
 import org.apache.metamodel.MetaModelException;
@@ -50,7 +48,21 @@ import org.apache.metamodel.MetaModelException;
 public class GeneratorContext extends HashMap<Object, Object> {
 
     private static final long serialVersionUID = 1L;
-    
+
+    private String name;
+
+    private String version;
+
+    private String description;
+
+    private String license;
+
+    private String homepage;
+
+    private String basePackage;
+
+    private Path outputDir;
+
     public GeneratorContext() {
 
     }
@@ -60,29 +72,23 @@ public class GeneratorContext extends HashMap<Object, Object> {
     }
 
     /**
-     * Associates the specified value with the specified key in this map. If the
-     * map previously contained a mapping for the key, the old value is
-     * replaced.
+     * Associates the specified value with the specified key in this map. If the map
+     * previously contained a mapping for the key, the old value is replaced.
      *
      * @param key
      *            key with which the specified value is to be associated
      * @param value
      *            value to be associated with the specified key
-     * @return the previous value associated with <tt>key</tt>, or <tt>null</tt>
-     *         if there was no mapping for <tt>key</tt>. (A <tt>null</tt> return
-     *         can also indicate that the map previously associated
-     *         <tt>null</tt> with <tt>key</tt>.)
+     * @return the previous value associated with <tt>key</tt>, or <tt>null</tt> if
+     *         there was no mapping for <tt>key</tt>. (A <tt>null</tt> return can
+     *         also indicate that the map previously associated <tt>null</tt> with
+     *         <tt>key</tt>.)
      */
     public Object put(Class<?> key, Object value) {
         if (key.isInstance(value)) {
             return super.put(key, value);
         }
         throw new MetaModelException("The :" + value.getClass().getName() + " cannot be cast to " + key.getName());
-    }
-
-    @Override
-    public Object put(Object key, Object value) {
-        return super.put(key, value);
     }
 
     /**
@@ -109,4 +115,59 @@ public class GeneratorContext extends HashMap<Object, Object> {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
+    }
+
+    public String getBasePackage() {
+        return basePackage;
+    }
+
+    public void setBasePackage(String basePackage) {
+        this.basePackage = basePackage;
+    }
+
+    public Path getOutputDir() {
+        return outputDir;
+    }
+
+    public void setOutputDir(Path outputDir) {
+        this.outputDir = outputDir;
+    }
 }
