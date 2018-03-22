@@ -27,7 +27,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import mx.infotec.dads.kukulkan.metamodel.context.BaseContext;
+import mx.infotec.dads.kukulkan.metamodel.util.LocalDateTimeDeserializer;
+import mx.infotec.dads.kukulkan.metamodel.util.LocalDateTimeSerializer;
 
 /**
  * ProrjectConfiguration Class.
@@ -53,6 +58,8 @@ public class ProjectConfiguration extends BaseContext {
 
     private List<String> layers = new ArrayList<>();
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime timestamp = LocalDateTime.now();
 
     /**
