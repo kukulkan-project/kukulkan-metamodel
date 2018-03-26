@@ -156,6 +156,10 @@ public class ProjectConfiguration extends BaseContext {
         }
     }
 
+    public void addLayer(String layerName) {
+        layers.add(layerName);
+    }
+
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
