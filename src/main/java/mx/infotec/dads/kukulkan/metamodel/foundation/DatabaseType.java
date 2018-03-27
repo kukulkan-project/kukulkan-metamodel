@@ -16,9 +16,5 @@ public enum DatabaseType {
      * Indicates that the Database is NO SQL
      */
     NO_SQL_MONGODB,
-
-    /**
-     * Indicates that the Database is KEY_VALUE
-     */
-    KEY_VALUE,
+    
 }
