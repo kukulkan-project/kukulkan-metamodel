@@ -60,7 +60,7 @@ public class ProjectConfiguration extends BaseContext {
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private transient LocalDateTime timestamp = LocalDateTime.now();
 
     /**
      * Gets the version.
