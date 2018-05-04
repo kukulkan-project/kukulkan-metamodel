@@ -26,6 +26,8 @@ package mx.infotec.dads.kukulkan.metamodel.context;
 import java.io.Serializable;
 import java.nio.file.Path;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The Generator Context Class is used for create a set of elements generated
  * for a specific tecnology (Java, C#, Python, and so on). For instance, there
@@ -53,7 +55,8 @@ public abstract class BaseContext implements Serializable {
     private String packaging;
 
     /** The output dir. */
-    private Path outputDir;
+    @JsonIgnore
+    private transient Path outputDir;
 
     public String getId() {
         return id;
