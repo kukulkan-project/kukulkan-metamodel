@@ -62,6 +62,9 @@ public class ProjectConfiguration extends BaseContext {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private transient LocalDateTime timestamp = LocalDateTime.now();
 
+    /** The plugins. */
+    private List<IPlugin> plugins = new ArrayList<>();
+
     /**
      * Gets the version.
      *
@@ -166,5 +169,22 @@ public class ProjectConfiguration extends BaseContext {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public List<IPlugin> getPlugins() { return plugins; }
+
+    public void setPlugins(List<IPlugin> plugins) { this.plugins = plugins; }
+
+    public boolean containsPlugin(String pluginName) {
+        for (IPlugin plugin : this.plugins) {
+            if(plugin.toString().equals(pluginName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addPlugin(IPlugin plugin) {
+        plugins.add(plugin);
     }
 }
