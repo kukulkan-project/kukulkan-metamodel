@@ -74,7 +74,7 @@ public class Entity implements Serializable {
     @SuppressWarnings("rawtypes")
     private Collection<Property> properties;
 
-    private List<EntityAssociation> associations;
+    private List<EntityAssociation> associations = new ArrayList<>();
 
     /** The generated elements. */
     private List<GeneratedElement> generatedElements = new ArrayList<>();

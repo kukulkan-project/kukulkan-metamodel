@@ -13,19 +13,17 @@ public class EntityAssociation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private boolean ownerSide;
-    
+
     private String fieldName;
-    
-    private Entity to;
+
+    private Entity source;
+
+    private Entity target;
 
     private AssociationType type;
 
     public boolean isOwnerSide() {
         return ownerSide;
-    }
-
-    public Entity getTo() {
-        return to;
     }
 
     public AssociationType getType() {
@@ -34,10 +32,6 @@ public class EntityAssociation implements Serializable {
 
     public void setOwnerSide(boolean ownerSide) {
         this.ownerSide = ownerSide;
-    }
-
-    public void setTo(Entity to) {
-        this.to = to;
     }
 
     public void setType(AssociationType type) {
@@ -50,5 +44,21 @@ public class EntityAssociation implements Serializable {
 
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
+    }
+
+    public Entity getSource() {
+        return source;
+    }
+
+    public void setSource(Entity source) {
+        this.source = source;
+    }
+
+    public Entity getTarget() {
+        return target;
+    }
+
+    public void setTarget(Entity target) {
+        this.target = target;
     }
 }
