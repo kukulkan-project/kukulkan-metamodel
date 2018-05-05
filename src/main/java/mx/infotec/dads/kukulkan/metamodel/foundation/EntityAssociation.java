@@ -14,11 +14,11 @@ public class EntityAssociation implements Serializable {
 
     private boolean ownerSide;
 
-    private String fieldName;
-
     private Entity source;
+    private String sourcePropertyName;
 
     private Entity target;
+    private String targetPropertyName;
 
     private AssociationType type;
 
@@ -38,14 +38,6 @@ public class EntityAssociation implements Serializable {
         this.type = type;
     }
 
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
-
     public Entity getSource() {
         return source;
     }
@@ -60,5 +52,21 @@ public class EntityAssociation implements Serializable {
 
     public void setTarget(Entity target) {
         this.target = target;
+    }
+
+    public String getSourcePropertyName() {
+        return sourcePropertyName;
+    }
+
+    public void setSourcePropertyName(String sourcePropertyName) {
+        this.sourcePropertyName = sourcePropertyName;
+    }
+
+    public String getTargetPropertyName() {
+        return targetPropertyName;
+    }
+
+    public void setTargetPropertyName(String targetPropertyName) {
+        this.targetPropertyName = targetPropertyName;
     }
 }
