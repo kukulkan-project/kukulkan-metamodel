@@ -69,4 +69,10 @@ public class EntityAssociation implements Serializable {
     public void setTargetPropertyName(String targetPropertyName) {
         this.targetPropertyName = targetPropertyName;
     }
+    
+    @Override
+    public String toString() {
+        return "[source: " + source + ", " + "propertyName: " + sourcePropertyName + "], " + "[target: " + target + ", "
+                + "propertyName: " + targetPropertyName + "], " + "[type: " + type + "]";
+    }
 }

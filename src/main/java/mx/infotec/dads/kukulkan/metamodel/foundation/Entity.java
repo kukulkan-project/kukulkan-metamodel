@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  * The DataModelElement represent a Table mapped into a specific technology.
@@ -524,7 +525,32 @@ public class Entity implements Serializable {
         return associations;
     }
 
+    /**
+     * Get Associations where the entity is the source element
+     * 
+     * @return
+     */
+    public List<EntityAssociation> getOwnerAssociations() {
+        return associations.stream().filter(association -> association.getSource().getName().equals(getName()))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get Associations where the entity is the target element
+     * 
+     * @return
+     */
+    public List<EntityAssociation> getNotOwnerAssociations() {
+        return associations.stream().filter(association -> association.getTarget().getName().equals(getName()))
+                .collect(Collectors.toList());
+    }
+
     public void setAssociations(List<EntityAssociation> associations) {
         this.associations = associations;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }
