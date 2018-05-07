@@ -22,6 +22,11 @@ public class EntityAssociation implements Serializable {
 
     private AssociationType type;
 
+    public EntityAssociation(Entity source, Entity target) {
+        this.source = source;
+        this.target = target;
+    }
+
     public boolean isOwnerSide() {
         return ownerSide;
     }
