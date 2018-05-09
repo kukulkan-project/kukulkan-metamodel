@@ -107,6 +107,14 @@ public class Entity implements Serializable {
     /** The has zone date time. */
     protected boolean hasZoneDateTime;
 
+    protected boolean hasOneToOne;
+
+    protected boolean hasOneToMany;
+
+    protected boolean hasManyToOne;
+
+    protected boolean hasManyToMany;
+
     /**
      * Checks if is checks for constraints.
      *
@@ -473,6 +481,38 @@ public class Entity implements Serializable {
         return hasClobProperties;
     }
 
+    public boolean isHasOneToOne() {
+        return hasOneToOne;
+    }
+
+    public void setHasOneToOne(boolean hasOneToOne) {
+        this.hasOneToOne = hasOneToOne;
+    }
+
+    public boolean isHasOneToMany() {
+        return hasOneToMany;
+    }
+
+    public void setHasOneToMany(boolean hasOneToMany) {
+        this.hasOneToMany = hasOneToMany;
+    }
+
+    public boolean isHasManyToOne() {
+        return hasManyToOne;
+    }
+
+    public void setHasManyToOne(boolean hasManyToOne) {
+        this.hasManyToOne = hasManyToOne;
+    }
+
+    public boolean isHasManyToMany() {
+        return hasManyToMany;
+    }
+
+    public void setHasManyToMany(boolean hasManyToMany) {
+        this.hasManyToMany = hasManyToMany;
+    }
+
     /**
      * Gets the camel case plural format.
      *
@@ -553,7 +593,7 @@ public class Entity implements Serializable {
     public String toString() {
         return getName();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;

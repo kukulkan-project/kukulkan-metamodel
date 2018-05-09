@@ -65,10 +65,12 @@ public class NameConventionFormatter {
 
     public static String toDataBaseNameConvention(DatabaseType dbType, String from) {
         if (dbType.equals(DatabaseType.SQL_MYSQL)) {
-            return camelCaseToUnderScore(from);
-        } else {
-            return from;
+            return camelCaseToUnderScore(from.substring(0, 1).toLowerCase() + from.substring(1));
+        } else if (dbType.equals(DatabaseType.NO_SQL_MONGODB)) {
+            return from.substring(0, 1).toLowerCase() + from.substring(1);
         }
+        return from;
+
     }
 
     /**

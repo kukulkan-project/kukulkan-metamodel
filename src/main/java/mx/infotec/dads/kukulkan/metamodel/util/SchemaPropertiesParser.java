@@ -78,6 +78,18 @@ public class SchemaPropertiesParser {
         return element.replaceFirst(Character.toString(element.charAt(0)),
                 Character.toString(element.charAt(0)).toUpperCase());
     }
+    
+    /**
+     * Parses the to upper case first char.
+     *
+     * @param element the element
+     * @return the string
+     */
+    public static String parseToLowerCaseFirstChar(String element) {
+        LOGGER.debug("Parsing element {}", element);
+        return element.replaceFirst(Character.toString(element.charAt(0)),
+                Character.toString(element.charAt(0)).toLowerCase());
+    }
 
     /**
      * The trimUnderscore method trim an expression like *_[A-Za-z] and it
