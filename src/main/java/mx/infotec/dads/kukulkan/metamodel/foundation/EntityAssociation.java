@@ -16,9 +16,11 @@ public class EntityAssociation implements Serializable {
 
     private Entity source;
     private String sourcePropertyName;
+    private String sourcePropertyNamePlural;
 
     private Entity target;
     private String targetPropertyName;
+    private String targetPropertyNamePlural;
 
     private AssociationType type;
 
@@ -74,7 +76,31 @@ public class EntityAssociation implements Serializable {
     public void setTargetPropertyName(String targetPropertyName) {
         this.targetPropertyName = targetPropertyName;
     }
-    
+
+    public boolean isBidirectional() {
+        return targetPropertyName != null;
+    }
+
+    public boolean isCycle() {
+        return source.getName().equals(target.getName());
+    }
+
+    public String getSourcePropertyNamePlural() {
+        return sourcePropertyNamePlural;
+    }
+
+    public void setSourcePropertyNamePlural(String sourcePropertyNamePlural) {
+        this.sourcePropertyNamePlural = sourcePropertyNamePlural;
+    }
+
+    public String getTargetPropertyNamePlural() {
+        return targetPropertyNamePlural;
+    }
+
+    public void setTargetPropertyNamePlural(String targetPropertyNamePlural) {
+        this.targetPropertyNamePlural = targetPropertyNamePlural;
+    }
+
     @Override
     public String toString() {
         return "[source: " + source + ", " + "propertyName: " + sourcePropertyName + "], " + "[target: " + target + ", "
