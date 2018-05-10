@@ -572,6 +572,7 @@ public class Entity implements Serializable {
      */
     public List<EntityAssociation> getOwnerAssociations() {
         return associations.stream().filter(association -> association.getSource().getName().equals(getName()))
+                .sorted((o1, o2) -> o1.getTarget().getName().compareTo(o2.getTarget().getName()))
                 .collect(Collectors.toList());
     }
 
@@ -582,6 +583,7 @@ public class Entity implements Serializable {
      */
     public List<EntityAssociation> getNotOwnerAssociations() {
         return associations.stream().filter(association -> association.getTarget().getName().equals(getName()))
+                .sorted((o1, o2) -> o1.getSource().getName().compareTo(o2.getSource().getName()))
                 .collect(Collectors.toList());
     }
 
