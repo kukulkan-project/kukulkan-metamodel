@@ -1,5 +1,5 @@
 /*
- *  
+ *
  * The MIT License (MIT)
  * Copyright (c) 2016 Daniel Cortes Pichardo
  *
@@ -63,7 +63,7 @@ public class ProjectConfiguration extends BaseContext {
     private transient LocalDateTime timestamp = LocalDateTime.now();
 
     /** The plugins. */
-    private List<IPlugin> plugins = new ArrayList<>();
+    private List<Plugin> plugins = new ArrayList<>();
 
     /**
      * Gets the version.
@@ -171,20 +171,34 @@ public class ProjectConfiguration extends BaseContext {
         this.timestamp = timestamp;
     }
 
-    public List<IPlugin> getPlugins() { return plugins; }
+    public List<Plugin> getPlugins() { return plugins; }
 
-    public void setPlugins(List<IPlugin> plugins) { this.plugins = plugins; }
+    public Plugin getPlugin(String pluginName)
+    {
+        for(Plugin pl : plugins)
+        {
+            if(pl.getName().equals(pluginName))
+            {
+                return pl;
+            }
+        }
+        return null;
+    }
+
+    public void setPlugins(List<Plugin> plugins) { this.plugins = plugins; }
 
     public boolean containsPlugin(String pluginName) {
-        for (IPlugin plugin : this.plugins) {
-            if(plugin.toString().equals(pluginName)){
+        for(Plugin pl : plugins)
+        {
+            if(pl.getName().equals(pluginName))
+            {
                 return true;
             }
         }
         return false;
     }
 
-    public void addPlugin(IPlugin plugin) {
+    public void addPlugin(Plugin plugin) {
         plugins.add(plugin);
     }
 }
