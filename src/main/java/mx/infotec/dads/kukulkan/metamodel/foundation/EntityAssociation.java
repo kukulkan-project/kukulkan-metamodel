@@ -15,12 +15,13 @@ public class EntityAssociation implements Serializable {
     private boolean ownerSide;
 
     private Entity source;
-    private String sourcePropertyName;
-    private String sourcePropertyNamePlural;
+
+    private String toTargetPropertyName;
+    private String toTargetPropertyNamePlural;
 
     private Entity target;
-    private String targetPropertyName;
-    private String targetPropertyNamePlural;
+    private String toSourcePropertyName;
+    private String toSourcePropertyNamePlural;
 
     private AssociationType type;
 
@@ -61,49 +62,60 @@ public class EntityAssociation implements Serializable {
         this.target = target;
     }
 
-    public String getSourcePropertyName() {
-        return sourcePropertyName;
-    }
-
-    public void setSourcePropertyName(String sourcePropertyName) {
-        this.sourcePropertyName = sourcePropertyName;
-    }
-
-    public String getTargetPropertyName() {
-        return targetPropertyName;
-    }
-
-    public void setTargetPropertyName(String targetPropertyName) {
-        this.targetPropertyName = targetPropertyName;
-    }
-
     public boolean isBidirectional() {
-        return targetPropertyName != null;
+        return toSourcePropertyName != null;
     }
 
     public boolean isCycle() {
         return source.getName().equals(target.getName());
     }
 
-    public String getSourcePropertyNamePlural() {
-        return sourcePropertyNamePlural;
+    public String getToTargetPropertyName() {
+        return toTargetPropertyName;
     }
 
-    public void setSourcePropertyNamePlural(String sourcePropertyNamePlural) {
-        this.sourcePropertyNamePlural = sourcePropertyNamePlural;
+    public String getToTargetPropertyNamePlural() {
+        return toTargetPropertyNamePlural;
     }
 
-    public String getTargetPropertyNamePlural() {
-        return targetPropertyNamePlural;
+    public String getToSourcePropertyName() {
+        return toSourcePropertyName;
     }
 
-    public void setTargetPropertyNamePlural(String targetPropertyNamePlural) {
-        this.targetPropertyNamePlural = targetPropertyNamePlural;
+    public String getToSourcePropertyNamePlural() {
+        return toSourcePropertyNamePlural;
+    }
+
+    public void setToTargetPropertyName(String toTargetPropertyName) {
+        this.toTargetPropertyName = toTargetPropertyName;
+    }
+
+    public void setToTargetPropertyNamePlural(String toTargetPropertyNamePlural) {
+        this.toTargetPropertyNamePlural = toTargetPropertyNamePlural;
+    }
+
+    public void setToSourcePropertyName(String toSourcePropertyName) {
+        this.toSourcePropertyName = toSourcePropertyName;
+    }
+
+    public void setToSourcePropertyNamePlural(String toSourcePropertyNamePlural) {
+        this.toSourcePropertyNamePlural = toSourcePropertyNamePlural;
+    }
+
+    /**
+     * getAssociationName, param is implemented as String in order to be used
+     * with freemarker
+     * 
+     * @param isUnderscoreFormatt
+     * @return
+     */
+    public String getAssociationName() {
+        return source.getTableName() + "_" + target.getTableName();
     }
 
     @Override
     public String toString() {
-        return "[source: " + source + ", " + "propertyName: " + sourcePropertyName + "], " + "[target: " + target + ", "
-                + "propertyName: " + targetPropertyName + "], " + "[type: " + type + "]";
+        return "[source: " + source + ", " + "propertyName: " + toTargetPropertyName + "], " + "[target: " + target
+                + ", " + "propertyName: " + toSourcePropertyName + "], " + "[type: " + type + "]";
     }
 }
