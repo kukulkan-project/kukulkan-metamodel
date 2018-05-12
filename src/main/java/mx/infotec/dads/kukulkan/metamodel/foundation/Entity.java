@@ -24,11 +24,20 @@
 package mx.infotec.dads.kukulkan.metamodel.foundation;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import mx.infotec.dads.kukulkan.metamodel.util.LocalDateTimeDeserializer;
+import mx.infotec.dads.kukulkan.metamodel.util.LocalDateTimeSerializer;
 
 /**
  * The DataModelElement represent a Table mapped into a specific technology.
@@ -114,6 +123,14 @@ public class Entity implements Serializable {
     protected boolean hasManyToOne;
 
     protected boolean hasManyToMany;
+
+    protected boolean hasEntitiesReferences;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private transient LocalDateTime timestamp;
+
+    private transient String timestampString;
 
     /**
      * Checks if is checks for constraints.
@@ -562,7 +579,23 @@ public class Entity implements Serializable {
     }
 
     public List<EntityAssociation> getAssociations() {
-        return associations;
+        return Collections.unmodifiableList(associations);
+    }
+
+    public void addAssociation(EntityAssociation association) {
+        Objects.requireNonNull(association);
+        // is owner association
+        if (this.name.equals(association.getSource().getName())) {
+            if (association.getType().equals(AssociationType.ONE_TO_ONE)
+                    || association.getType().equals(AssociationType.MANY_TO_ONE)) {
+                this.hasEntitiesReferences = true;
+            }
+        } else { // is not owner association
+            if (association.getType().equals(AssociationType.ONE_TO_MANY)) {
+                this.hasEntitiesReferences = true;
+            }
+        }
+        associations.add(association);
     }
 
     /**
@@ -587,8 +620,27 @@ public class Entity implements Serializable {
                 .collect(Collectors.toList());
     }
 
-    public void setAssociations(List<EntityAssociation> associations) {
-        this.associations = associations;
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+        this.timestampString = String.format("%04d%02d%02d%02d%02d%02d", timestamp.getYear(),
+                timestamp.getMonth().getValue(), timestamp.getDayOfMonth(), timestamp.getHour(), timestamp.getMinute(),
+                timestamp.getSecond());
+    }
+
+    public String getTimestampString() {
+        return timestampString;
+    }
+
+    public boolean isHasEntitiesReferences() {
+        return hasEntitiesReferences;
+    }
+
+    public void setHasEntitiesReferences(boolean hasEntitiesReferences) {
+        this.hasEntitiesReferences = hasEntitiesReferences;
     }
 
     @Override
