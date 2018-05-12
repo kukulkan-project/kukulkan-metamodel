@@ -623,6 +623,12 @@ public class Entity implements Serializable {
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
+    
+    public List<String> getReferenceTypes() {
+        return associations.stream().filter(association ->  association.getSource().getName().equals(getName()))
+                .map(association-> association.getTarget().getName())
+                .collect(Collectors.toList());
+    }
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
