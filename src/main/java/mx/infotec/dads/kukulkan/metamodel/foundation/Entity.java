@@ -648,8 +648,7 @@ public class Entity implements Serializable {
     }
 
     public Set<Entity> getEntityReferences() {
-        //isReferenceOwner
-
+        return null;
     }
 
     public void setTimestamp(LocalDateTime timestamp) {
