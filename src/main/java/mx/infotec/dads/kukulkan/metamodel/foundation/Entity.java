@@ -28,14 +28,18 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import mx.infotec.dads.kukulkan.metamodel.util.EntityOperator;
 import mx.infotec.dads.kukulkan.metamodel.util.LocalDateTimeDeserializer;
 import mx.infotec.dads.kukulkan.metamodel.util.LocalDateTimeSerializer;
 
@@ -88,6 +92,10 @@ public class Entity implements Serializable {
 
     /** The generated elements. */
     private List<GeneratedElement> generatedElements = new ArrayList<>();
+
+    private List<EntityAssociation> ownerAssociations = new ArrayList<>();
+
+    private List<EntityAssociation> notOwnerAssociations = new ArrayList<>();
 
     /** The has not null elements. */
     protected boolean hasNotNullElements;
@@ -623,11 +631,25 @@ public class Entity implements Serializable {
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
-    
-    public List<String> getReferenceTypes() {
-        return associations.stream().filter(association ->  association.getSource().getName().equals(getName()))
-                .map(association-> association.getTarget().getName())
-                .collect(Collectors.toList());
+
+    public Set<String> getReferenceTypes() {
+        Stream<String> stream = getAssociations().stream()
+                .filter(association -> EntityOperator.isOwnerAssociation(this, association)
+                        || EntityOperator.isInBidirectional(this, association))
+                .map(association -> {
+                    if (EntityOperator.isOwnerAssociation(this, association)) {
+                        return association.getTarget().getName();
+                    } else {
+                        return association.getSource().getName();
+                    }
+                });
+        return Stream.concat(stream, Stream.of(this.getName()))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(String::toString))));
+    }
+
+    public Set<Entity> getEntityReferences() {
+        //isReferenceOwner
+
     }
 
     public void setTimestamp(LocalDateTime timestamp) {
