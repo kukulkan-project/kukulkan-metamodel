@@ -630,11 +630,7 @@ public class Entity implements Serializable {
         return timestamp;
     }
 
-    public Set<String> getReferenceTypes() {
-        return computeReferenceTypes();
-    }
-
-    public Set<String> computeReferenceTypes() {
+    public Set<EntityReferenceType> getReferenceTypes() {
         return EntityOperator.computeReferenceTypes(this, getAssociations());
     }
 
@@ -644,7 +640,7 @@ public class Entity implements Serializable {
 
     public Set<EntityReference> getEntityReferencesExcludeCurrent() {
         Set<EntityReference> references = EntityOperator.computeEntityReferences(this, getAssociations());
-//        references.remove(new EntityReference(this));
+        // references.remove(new EntityReference(this));
         return references;
     }
 

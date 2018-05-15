@@ -41,6 +41,17 @@ public class EntityReference implements Serializable {
     private String propertyName;
     private String propertyNamePlural;
 
+    public static EntityReference createTargetReference(Entity source, EntityAssociation association) {
+        return new EntityReference().addTargetReference(source, association);
+    }
+
+    public static EntityReference createSourceReference(Entity source, EntityAssociation association) {
+        return new EntityReference().addSourceReference(source, association);
+    }
+
+    public EntityReference() {
+    }
+
     public EntityReference(Entity source, Entity target, String propertyName, String propertyNamePlural,
             AssociationType type) {
         this.source = source;
@@ -48,6 +59,24 @@ public class EntityReference implements Serializable {
         this.propertyName = propertyName;
         this.propertyNamePlural = propertyNamePlural;
         this.type = type;
+    }
+
+    public EntityReference addTargetReference(Entity source, EntityAssociation association) {
+        this.source = source;
+        this.target = association.getTarget();
+        this.propertyName = association.getToTargetPropertyName();
+        this.propertyNamePlural = association.getToTargetPropertyNamePlural();
+        this.type = association.getType();
+        return this;
+    }
+
+    public EntityReference addSourceReference(Entity source, EntityAssociation association) {
+        this.source = source;
+        this.target = association.getSource();
+        this.propertyName = association.getToSourcePropertyName();
+        this.propertyNamePlural = association.getToSourcePropertyNamePlural();
+        this.type = association.getType();
+        return this;
     }
 
     public EntityReference(Entity target) {

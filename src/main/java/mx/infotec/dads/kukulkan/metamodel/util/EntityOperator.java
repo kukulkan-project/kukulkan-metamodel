@@ -11,6 +11,7 @@ import mx.infotec.dads.kukulkan.metamodel.foundation.AssociationType;
 import mx.infotec.dads.kukulkan.metamodel.foundation.Entity;
 import mx.infotec.dads.kukulkan.metamodel.foundation.EntityAssociation;
 import mx.infotec.dads.kukulkan.metamodel.foundation.EntityReference;
+import mx.infotec.dads.kukulkan.metamodel.foundation.EntityReferenceType;
 
 /**
  * Entity Operator
@@ -30,6 +31,7 @@ public class EntityOperator {
 
     public static boolean isInBidirectional(Entity entity, EntityAssociation association) {
         if (association.isBidirectional()) {
+            // is a cycle
             return entity.getName().equals(association.getTarget().getName());
         } else {
             return false;
@@ -40,69 +42,52 @@ public class EntityOperator {
         return isOwnerAssociation(entity, association) || isInBidirectional(entity, association);
     }
 
-    public static boolean isOwnerReference(Entity entity, EntityAssociation association) {
-        switch (association.getType()) {
-        case ONE_TO_ONE:
-
-            break;
-        case ONE_TO_MANY:
-
-            break;
-        case MANY_TO_ONE:
-
-            break;
-        case MANY_TO_MANY:
-
-            break;
-        default:
-            break;
-        }
-        return false;
-    }
-
-    public static Set<String> computeReferenceTypes(Entity targetEntity, List<EntityAssociation> associations) {
-        Stream<String> stream = associations.stream()
-                .filter(association -> EntityOperator.isOwnerAssociation(targetEntity, association)
-                        || EntityOperator.isInBidirectional(targetEntity, association))
+    public static Set<EntityReferenceType> computeReferenceTypes(Entity currentEntity,
+            List<EntityAssociation> associations) {
+        Stream<EntityReferenceType> stream = associations.stream()
+                .filter(association -> EntityOperator.isOwnerAssociation(currentEntity, association)
+                        || EntityOperator.isInBidirectional(currentEntity, association))
                 .map(association -> {
-                    if (EntityOperator.isOwnerAssociation(targetEntity, association)) {
-                        return association.getTarget().getName();
+                    if (EntityOperator.isOwnerAssociation(currentEntity, association)) {
+                        return EntityReferenceType.createToTargetReference(association);
                     } else {
-                        return association.getSource().getName();
+                        return EntityReferenceType.createToSourceReference(association);
                     }
                 });
-        return Stream.concat(stream, Stream.of(targetEntity.getName()))
-                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(String::toString))));
+        return Stream.concat(stream, Stream.of(EntityReferenceType.createAutoReference(currentEntity))).collect(
+                Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(EntityReferenceType::getName))));
     }
 
     public static Set<EntityReference> computeEntityReferences(Entity entity, List<EntityAssociation> associations) {
         Set<EntityReference> entities = new TreeSet<>(new EntityReferenceComparator());
         associations.forEach(association -> {
-            if (isOwnerAssociation(entity, association)) {
-                System.out.println(association.getTarget().getName());
-                if (association.getType().equals(AssociationType.ONE_TO_ONE)
-                        && association.getToSourcePropertyName() == null) {
-                    entities.add(
-                            new EntityReference(entity, association.getTarget(), association.getToTargetPropertyName(),
-                                    association.getToTargetPropertyNamePlural(), association.getType()));
-                } else if (association.getType().equals(AssociationType.MANY_TO_ONE)) {
-                    entities.add(
-                            new EntityReference(entity, association.getTarget(), association.getToTargetPropertyName(),
-                                    association.getToTargetPropertyNamePlural(), association.getType()));
-                } else if (association.getType().equals(AssociationType.MANY_TO_MANY)) {
-                    entities.add(
-                            new EntityReference(entity, association.getTarget(), association.getToTargetPropertyName(),
-                                    association.getToTargetPropertyNamePlural(), association.getType()));
-                }
-            } else if ((association.getType().equals(AssociationType.ONE_TO_ONE)
-                    || association.getType().equals(AssociationType.ONE_TO_MANY))
-                    && (association.getToSourcePropertyName() != null)) {
+            if (isLeftOwner(entity, association)) {
+                entities.add(EntityReference.createTargetReference(entity, association));
+            } else if (isRightOwner(association)) {
                 // is notOwnerAssociation
-                System.out.println(association.getSource().getName());
-                entities.add(new EntityReference(entity, association.getSource(), association.getToSourcePropertyName(),
-                        association.getToSourcePropertyNamePlural(), association.getType()));
+                entities.add(EntityReference.createSourceReference(entity, association));
             }
         });
         return entities;
+
     }
+
+    public static boolean isLeftOwner(Entity entity, EntityAssociation association) {
+        if (isOwnerAssociation(entity, association)) {
+            boolean isOneToOne = association.getType().equals(AssociationType.ONE_TO_ONE)
+                    && association.getToSourcePropertyName() == null;
+            boolean isManyToOne = association.getType().equals(AssociationType.MANY_TO_ONE);
+            boolean isManyToMany = association.getType().equals(AssociationType.MANY_TO_MANY);
+            return isOneToOne || isManyToOne || isManyToMany;
+        }
+        return false;
+    }
+
+    public static boolean isRightOwner(EntityAssociation association) {
+        boolean isOneToOne = association.getType().equals(AssociationType.ONE_TO_ONE);
+        boolean isOneToMany = association.getType().equals(AssociationType.ONE_TO_MANY);
+        boolean hasLeftReference = association.getToSourcePropertyName() != null;
+        return (isOneToOne || isOneToMany) && (hasLeftReference);
+    }
+
 }
