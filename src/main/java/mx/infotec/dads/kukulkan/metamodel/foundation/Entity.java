@@ -633,22 +633,15 @@ public class Entity implements Serializable {
     }
 
     public Set<String> getReferenceTypes() {
-        Stream<String> stream = getAssociations().stream()
-                .filter(association -> EntityOperator.isOwnerAssociation(this, association)
-                        || EntityOperator.isInBidirectional(this, association))
-                .map(association -> {
-                    if (EntityOperator.isOwnerAssociation(this, association)) {
-                        return association.getTarget().getName();
-                    } else {
-                        return association.getSource().getName();
-                    }
-                });
-        return Stream.concat(stream, Stream.of(this.getName()))
-                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(String::toString))));
+        return computeReferenceTypes();
     }
 
-    public Set<Entity> getEntityReferences() {
-        return null;
+    public Set<String> computeReferenceTypes() {
+        return EntityOperator.computeReferenceTypes(this, getAssociations());
+    }
+
+    public Set<EntityReference> getEntityReferences() {
+        return EntityOperator.computeEntityReferences(this, getAssociations());
     }
 
     public void setTimestamp(LocalDateTime timestamp) {
