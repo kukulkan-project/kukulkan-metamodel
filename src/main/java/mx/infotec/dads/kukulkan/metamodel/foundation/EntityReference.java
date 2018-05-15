@@ -34,16 +34,24 @@ public class EntityReference implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    private AssociationType type;
+
     private Entity source;
     private Entity target;
     private String propertyName;
     private String propertyNamePlural;
 
-    public EntityReference(Entity source, Entity target, String propertyName, String propertyNamePlural) {
+    public EntityReference(Entity source, Entity target, String propertyName, String propertyNamePlural,
+            AssociationType type) {
         this.source = source;
         this.target = target;
         this.propertyName = propertyName;
         this.propertyNamePlural = propertyNamePlural;
+        this.type = type;
+    }
+
+    public EntityReference(Entity target) {
+        this.target = target;
     }
 
     public Entity getTarget() {
@@ -86,5 +94,13 @@ public class EntityReference implements Serializable {
 
     public void setSource(Entity source) {
         this.source = source;
+    }
+
+    public AssociationType getType() {
+        return type;
+    }
+
+    public void setType(AssociationType type) {
+        this.type = type;
     }
 }

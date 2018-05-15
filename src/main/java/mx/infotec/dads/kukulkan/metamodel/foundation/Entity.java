@@ -28,13 +28,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -642,6 +640,12 @@ public class Entity implements Serializable {
 
     public Set<EntityReference> getEntityReferences() {
         return EntityOperator.computeEntityReferences(this, getAssociations());
+    }
+
+    public Set<EntityReference> getEntityReferencesExcludeCurrent() {
+        Set<EntityReference> references = EntityOperator.computeEntityReferences(this, getAssociations());
+//        references.remove(new EntityReference(this));
+        return references;
     }
 
     public void setTimestamp(LocalDateTime timestamp) {

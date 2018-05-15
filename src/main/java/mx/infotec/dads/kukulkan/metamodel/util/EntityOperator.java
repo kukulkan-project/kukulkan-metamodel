@@ -82,11 +82,17 @@ public class EntityOperator {
                 System.out.println(association.getTarget().getName());
                 if (association.getType().equals(AssociationType.ONE_TO_ONE)
                         && association.getToSourcePropertyName() == null) {
-                    entities.add(new EntityReference(entity, association.getTarget(),
-                            association.getToTargetPropertyName(), association.getToTargetPropertyNamePlural()));
+                    entities.add(
+                            new EntityReference(entity, association.getTarget(), association.getToTargetPropertyName(),
+                                    association.getToTargetPropertyNamePlural(), association.getType()));
                 } else if (association.getType().equals(AssociationType.MANY_TO_ONE)) {
-                    entities.add(new EntityReference(entity, association.getTarget(),
-                            association.getToTargetPropertyName(), association.getToTargetPropertyNamePlural()));
+                    entities.add(
+                            new EntityReference(entity, association.getTarget(), association.getToTargetPropertyName(),
+                                    association.getToTargetPropertyNamePlural(), association.getType()));
+                } else if (association.getType().equals(AssociationType.MANY_TO_MANY)) {
+                    entities.add(
+                            new EntityReference(entity, association.getTarget(), association.getToTargetPropertyName(),
+                                    association.getToTargetPropertyNamePlural(), association.getType()));
                 }
             } else if ((association.getType().equals(AssociationType.ONE_TO_ONE)
                     || association.getType().equals(AssociationType.ONE_TO_MANY))
@@ -94,7 +100,7 @@ public class EntityOperator {
                 // is notOwnerAssociation
                 System.out.println(association.getSource().getName());
                 entities.add(new EntityReference(entity, association.getSource(), association.getToSourcePropertyName(),
-                        association.getToSourcePropertyNamePlural()));
+                        association.getToSourcePropertyNamePlural(), association.getType()));
             }
         });
         return entities;
