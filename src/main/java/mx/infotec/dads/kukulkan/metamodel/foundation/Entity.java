@@ -91,10 +91,6 @@ public class Entity implements Serializable {
     /** The generated elements. */
     private List<GeneratedElement> generatedElements = new ArrayList<>();
 
-    private List<EntityAssociation> ownerAssociations = new ArrayList<>();
-
-    private List<EntityAssociation> notOwnerAssociations = new ArrayList<>();
-
     /** The has not null elements. */
     protected boolean hasNotNullElements;
 
@@ -638,6 +634,9 @@ public class Entity implements Serializable {
         return EntityOperator.computeEntityReferences(this, getAssociations());
     }
 
+    public Set<EntityReferenceType> getFkEntityReferences() {
+        return EntityOperator.computeFkEntityReferences(this, getAssociations());
+    }
     public Set<EntityReference> getEntityReferencesExcludeCurrent() {
         Set<EntityReference> references = EntityOperator.computeEntityReferences(this, getAssociations());
         // references.remove(new EntityReference(this));

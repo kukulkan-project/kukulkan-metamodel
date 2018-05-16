@@ -49,13 +49,31 @@ public class EntityOperator {
                         || EntityOperator.isInBidirectional(currentEntity, association))
                 .map(association -> {
                     if (EntityOperator.isOwnerAssociation(currentEntity, association)) {
-                        return EntityReferenceType.createToTargetReference(association);
+                        return EntityReferenceType.createToTargetReference(association, true);
                     } else {
-                        return EntityReferenceType.createToSourceReference(association);
+                        return EntityReferenceType.createToSourceReference(association, false);
                     }
                 });
         return Stream.concat(stream, Stream.of(EntityReferenceType.createAutoReference(currentEntity))).collect(
                 Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(EntityReferenceType::getName))));
+    }
+
+    public static Set<EntityReferenceType> computeFkEntityReferences(Entity entity,
+            List<EntityAssociation> associations) {
+        Set<EntityReferenceType> entities = new TreeSet<>(Comparator.comparing(EntityReferenceType::getName));
+        associations.forEach(association -> {
+            if (isLeftOwner(entity, association)) {
+                if (association.getType().equals(AssociationType.ONE_TO_ONE)
+                        || association.getType().equals(AssociationType.MANY_TO_ONE))
+                    entities.add(EntityReferenceType.createToTargetReference(association, true));
+            } else if (isRightOwner(association) && association.getType().equals(AssociationType.ONE_TO_MANY)
+                    && association.isBidirectional()) {
+                // is notOwnerAssociation
+                entities.add(EntityReferenceType.createToSourceReference(association, false));
+            }
+        });
+        return entities;
+
     }
 
     public static Set<EntityReference> computeEntityReferences(Entity entity, List<EntityAssociation> associations) {

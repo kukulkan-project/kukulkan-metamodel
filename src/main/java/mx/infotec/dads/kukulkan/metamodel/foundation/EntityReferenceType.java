@@ -1,7 +1,8 @@
 package mx.infotec.dads.kukulkan.metamodel.foundation;
 
 /**
- * EntityReferenceType
+ * A EntityReferenceType is a Holder of a reference of and {@link Entity} to its
+ * References
  * 
  * @author Daniel Cortes Pichardo
  *
@@ -13,22 +14,13 @@ public class EntityReferenceType {
     private String toTargetPropertyNamePlural;
     private AssociationType associationType;
 
-    private String order;
-
-    public String getOrder() {
-        if (order == null) {
-            return target.getName();
-        } else {
-            return order;
-        }
-    }
+    private boolean owner;
+    private boolean isAutoReference;
 
     public String getName() {
         return target.getName();
 
     }
-
-    private boolean isAutoReference;
 
     public EntityReferenceType() {
     }
@@ -37,35 +29,37 @@ public class EntityReferenceType {
         this.target = target;
         this.toTargetPropertyName = "00";// for ordering
         this.toTargetPropertyName = "00";// for ordering
-        this.order = "00";
         this.isAutoReference = true;
+        this.owner = true;
     }
 
-    public static EntityReferenceType createToTargetReference(EntityAssociation association) {
-        return new EntityReferenceType().addTargetReference(association);
+    public static EntityReferenceType createToTargetReference(EntityAssociation association, boolean owner) {
+        return new EntityReferenceType().addTargetReference(association, owner);
     }
 
-    public static EntityReferenceType createToSourceReference(EntityAssociation association) {
-        return new EntityReferenceType().addSourceReference(association);
+    public static EntityReferenceType createToSourceReference(EntityAssociation association, boolean owner) {
+        return new EntityReferenceType().addSourceReference(association, owner);
     }
 
     public static EntityReferenceType createAutoReference(Entity entity) {
         return new EntityReferenceType(entity);
     }
 
-    private EntityReferenceType addTargetReference(EntityAssociation association) {
+    private EntityReferenceType addTargetReference(EntityAssociation association, boolean owner) {
         this.target = association.getTarget();
         this.toTargetPropertyName = association.getToTargetPropertyName();
         this.toTargetPropertyNamePlural = association.getToTargetPropertyNamePlural();
         this.associationType = association.getType();
+        this.owner = owner;
         return this;
     }
 
-    private EntityReferenceType addSourceReference(EntityAssociation association) {
+    private EntityReferenceType addSourceReference(EntityAssociation association, boolean owner) {
         this.target = association.getSource();
         this.toTargetPropertyName = association.getToSourcePropertyName();
         this.toTargetPropertyNamePlural = association.getToSourcePropertyNamePlural();
         this.associationType = association.getType();
+        this.owner = owner;
         return this;
     }
 
@@ -113,5 +107,13 @@ public class EntityReferenceType {
     @Override
     public boolean equals(Object obj) {
         return target.equals(obj);
+    }
+
+    public boolean isOwner() {
+        return owner;
+    }
+
+    public void setOwner(boolean owner) {
+        this.owner = owner;
     }
 }
