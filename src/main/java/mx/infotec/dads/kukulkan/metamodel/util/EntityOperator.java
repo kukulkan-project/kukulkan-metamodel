@@ -1,5 +1,6 @@
 package mx.infotec.dads.kukulkan.metamodel.util;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -66,7 +67,7 @@ public class EntityOperator {
                 if (association.getType().equals(AssociationType.ONE_TO_ONE)
                         || association.getType().equals(AssociationType.MANY_TO_ONE))
                     entities.add(EntityReferenceType.createToTargetReference(association, true));
-            } else if (isRightOwner(association) && association.getType().equals(AssociationType.ONE_TO_MANY)
+            } else if (isRightOwner(entity, association) && association.getType().equals(AssociationType.ONE_TO_MANY)
                     && association.isBidirectional()) {
                 // is notOwnerAssociation
                 entities.add(EntityReferenceType.createToSourceReference(association, false));
@@ -81,7 +82,7 @@ public class EntityOperator {
         associations.forEach(association -> {
             if (isLeftOwner(entity, association)) {
                 entities.add(EntityReference.createTargetReference(entity, association));
-            } else if (isRightOwner(association)) {
+            } else if (isRightOwner(entity, association)) {
                 // is notOwnerAssociation
                 entities.add(EntityReference.createSourceReference(entity, association));
             }
@@ -93,7 +94,7 @@ public class EntityOperator {
     public static boolean isLeftOwner(Entity entity, EntityAssociation association) {
         if (isOwnerAssociation(entity, association)) {
             boolean isOneToOne = association.getType().equals(AssociationType.ONE_TO_ONE)
-                    && association.getToSourcePropertyName() == null;
+                    && !association.isBidirectional();
             boolean isManyToOne = association.getType().equals(AssociationType.MANY_TO_ONE);
             boolean isManyToMany = association.getType().equals(AssociationType.MANY_TO_MANY);
             return isOneToOne || isManyToOne || isManyToMany;
@@ -101,11 +102,25 @@ public class EntityOperator {
         return false;
     }
 
-    public static boolean isRightOwner(EntityAssociation association) {
-        boolean isOneToOne = association.getType().equals(AssociationType.ONE_TO_ONE);
-        boolean isOneToMany = association.getType().equals(AssociationType.ONE_TO_MANY);
-        boolean hasLeftReference = association.getToSourcePropertyName() != null;
-        return (isOneToOne || isOneToMany) && (hasLeftReference);
+    public static boolean isRightOwner(Entity entity, EntityAssociation association) {
+        if (association.isBidirectional() && !isOwnerAssociation(entity, association)) {
+            boolean isOneToOne = association.getType().equals(AssociationType.ONE_TO_ONE);
+            boolean isOneToMany = association.getType().equals(AssociationType.ONE_TO_MANY);
+            return isOneToOne || isOneToMany;
+        }
+        return false;
     }
 
+    public static List<EntityReferenceType> computeConnectedAdjacentReferences(Entity entity,
+            List<EntityAssociation> associations) {
+        List<EntityReferenceType> adjacentList = new ArrayList<>();
+        associations.forEach(association -> {
+            if (isOwnerAssociation(entity, association)) {
+                adjacentList.add(EntityReferenceType.createToTargetReference(association, true));
+            } else if (association.isBidirectional()) {
+                adjacentList.add(EntityReferenceType.createToSourceReference(association, false));
+            }
+        });
+        return adjacentList;
+    }
 }

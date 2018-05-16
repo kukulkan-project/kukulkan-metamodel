@@ -637,10 +637,9 @@ public class Entity implements Serializable {
     public Set<EntityReferenceType> getFkEntityReferences() {
         return EntityOperator.computeFkEntityReferences(this, getAssociations());
     }
-    public Set<EntityReference> getEntityReferencesExcludeCurrent() {
-        Set<EntityReference> references = EntityOperator.computeEntityReferences(this, getAssociations());
-        // references.remove(new EntityReference(this));
-        return references;
+
+    public List<EntityReferenceType> getConnectedAdjacentReferences() {
+        return EntityOperator.computeConnectedAdjacentReferences(this, getAssociations());
     }
 
     public void setTimestamp(LocalDateTime timestamp) {
