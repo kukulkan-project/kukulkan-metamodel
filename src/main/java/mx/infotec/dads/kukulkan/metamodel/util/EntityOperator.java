@@ -65,7 +65,8 @@ public class EntityOperator {
         associations.forEach(association -> {
             if (isLeftOwner(entity, association)) {
                 if (association.getType().equals(AssociationType.ONE_TO_ONE)
-                        || association.getType().equals(AssociationType.MANY_TO_ONE))
+                        || association.getType().equals(AssociationType.MANY_TO_ONE)
+                        || association.getType().equals(AssociationType.MANY_TO_MANY))
                     entities.add(EntityReferenceType.createToTargetReference(association, true));
             } else if (isRightOwner(entity, association) && association.getType().equals(AssociationType.ONE_TO_MANY)
                     && association.isBidirectional()) {
