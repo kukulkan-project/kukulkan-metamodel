@@ -1,5 +1,5 @@
 /*
- *  
+ *
  * The MIT License (MIT)
  * Copyright (c) 2016 Daniel Cortes Pichardo
  *
@@ -61,6 +61,9 @@ public class ProjectConfiguration extends BaseContext {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private transient LocalDateTime timestamp = LocalDateTime.now();
+
+    /** The plugins. */
+    private List<Plugin> plugins = new ArrayList<>();
 
     /**
      * Gets the version.
@@ -166,5 +169,36 @@ public class ProjectConfiguration extends BaseContext {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public List<Plugin> getPlugins() { return plugins; }
+
+    public Plugin getPlugin(String pluginName)
+    {
+        for(Plugin pl : plugins)
+        {
+            if(pl.getName().equals(pluginName))
+            {
+                return pl;
+            }
+        }
+        return null;
+    }
+
+    public void setPlugins(List<Plugin> plugins) { this.plugins = plugins; }
+
+    public boolean containsPlugin(String pluginName) {
+        for(Plugin pl : plugins)
+        {
+            if(pl.getName().equals(pluginName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addPlugin(Plugin plugin) {
+        plugins.add(plugin);
     }
 }
