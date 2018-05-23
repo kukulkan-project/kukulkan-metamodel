@@ -29,6 +29,8 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.CaseFormat;
+
 /**
  * The SchemaPropertiesParser is used for parse common properties of the de E-R
  * model and convert it to java properties.
@@ -56,7 +58,7 @@ public class SchemaPropertiesParser {
      */
     public static String parseToPropertyName(String columnName) {
         LOGGER.debug("Parsing the column {}", columnName);
-        return camelCase(columnName, false, '_');
+        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
     }
 
     /**
@@ -68,7 +70,7 @@ public class SchemaPropertiesParser {
      */
     public static String parseToClassName(String columnName) {
         LOGGER.debug("Parsing the column {}", columnName);
-        return parseToUpperCaseFirstChar(parseToPropertyName(columnName));
+        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, columnName);
     }
 
     /**
@@ -117,75 +119,5 @@ public class SchemaPropertiesParser {
         } else {
             return columnName;
         }
-    }
-
-    /**
-     * By default, this method converts strings to UpperCamelCase. If the
-     * <code>uppercaseFirstLetter</code> argument to false, then this method
-     * produces lowerCamelCase. This method will also use any extra delimiter
-     * characters to identify word boundaries.
-     * <p>
-     * Examples:
-     * 
-     * <pre>
-     *   inflector.camelCase(&quot;active_record&quot;,false)    #=&gt; &quot;activeRecord&quot;
-     *   inflector.camelCase(&quot;active_record&quot;,true)     #=&gt; &quot;ActiveRecord&quot;
-     *   inflector.camelCase(&quot;first_name&quot;,false)       #=&gt; &quot;firstName&quot;
-     *   inflector.camelCase(&quot;first_name&quot;,true)        #=&gt; &quot;FirstName&quot;
-     *   inflector.camelCase(&quot;name&quot;,false)             #=&gt; &quot;name&quot;
-     *   inflector.camelCase(&quot;name&quot;,true)              #=&gt; &quot;Name&quot;
-     * </pre>
-     * 
-     * </p>
-     * 
-     * @param lowerCaseAndUnderscoredWord
-     *            the word that is to be converted to camel case
-     * @param uppercaseFirstLetter
-     *            true if the first character is to be uppercased, or false if
-     *            the first character is to be lowercased
-     * @param delimiterChars
-     *            optional characters that are used to delimit word boundaries
-     * @return the camel case version of the word
-     * @see #underscore(String, char[])
-     * @see #upperCamelCase(String, char[])
-     * @see #lowerCamelCase(String, char[])
-     * @author jboss
-     */
-    public static String camelCase(String lowerCaseAndUnderscoredWord, boolean uppercaseFirstLetter,
-            char... delimiterChars) {
-        if (lowerCaseAndUnderscoredWord == null)
-            return null;
-        lowerCaseAndUnderscoredWord = lowerCaseAndUnderscoredWord.trim();
-        if (lowerCaseAndUnderscoredWord.length() == 0)
-            return "";
-        if (uppercaseFirstLetter) {
-            String result = lowerCaseAndUnderscoredWord;
-            // Replace any extra delimiters with underscores (before the
-            // underscores are converted in the next step)...
-            if (delimiterChars != null) {
-                for (char delimiterChar : delimiterChars) {
-                    result = result.replace(delimiterChar, '_');
-                }
-            }
-
-            // Change the case at the beginning at after each underscore ...
-            return replaceAllWithUppercase(result, "(^|_)(.)", 2);
-        }
-        if (lowerCaseAndUnderscoredWord.length() < 2)
-            return lowerCaseAndUnderscoredWord;
-        return "" + Character.toLowerCase(lowerCaseAndUnderscoredWord.charAt(0))
-                + camelCase(lowerCaseAndUnderscoredWord, true, delimiterChars).substring(1);
-    }
-
-    private static String replaceAllWithUppercase(String input, String regex, int groupNumberToUppercase) {
-        Pattern underscoreAndDotPattern = Pattern.compile(regex);
-        Matcher matcher = underscoreAndDotPattern.matcher(input);
-        // CHECKSTYLE IGNORE check FOR NEXT 1 LINES
-        StringBuffer sb = new StringBuffer();
-        while (matcher.find()) {
-            matcher.appendReplacement(sb, matcher.group(groupNumberToUppercase).toUpperCase());
-        }
-        matcher.appendTail(sb);
-        return sb.toString();
     }
 }
