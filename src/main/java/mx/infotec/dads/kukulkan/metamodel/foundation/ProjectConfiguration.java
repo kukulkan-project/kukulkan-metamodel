@@ -58,6 +58,8 @@ public class ProjectConfiguration extends BaseContext {
 
     private List<String> layers = new ArrayList<>();
 
+    private List<String> layersToProcess = new ArrayList<>();
+
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private transient LocalDateTime timestamp = LocalDateTime.now();
@@ -153,6 +155,10 @@ public class ProjectConfiguration extends BaseContext {
         return layers.contains(layerName);
     }
 
+    public boolean isLayerToProcess(String layerName) {
+        return getLayersToProcess().contains(layerName);
+    }
+
     public void addLayers(String... layerNames) {
         for (String layerName : layerNames) {
             layers.add(layerName);
@@ -171,27 +177,26 @@ public class ProjectConfiguration extends BaseContext {
         this.timestamp = timestamp;
     }
 
-    public List<Plugin> getPlugins() { return plugins; }
+    public List<Plugin> getPlugins() {
+        return plugins;
+    }
 
-    public Plugin getPlugin(String pluginName)
-    {
-        for(Plugin pl : plugins)
-        {
-            if(pl.getName().equals(pluginName))
-            {
+    public Plugin getPlugin(String pluginName) {
+        for (Plugin pl : plugins) {
+            if (pl.getName().equals(pluginName)) {
                 return pl;
             }
         }
         return null;
     }
 
-    public void setPlugins(List<Plugin> plugins) { this.plugins = plugins; }
+    public void setPlugins(List<Plugin> plugins) {
+        this.plugins = plugins;
+    }
 
     public boolean containsPlugin(String pluginName) {
-        for(Plugin pl : plugins)
-        {
-            if(pl.getName().equals(pluginName))
-            {
+        for (Plugin pl : plugins) {
+            if (pl.getName().equals(pluginName)) {
                 return true;
             }
         }
@@ -200,5 +205,13 @@ public class ProjectConfiguration extends BaseContext {
 
     public void addPlugin(Plugin plugin) {
         plugins.add(plugin);
+    }
+
+    public List<String> getLayersToProcess() {
+        return layersToProcess;
+    }
+
+    public void setLayersToProcess(List<String> layersToProcess) {
+        this.layersToProcess = layersToProcess;
     }
 }
