@@ -23,9 +23,6 @@
  */
 package mx.infotec.dads.kukulkan.metamodel.util;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,6 +70,14 @@ public class SchemaPropertiesParser {
         return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, columnName);
     }
 
+    public static String parseToDataBaseName(String columnName) {
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, columnName);
+    }
+
+    public static String parseToHyphens(String from) {
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, from);
+    }
+
     /**
      * Parses the to upper case first char.
      *
@@ -97,27 +102,5 @@ public class SchemaPropertiesParser {
         LOGGER.debug("Parsing element {}", element);
         return element.replaceFirst(Character.toString(element.charAt(0)),
                 Character.toString(element.charAt(0)).toLowerCase());
-    }
-
-    /**
-     * The trimUnderscore method trim an expression like *_[A-Za-z] and it
-     * converted to *_[A-Z] expression.
-     *
-     * @param columnName
-     *            the column name
-     * @return the string
-     */
-    public static String trimUnderscore(String columnName) {
-        LOGGER.debug("Trim the value {}", columnName);
-        int underscoreIndex = columnName.indexOf("_");
-        if (underscoreIndex > -1 && underscoreIndex < columnName.length() - 1) {
-            String leftUnderscore = columnName.substring(0, underscoreIndex);
-            String rightUnderscore = columnName.substring(underscoreIndex + 1, columnName.length());
-            rightUnderscore = rightUnderscore.replaceFirst(Character.toString(rightUnderscore.charAt(0)),
-                    (Character.toString(rightUnderscore.charAt(0))).toUpperCase());
-            return trimUnderscore(leftUnderscore + rightUnderscore);
-        } else {
-            return columnName;
-        }
     }
 }
