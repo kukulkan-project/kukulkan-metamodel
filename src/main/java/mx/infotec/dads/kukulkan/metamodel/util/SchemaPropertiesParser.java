@@ -58,7 +58,7 @@ public class SchemaPropertiesParser {
      */
     public static String parseToPropertyName(String columnName) {
         LOGGER.debug("Parsing the column {}", columnName);
-        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, columnName);
     }
 
     /**
