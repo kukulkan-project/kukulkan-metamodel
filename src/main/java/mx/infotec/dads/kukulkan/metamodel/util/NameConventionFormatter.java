@@ -39,35 +39,11 @@ public class NameConventionFormatter {
     private NameConventionFormatter() {
     }
 
-    /**
-     * Convert to angular file Naming Convention is used in the front-end data
-     * generator. Convert in camel case into Hyphens format
-     *
-     * @param from
-     *            the from
-     * @return String
-     */
-    public static String camelCaseToHyphens(String from) {
-        return camelCaseTo(from, '-');
-    }
-
-    /**
-     * Convert to angular file Naming Convention is used in the front-end data
-     * generator. Convert in camel case into underScore format
-     *
-     * @param from
-     *            the from
-     * @return String
-     */
-    public static String camelCaseToUnderScore(String from) {
-        return camelCaseTo(from, '_');
-    }
-
     public static String toDataBaseNameConvention(DatabaseType dbType, String from) {
         if (dbType.equals(DatabaseType.SQL_MYSQL)) {
-            return camelCaseToUnderScore(from.substring(0, 1).toLowerCase() + from.substring(1));
+            return SchemaPropertiesParser.parseToDataBaseName(from);
         } else if (dbType.equals(DatabaseType.NO_SQL_MONGODB)) {
-            return from.substring(0, 1).toLowerCase() + from.substring(1);
+            return SchemaPropertiesParser.parseToPropertyName(from);
         }
         return from;
 

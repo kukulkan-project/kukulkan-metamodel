@@ -79,6 +79,16 @@ public class Entity implements Serializable {
      */
     protected String camelCasePluralFormat;
 
+    /**
+     * The name of the table formated to java world.
+     */
+    protected String hyphensFormat;
+
+    /**
+     * The name of the table formated to java world.
+     */
+    protected String hyphensPluralFormat;
+
     /** The columns mapped into the PropertyHolder class. */
     protected String qualifiedName;
 
@@ -659,6 +669,22 @@ public class Entity implements Serializable {
 
     public void setHasEntitiesReferences(boolean hasEntitiesReferences) {
         this.hasEntitiesReferences = hasEntitiesReferences;
+    }
+
+    public String getHyphensFormat() {
+        return hyphensFormat;
+    }
+
+    public void setHyphensFormat(String hyphensFormat) {
+        this.hyphensFormat = hyphensFormat;
+    }
+
+    public String getHyphensPluralFormat() {
+        return hyphensPluralFormat;
+    }
+
+    public void setHyphensPluralFormat(String hyphensPluralFormat) {
+        this.hyphensPluralFormat = hyphensPluralFormat;
     }
 
     @Override
