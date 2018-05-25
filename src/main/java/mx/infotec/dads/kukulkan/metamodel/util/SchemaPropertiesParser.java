@@ -77,6 +77,11 @@ public class SchemaPropertiesParser {
     public static String parseToHyphens(String from) {
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, from);
     }
+    
+    public static String parseToUnderscore(String columnName) {
+        if (columnName == null) return null;
+        return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, columnName);
+    }
 
     /**
      * Parses the to upper case first char.

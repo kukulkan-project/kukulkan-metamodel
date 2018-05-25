@@ -18,10 +18,14 @@ public class EntityAssociation implements Serializable {
 
     private String toTargetPropertyName;
     private String toTargetPropertyNamePlural;
+    private String toTargetPropertyNameUnderscore;
+    private String toTargetPropertyNameUnderscorePlural;
 
     private Entity target;
     private String toSourcePropertyName;
     private String toSourcePropertyNamePlural;
+    private String toSourcePropertyNameUnderscore;
+    private String toSourcePropertyNameUnderscorePlural;
 
     private AssociationType type;
 
@@ -100,6 +104,38 @@ public class EntityAssociation implements Serializable {
 
     public void setToSourcePropertyNamePlural(String toSourcePropertyNamePlural) {
         this.toSourcePropertyNamePlural = toSourcePropertyNamePlural;
+    }
+    
+    public String getToTargetPropertyNameUnderscore() {
+        return toTargetPropertyNameUnderscore;
+    }
+
+    public void setToTargetPropertyNameUnderscore(String toTargetPropertyNameUnderscore) {
+        this.toTargetPropertyNameUnderscore = toTargetPropertyNameUnderscore;
+    }
+
+    public String getToSourcePropertyNameUnderscore() {
+        return toSourcePropertyNameUnderscore;
+    }
+
+    public void setToSourcePropertyNameUnderscore(String toSourcePropertyNameUnderscore) {
+        this.toSourcePropertyNameUnderscore = toSourcePropertyNameUnderscore;
+    }
+
+    public String getToTargetPropertyNameUnderscorePlural() {
+        return toTargetPropertyNameUnderscorePlural;
+    }
+
+    public void setToTargetPropertyNameUnderscorePlural(String toTargetPropertyNameUnderscorePlural) {
+        this.toTargetPropertyNameUnderscorePlural = toTargetPropertyNameUnderscorePlural;
+    }
+
+    public String getToSourcePropertyNameUnderscorePlural() {
+        return toSourcePropertyNameUnderscorePlural;
+    }
+
+    public void setToSourcePropertyNameUnderscorePlural(String toSourcePropertyNameUnderscorePlural) {
+        this.toSourcePropertyNameUnderscorePlural = toSourcePropertyNameUnderscorePlural;
     }
 
     /**
