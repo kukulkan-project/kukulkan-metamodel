@@ -69,6 +69,9 @@ public class Entity implements Serializable {
     /** The name of the database Table. */
     protected String tableName;
 
+    /** The entity name in underscore format */
+    protected String underscoreName;
+
     /**
      * The name of the table formated to java world.
      */
@@ -303,6 +306,25 @@ public class Entity implements Serializable {
      */
     public void setTableName(String tableName) {
         this.tableName = tableName;
+    }
+
+    /**
+     * Gets the entity name in underscore format
+     * 
+     * @return the entity name in underscore format
+     */
+    public String getUnderscoreName() {
+        return underscoreName;
+    }
+
+    /**
+     * Sets the entity name in underscore format
+     * 
+     * @param underscoreName
+     *            the entity name in underscore format
+     */
+    public void setUnderscoreName(String underscoreName) {
+        this.underscoreName = underscoreName;
     }
 
     /**

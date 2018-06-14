@@ -77,10 +77,17 @@ public class SchemaPropertiesParser {
     public static String parseToHyphens(String from) {
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, from);
     }
-    
+
     public static String parseToUnderscore(String columnName) {
-        if (columnName == null) return null;
+        if (columnName == null)
+            return null;
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, columnName);
+    }
+
+    public static String parsePascalCaseToUnderscore(String pascalCaseString) {
+        if (pascalCaseString == null)
+            return null;
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, pascalCaseString);
     }
 
     /**
