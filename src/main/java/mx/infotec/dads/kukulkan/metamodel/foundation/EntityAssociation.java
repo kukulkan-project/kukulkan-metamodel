@@ -15,6 +15,8 @@ public class EntityAssociation implements Serializable {
     private boolean ownerSide;
 
     private Entity source;
+    
+    private boolean bidirectional;
 
     private String toTargetPropertyName;
     private String toTargetPropertyNamePlural;
@@ -67,7 +69,11 @@ public class EntityAssociation implements Serializable {
     }
 
     public boolean isBidirectional() {
-        return toSourcePropertyName != null;
+        return bidirectional;
+    }
+    
+    public void setBidirectional(boolean bidirectional) {
+        this.bidirectional = bidirectional;
     }
 
     public boolean isCycle() {
