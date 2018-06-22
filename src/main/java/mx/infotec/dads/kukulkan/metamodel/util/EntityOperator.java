@@ -47,7 +47,8 @@ public class EntityOperator {
             List<EntityAssociation> associations) {
         Stream<EntityReferenceType> stream = associations.stream()
                 .filter(association -> EntityOperator.isOwnerAssociation(currentEntity, association)
-                        || EntityOperator.isInBidirectional(currentEntity, association))
+                        || EntityOperator.isInBidirectional(currentEntity, association)
+                        || AssociationType.ONE_TO_MANY.equals(association.getType()))
                 .map(association -> {
                     if (EntityOperator.isOwnerAssociation(currentEntity, association)) {
                         return EntityReferenceType.createToTargetReference(association, true);
@@ -68,8 +69,7 @@ public class EntityOperator {
                         || association.getType().equals(AssociationType.MANY_TO_ONE)
                         || association.getType().equals(AssociationType.MANY_TO_MANY))
                     entities.add(EntityReferenceType.createToTargetReference(association, true));
-            } else if (isRightOwner(entity, association) && association.getType().equals(AssociationType.ONE_TO_MANY)
-                    && association.isBidirectional()) {
+            } else if (isRightOwner(entity, association) && association.getType().equals(AssociationType.ONE_TO_MANY)) {
                 // is notOwnerAssociation
                 entities.add(EntityReferenceType.createToSourceReference(association, false));
             }
@@ -104,7 +104,9 @@ public class EntityOperator {
     }
 
     public static boolean isRightOwner(Entity entity, EntityAssociation association) {
-        if (association.isBidirectional() && !isOwnerAssociation(entity, association)) {
+        if (association.isBidirectional() && !isOwnerAssociation(entity, association)
+                || (AssociationType.ONE_TO_MANY.equals(association.getType())
+                        && !isOwnerAssociation(entity, association))) {
             boolean isOneToOne = association.getType().equals(AssociationType.ONE_TO_ONE);
             boolean isOneToMany = association.getType().equals(AssociationType.ONE_TO_MANY);
             return isOneToOne || isOneToMany;
@@ -118,7 +120,7 @@ public class EntityOperator {
         associations.forEach(association -> {
             if (isOwnerAssociation(entity, association)) {
                 adjacentList.add(EntityReferenceType.createToTargetReference(association, true));
-            } else if (association.isBidirectional()) {
+            } else if (association.isBidirectional() || AssociationType.ONE_TO_MANY.equals(association.getType())) {
                 adjacentList.add(EntityReferenceType.createToSourceReference(association, false));
             }
         });
