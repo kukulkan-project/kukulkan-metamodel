@@ -101,6 +101,12 @@ public class Entity implements Serializable {
 
     private List<EntityAssociation> associations = new ArrayList<>();
 
+    /**
+     * The property to show in UI when associated to another entity
+     */
+    @SuppressWarnings("rawtypes")
+    protected Property displayField;
+
     /** The generated elements. */
     private List<GeneratedElement> generatedElements = new ArrayList<>();
 
@@ -652,6 +658,15 @@ public class Entity implements Serializable {
         return associations.stream().filter(association -> association.getTarget().getName().equals(getName()))
                 .sorted((o1, o2) -> o1.getSource().getName().compareTo(o2.getSource().getName()))
                 .collect(Collectors.toList());
+    }
+
+    @SuppressWarnings("rawtypes")
+    public Property getDisplayField() {
+        return displayField;
+    }
+
+    public void setDisplayField(Property<?> displayField) {
+        this.displayField = displayField;
     }
 
     public LocalDateTime getTimestamp() {

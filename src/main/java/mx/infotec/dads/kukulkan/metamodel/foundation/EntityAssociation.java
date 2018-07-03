@@ -30,6 +30,9 @@ public class EntityAssociation implements Serializable {
     private String toSourcePropertyNameUnderscorePlural;
 
     private AssociationType type;
+    
+    @SuppressWarnings("rawtypes")
+    private Property displayField;
 
     public EntityAssociation(Entity source, Entity target) {
         this.source = source;
@@ -50,6 +53,15 @@ public class EntityAssociation implements Serializable {
 
     public void setType(AssociationType type) {
         this.type = type;
+    }
+    
+    @SuppressWarnings("rawtypes")
+    public Property getDisplayField() {
+        return displayField;
+    }
+
+    public void setDisplayField(Property<?> displayField) {
+        this.displayField = displayField;
     }
 
     public Entity getSource() {

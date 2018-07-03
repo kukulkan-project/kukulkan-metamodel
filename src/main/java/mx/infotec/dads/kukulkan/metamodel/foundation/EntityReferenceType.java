@@ -12,6 +12,8 @@ public class EntityReferenceType {
     private Entity target;
     private String toTargetPropertyName;
     private String toTargetPropertyNamePlural;
+    @SuppressWarnings("rawtypes")
+    private Property displayField;
     private AssociationType associationType;
 
     private boolean owner;
@@ -85,6 +87,14 @@ public class EntityReferenceType {
 
     public void setToTargetPropertyNamePlural(String toTargetPropertyNamePlural) {
         this.toTargetPropertyNamePlural = toTargetPropertyNamePlural;
+    }
+    
+    public Property<?> getDisplayField() {
+        return displayField;
+    }
+
+    public void setDisplayField(Property<?> displayField) {
+        this.displayField = displayField;
     }
 
     public AssociationType getAssociationType() {

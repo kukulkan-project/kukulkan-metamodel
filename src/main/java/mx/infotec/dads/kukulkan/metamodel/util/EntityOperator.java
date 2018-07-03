@@ -13,6 +13,7 @@ import mx.infotec.dads.kukulkan.metamodel.foundation.Entity;
 import mx.infotec.dads.kukulkan.metamodel.foundation.EntityAssociation;
 import mx.infotec.dads.kukulkan.metamodel.foundation.EntityReference;
 import mx.infotec.dads.kukulkan.metamodel.foundation.EntityReferenceType;
+import mx.infotec.dads.kukulkan.metamodel.foundation.Property;
 
 /**
  * Entity Operator
@@ -67,25 +68,45 @@ public class EntityOperator {
             if (isLeftOwner(entity, association)) {
                 if (association.getType().equals(AssociationType.ONE_TO_ONE)
                         || association.getType().equals(AssociationType.MANY_TO_ONE)
-                        || association.getType().equals(AssociationType.MANY_TO_MANY))
-                    entities.add(EntityReferenceType.createToTargetReference(association, true));
+                        || association.getType().equals(AssociationType.MANY_TO_MANY)) {
+                    EntityReferenceType entityReferenceType = EntityReferenceType.createToTargetReference(association,
+                            true);
+                    entityReferenceType.setDisplayField(determineDisplayField(association));
+                    entities.add(entityReferenceType);
+                }
             } else if (isRightOwner(entity, association) && association.getType().equals(AssociationType.ONE_TO_MANY)) {
                 // is notOwnerAssociation
-                entities.add(EntityReferenceType.createToSourceReference(association, false));
+                EntityReferenceType entityReferenceType = EntityReferenceType.createToSourceReference(association,
+                        false);
+                entityReferenceType.setDisplayField(determineDisplayField(association));
+                entities.add(entityReferenceType);
             }
         });
         return entities;
 
     }
 
+    @SuppressWarnings("rawtypes")
+    public static Property determineDisplayField(EntityAssociation association) {
+        if (association.getDisplayField() != null) {
+            return association.getDisplayField();
+        } else {
+            return association.getTarget().getDisplayField();
+        }
+    }
+
     public static Set<EntityReference> computeEntityReferences(Entity entity, List<EntityAssociation> associations) {
         Set<EntityReference> entities = new TreeSet<>(new EntityReferenceComparator());
         associations.forEach(association -> {
             if (isLeftOwner(entity, association)) {
-                entities.add(EntityReference.createTargetReference(entity, association));
+                EntityReference entityReference = EntityReference.createTargetReference(entity, association);
+                entityReference.setDisplayField(determineDisplayField(association));
+                entities.add(entityReference);
             } else if (isRightOwner(entity, association)) {
                 // is notOwnerAssociation
-                entities.add(EntityReference.createSourceReference(entity, association));
+                EntityReference entityReference = EntityReference.createSourceReference(entity, association);
+                entityReference.setDisplayField(determineDisplayField(association));
+                entities.add(entityReference);
             }
         });
         return entities;

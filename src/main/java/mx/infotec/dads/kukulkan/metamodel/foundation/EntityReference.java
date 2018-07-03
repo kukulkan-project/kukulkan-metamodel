@@ -40,6 +40,8 @@ public class EntityReference implements Serializable {
     private Entity target;
     private String propertyName;
     private String propertyNamePlural;
+    @SuppressWarnings("rawtypes")
+    private Property displayField;
 
     public static EntityReference createTargetReference(Entity source, EntityAssociation association) {
         return new EntityReference().addTargetReference(source, association);
@@ -105,6 +107,15 @@ public class EntityReference implements Serializable {
 
     public void setPropertyNamePlural(String propertyNamePlural) {
         this.propertyNamePlural = propertyNamePlural;
+    }
+
+    @SuppressWarnings("rawtypes")
+    public Property getDisplayField() {
+        return displayField;
+    }
+
+    public void setDisplayField(Property<?> displayField) {
+        this.displayField = displayField;
     }
 
     @Override
