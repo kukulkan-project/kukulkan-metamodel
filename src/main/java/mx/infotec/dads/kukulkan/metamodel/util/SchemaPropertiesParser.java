@@ -58,6 +58,10 @@ public class SchemaPropertiesParser {
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, columnName);
     }
 
+    public static String databaseNameToFieldName(String columnName) {
+        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
+    }
+
     /**
      * Parses the to class name.
      *
