@@ -1,11 +1,14 @@
 package mx.infotec.dads.kukulkan.metamodel.translator;
 
+import mx.infotec.dads.kukulkan.metamodel.foundation.GrammarFieldType;
+
 /**
  * 
  * @author FieldTypeMap
  *
  */
+@FunctionalInterface
 public interface FieldTypeMap<T> {
 
-//    Grammarfie
+    GrammarFieldType fieldTypeFrom(T from);
 }
