@@ -115,8 +115,7 @@ public class EntityOperator {
 
     public static boolean isLeftOwner(Entity entity, EntityAssociation association) {
         if (isOwnerAssociation(entity, association)) {
-            boolean isOneToOne = association.getType().equals(AssociationType.ONE_TO_ONE)
-                    && !association.isBidirectional();
+            boolean isOneToOne = association.getType().equals(AssociationType.ONE_TO_ONE);
             boolean isManyToOne = association.getType().equals(AssociationType.MANY_TO_ONE);
             boolean isManyToMany = association.getType().equals(AssociationType.MANY_TO_MANY);
             return isOneToOne || isManyToOne || isManyToMany;
