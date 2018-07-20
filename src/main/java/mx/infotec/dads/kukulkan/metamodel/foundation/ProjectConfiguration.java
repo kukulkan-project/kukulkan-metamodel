@@ -54,7 +54,7 @@ public class ProjectConfiguration extends BaseContext {
     private String year;
 
     /** The database type. */
-    private Database database;
+    private Database targetDataBase;
 
     private List<String> layers = new ArrayList<>();
 
@@ -129,8 +129,8 @@ public class ProjectConfiguration extends BaseContext {
      *
      * @return the database
      */
-    public Database getDatabase() {
-        return database;
+    public Database getTargetDatabase() {
+        return targetDataBase;
     }
 
     /**
@@ -140,7 +140,7 @@ public class ProjectConfiguration extends BaseContext {
      *            the new database
      */
     public void setDatabase(Database database) {
-        this.database = database;
+        this.targetDataBase = database;
     }
 
     public List<String> getLayers() {
