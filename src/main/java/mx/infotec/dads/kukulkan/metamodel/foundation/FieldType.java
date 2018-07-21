@@ -45,11 +45,6 @@ public enum FieldType {
     BOOLEAN_TYPE("Boolean"),
 
     /**
-     * This is for Date types
-     */
-    DATE("Date"),
-
-    /**
      * This is for LocalDate types
      */
     LOCAL_DATE("LocalDate"),
