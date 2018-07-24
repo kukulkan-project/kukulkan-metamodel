@@ -2,6 +2,8 @@ package mx.infotec.dads.kukulkan.metamodel.foundation;
 
 import java.io.Serializable;
 
+import mx.infotec.dads.kukulkan.metamodel.builders.EntityAssociationBuilder;
+
 /**
  * Entity Association.
  *
@@ -34,11 +36,19 @@ public class EntityAssociation implements Serializable {
     @SuppressWarnings("rawtypes")
     private Property displayField;
 
+    public EntityAssociation(){
+        
+    }
+    
     public EntityAssociation(Entity source, Entity target) {
         this.source = source;
         this.target = target;
     }
 
+    public static EntityAssociationBuilder createEntityAssociation(){
+        return new EntityAssociationBuilder();
+    }
+    
     public boolean isOwnerSide() {
         return ownerSide;
     }
