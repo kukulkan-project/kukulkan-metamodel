@@ -60,6 +60,8 @@ public class ProjectConfiguration extends BaseContext {
 
     private List<String> layersToProcess = new ArrayList<>();
 
+    private List<String> entities = new ArrayList<>();
+
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private transient LocalDateTime timestamp = LocalDateTime.now();
@@ -213,5 +215,13 @@ public class ProjectConfiguration extends BaseContext {
 
     public void setLayersToProcess(List<String> layersToProcess) {
         this.layersToProcess = layersToProcess;
+    }
+
+    public List<String> getEntities() {
+        return entities;
+    }
+
+    public void setEntities(List<String> entities) {
+        this.entities = entities;
     }
 }
