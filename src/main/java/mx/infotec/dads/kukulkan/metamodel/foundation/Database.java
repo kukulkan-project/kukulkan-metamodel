@@ -18,13 +18,17 @@ public class Database implements Serializable {
 
     private PKGenerationStrategy globalGenerationType;
 
-    public Database(){
-        
+    public Database() {
+
     }
-    
-    public Database(DatabaseType databaseType, PKGenerationStrategy globalGenerationType) {
+
+    public Database(DatabaseType databaseType) {
         this.databaseType = databaseType;
-        this.globalGenerationType = globalGenerationType;
+        if (databaseType.equals(DatabaseType.SQL_MYSQL)) {
+            this.globalGenerationType = PKGenerationStrategy.IDENTITY;
+        } else {
+            this.globalGenerationType = PKGenerationStrategy.SEQUENCE;
+        }
     }
 
     public PKGenerationStrategy getGlobalGenerationType() {

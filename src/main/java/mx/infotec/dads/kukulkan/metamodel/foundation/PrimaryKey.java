@@ -50,6 +50,8 @@ public class PrimaryKey implements Serializable {
 
     /** The qualified label. */
     private String qualifiedLabel;
+    
+    private String sequenceGeneratorName;
 
     /** The properties. */
     @SuppressWarnings("rawtypes")
@@ -198,5 +200,13 @@ public class PrimaryKey implements Serializable {
         PrimaryKey pk = new PrimaryKey();
         pk.setProperties(new TreeSet<>());
         return pk;
+    }
+
+    public String getSequenceGeneratorName() {
+        return sequenceGeneratorName;
+    }
+
+    public void setSequenceGeneratorName(String sequenceGeneratorName) {
+        this.sequenceGeneratorName = sequenceGeneratorName;
     }
 }
