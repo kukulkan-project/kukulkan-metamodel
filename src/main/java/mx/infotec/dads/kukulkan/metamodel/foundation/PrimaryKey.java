@@ -27,6 +27,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.TreeSet;
 
+import mx.infotec.dads.kukulkan.metamodel.conventions.PhysicalName;
 import mx.infotec.dads.kukulkan.metamodel.util.PKGenerationStrategy;
 
 /**
@@ -50,6 +51,8 @@ public class PrimaryKey implements Serializable {
 
     /** The qualified label. */
     private String qualifiedLabel;
+    
+    private PhysicalName physicalName;
     
     private String sequenceGeneratorName;
 
@@ -208,5 +211,13 @@ public class PrimaryKey implements Serializable {
 
     public void setSequenceGeneratorName(String sequenceGeneratorName) {
         this.sequenceGeneratorName = sequenceGeneratorName;
+    }
+
+    public PhysicalName getPhysicalName() {
+        return physicalName;
+    }
+
+    public void setPhysicalName(PhysicalName physicalName) {
+        this.physicalName = physicalName;
     }
 }

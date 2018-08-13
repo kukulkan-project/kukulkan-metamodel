@@ -24,7 +24,7 @@
 package mx.infotec.dads.kukulkan.metamodel.util;
 
 /**
- * NameConventions, it is a constant container which define common naming
+ * CodeStandard, it is a constant container which define common naming
  * conventions.
  * 
  * @author Daniel Cortes Pichardo

@@ -8,6 +8,7 @@ import mx.infotec.dads.kukulkan.metamodel.foundation.Entity;
  * @author Daniel Cortes Pichardo
  *
  */
+@FunctionalInterface
 public interface PrimaryKeyNameStrategy {
 
     /**
@@ -16,5 +17,5 @@ public interface PrimaryKeyNameStrategy {
      * @param entity
      * @return
      */
-    String getName(Entity entity);
+    PhysicalName getPrimaryKeyPhysicalName(Entity entity);
 }

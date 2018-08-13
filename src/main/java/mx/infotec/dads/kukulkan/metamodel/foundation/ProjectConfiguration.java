@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import mx.infotec.dads.kukulkan.metamodel.context.BaseContext;
+import mx.infotec.dads.kukulkan.metamodel.conventions.CodeStandard;
 import mx.infotec.dads.kukulkan.metamodel.util.LocalDateTimeDeserializer;
 import mx.infotec.dads.kukulkan.metamodel.util.LocalDateTimeSerializer;
 
@@ -55,6 +56,8 @@ public class ProjectConfiguration extends BaseContext {
 
     /** The targetDatabase type. */
     private Database targetDatabase;
+
+    private CodeStandard codeStandard = CodeStandard.DEFAULT;
 
     private List<String> layers = new ArrayList<>();
 
@@ -223,5 +226,13 @@ public class ProjectConfiguration extends BaseContext {
 
     public void setEntities(List<String> entities) {
         this.entities = entities;
+    }
+
+    public CodeStandard getCodeStandard() {
+        return codeStandard;
+    }
+
+    public void setCodeStandard(CodeStandard codeStandard) {
+        this.codeStandard = codeStandard;
     }
 }
