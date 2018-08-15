@@ -153,6 +153,8 @@ public class Entity implements Serializable {
 
     private transient String timestampString;
 
+    protected Features features = new Features();
+
     /**
      * Checks if is checks for constraints.
      *
@@ -722,6 +724,14 @@ public class Entity implements Serializable {
 
     public void setHyphensPluralFormat(String hyphensPluralFormat) {
         this.hyphensPluralFormat = hyphensPluralFormat;
+    }
+
+    public Features getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(Features features) {
+        this.features = features;
     }
 
     @Override
