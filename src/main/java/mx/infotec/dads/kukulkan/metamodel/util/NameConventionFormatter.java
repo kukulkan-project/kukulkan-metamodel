@@ -40,13 +40,11 @@ public class NameConventionFormatter {
     }
 
     public static String toDataBaseNameConvention(DatabaseType dbType, String from) {
-        if (dbType.equals(DatabaseType.SQL_MYSQL)) {
-            return SchemaPropertiesParser.parseToDataBaseName(from);
-        } else if (dbType.equals(DatabaseType.NO_SQL_MONGODB)) {
+        if (dbType.equals(DatabaseType.NO_SQL_MONGODB)) {
             return SchemaPropertiesParser.parseToPropertyName(from);
+        } else {
+            return SchemaPropertiesParser.parseToDataBaseName(from);
         }
-        return from;
-
     }
 
     /**
