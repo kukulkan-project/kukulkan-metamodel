@@ -24,12 +24,14 @@ public class EntityAssociation implements Serializable {
     private String toTargetPropertyNamePlural;
     private String toTargetPropertyNameUnderscore;
     private String toTargetPropertyNameUnderscorePlural;
+    private String toTargetReferencePhysicalName;
 
     private Entity target;
     private String toSourcePropertyName;
     private String toSourcePropertyNamePlural;
     private String toSourcePropertyNameUnderscore;
     private String toSourcePropertyNameUnderscorePlural;
+    private String toSourceReferencePhysicalName;
 
     private AssociationType type;
     
@@ -181,5 +183,21 @@ public class EntityAssociation implements Serializable {
     public String toString() {
         return "[source: " + source + ", " + "propertyName: " + toTargetPropertyName + "], " + "[target: " + target
                 + ", " + "propertyName: " + toSourcePropertyName + "], " + "[type: " + type + "]";
+    }
+
+    public String getToTargetReferencePhysicalName() {
+        return toTargetReferencePhysicalName;
+    }
+
+    public void setToTargetReferencePhysicalName(String toTargetReferencePhysicalName) {
+        this.toTargetReferencePhysicalName = toTargetReferencePhysicalName;
+    }
+
+    public String getToSourceReferencePhysicalName() {
+        return toSourceReferencePhysicalName;
+    }
+
+    public void setToSourceReferencePhysicalName(String toSourceReferencePhysicalName) {
+        this.toSourceReferencePhysicalName = toSourceReferencePhysicalName;
     }
 }

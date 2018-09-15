@@ -51,6 +51,8 @@ public class Entity implements Serializable {
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    protected String referencePhysicalName;
+    
     /** id of the dataModelElement, it is the primary key. */
     protected PrimaryKey primaryKey;
 
@@ -762,6 +764,14 @@ public class Entity implements Serializable {
         } else if (!name.equals(other.name))
             return false;
         return true;
+    }
+
+    public String getReferencePhysicalName() {
+        return referencePhysicalName;
+    }
+
+    public void setReferencePhysicalName(String referencePhysicalName) {
+        this.referencePhysicalName = referencePhysicalName;
     }
 
 }
