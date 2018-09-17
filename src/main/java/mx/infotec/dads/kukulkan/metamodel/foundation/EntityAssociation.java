@@ -17,13 +17,14 @@ public class EntityAssociation implements Serializable {
     private boolean ownerSide;
 
     private Entity source;
-    
+
     private boolean bidirectional;
 
     private String toTargetPropertyName;
     private String toTargetPropertyNamePlural;
     private String toTargetPropertyNameUnderscore;
     private String toTargetPropertyNameUnderscorePlural;
+    // Property for custom Guidelines
     private String toTargetReferencePhysicalName;
 
     private Entity target;
@@ -31,26 +32,27 @@ public class EntityAssociation implements Serializable {
     private String toSourcePropertyNamePlural;
     private String toSourcePropertyNameUnderscore;
     private String toSourcePropertyNameUnderscorePlural;
+    // Property for custom Guidelines
     private String toSourceReferencePhysicalName;
 
     private AssociationType type;
-    
+
     @SuppressWarnings("rawtypes")
     private Property displayField;
 
-    public EntityAssociation(){
-        
+    public EntityAssociation() {
+
     }
-    
+
     public EntityAssociation(Entity source, Entity target) {
         this.source = source;
         this.target = target;
     }
 
-    public static EntityAssociationBuilder createEntityAssociation(){
+    public static EntityAssociationBuilder createEntityAssociation() {
         return new EntityAssociationBuilder();
     }
-    
+
     public boolean isOwnerSide() {
         return ownerSide;
     }
@@ -66,7 +68,7 @@ public class EntityAssociation implements Serializable {
     public void setType(AssociationType type) {
         this.type = type;
     }
-    
+
     @SuppressWarnings("rawtypes")
     public Property getDisplayField() {
         return displayField;
@@ -95,7 +97,7 @@ public class EntityAssociation implements Serializable {
     public boolean isBidirectional() {
         return bidirectional;
     }
-    
+
     public void setBidirectional(boolean bidirectional) {
         this.bidirectional = bidirectional;
     }
@@ -135,7 +137,7 @@ public class EntityAssociation implements Serializable {
     public void setToSourcePropertyNamePlural(String toSourcePropertyNamePlural) {
         this.toSourcePropertyNamePlural = toSourcePropertyNamePlural;
     }
-    
+
     public String getToTargetPropertyNameUnderscore() {
         return toTargetPropertyNameUnderscore;
     }
