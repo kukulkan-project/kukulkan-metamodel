@@ -52,7 +52,7 @@ public class Entity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected String referencePhysicalName;
-    
+
     /** id of the dataModelElement, it is the primary key. */
     protected PrimaryKey primaryKey;
 
@@ -155,6 +155,9 @@ public class Entity implements Serializable {
 
     private transient String timestampString;
 
+    /**
+     * Additional features for the entity
+     */
     protected Features features = new Features();
 
     /**

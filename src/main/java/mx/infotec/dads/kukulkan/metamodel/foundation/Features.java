@@ -32,7 +32,18 @@ public class Features implements Serializable {
      * 
      */
     private static final long serialVersionUID = -8832065479223989018L;
+
+    /**
+     * A flag that indicates if an entity should be shown as 'sheet' in GUI
+     */
     private boolean sheetable = false;
+
+    /**
+     * A flag that indicates if an entity should be 'auditable', i.e. should have
+     * additional properties like 'createdBy', 'createdDate', 'lastModifiedBy',
+     * 'lastModifiedDate'
+     */
+    private boolean auditable = false;
 
     public boolean isSheetable() {
         return sheetable;
@@ -40,6 +51,14 @@ public class Features implements Serializable {
 
     public void setSheetable(boolean sheetable) {
         this.sheetable = sheetable;
+    }
+
+    public boolean isAuditable() {
+        return auditable;
+    }
+
+    public void setAuditable(boolean auditable) {
+        this.auditable = auditable;
     }
 
 }
